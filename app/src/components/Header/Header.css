@@ -1,0 +1,39 @@
+.Header-Bar {
+    padding: 10px;
+    height: 50px;
+    width: calc(100% - 20px);
+    overflow:hidden;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+
+    border-bottom: 1px solid rgb(231, 231, 231);
+}
+
+.Header-Icon, .Header-Title {
+    padding: 5px;
+    height: calc(100% - 10px);
+}
+
+@media only screen 
+and (max-width :1000px) {
+    .Header-Icon {
+        display: block;
+    }
+
+    .Header-Title {
+        display: none;
+    }
+}
+
+@media only screen 
+and (min-width : 1000px) {
+    .Header-Icon {
+        display: none;
+    }
+
+    .Header-Title {
+        display: block;
+    }
+}
