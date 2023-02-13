@@ -1,5 +1,7 @@
 
 import Header from './components/Header/Header'
+import TestAPIConsumer from './components/TestAPIConsumer/TestAPIConsumer'
+
 import './App.css';
 import {Helmet} from "react-helmet";
 
@@ -12,6 +14,7 @@ function App() {
         <meta name="description" content="Recipea Web Application" />
       </Helmet>
       <Header></Header>
+      <TestAPIConsumer></TestAPIConsumer>
     </div>
   );
 }
