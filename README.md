@@ -2,6 +2,16 @@
 
 This is the Recipea, the online recipe sharing app!
 
+Project directory - 'Recipe/app'
+
+
+
+# Setup
+
+1. Run `npm install` inside the project directory, you'll need a current version of npm (16 is preferred)
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
