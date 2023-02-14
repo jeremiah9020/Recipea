@@ -1,3 +1,4 @@
+import React from 'react';
 import logo from '../../assets/logo.svg';
 import title from '../../assets/title.svg';
 import './Header.css';
