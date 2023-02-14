@@ -15,7 +15,6 @@ db.once('open', () => console.log('Connected to Database'))
 app.use(cors())
 app.use(express.json())
 
-
 const usersRouter = require('./routes/Users')
 app.use('/users', usersRouter)
 
