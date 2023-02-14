@@ -4,14 +4,33 @@ This is the Recipea, the online recipe sharing app!
 
 Project directory - 'Recipe/app'
 
-
-
 # Setup
 
-1. Run `npm install` inside the project directory, you'll need a current version of npm (16 is preferred)
+1. Run `npm install` inside the project directory
+
+2. Install mongodb
+    - for MacOS:    https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/
+    - for Windows:  https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/
+        - You'll also want to install the shell:    https://www.mongodb.com/docs/mongodb-shell/install/
+        - Don't forget to restart your computer!
+
+3. Create file in the project directory named '.env' with the following contents,
+   where &{name} is your mongodb database name. 
+    PORT=3001
+    DATABASE_URL=mongodb://127.0.0.1/${name}
+
+4. Install the following extensions
+    - https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+
+# Running
+- starting the rest api server: `npm run serverstart`
+- starting the webpage: `npm start`
 
 
 
+
+
+# Default README stuff
 ## Available Scripts
 
 In the project directory, you can run:
