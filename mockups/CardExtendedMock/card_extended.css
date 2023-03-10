@@ -1,0 +1,215 @@
+html, body
+{
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.Blue {
+    color: rgb(69, 69, 208);
+}
+
+.Yellow {
+    color: rgb(148, 148, 71);
+}
+
+.BackgroundContainer {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: auto;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.CardContainer {
+    position: relative;
+    width: 800px;
+    height: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.CardContainer .ImageContainer {
+    position: relative;
+    margin: 25px 25px 10px 25px;
+    height: 300px;
+    width: 750px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.CardContainer .Image {
+    position: absolute;
+    left: 0;
+    top: -20%;
+    max-width: 100%;
+    object-fit: scale-down;
+}
+
+.CardContainer .TitleContainer {
+    padding-top:10px;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding-bottom: 5px;
+    width: calc(100% - 30px);
+    height: 60px;
+    border-bottom: 1px solid rgb(180, 180, 180);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.CardContainer .TitleContainer .LeftContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.CardContainer .TitleContainer .LeftContainer .ProfileContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.CardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfilePictureContainer {
+    border-radius: 20px;
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+}
+
+.CardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfilePictureContainer .ProfilePicture {
+    max-width: 100%;
+}
+
+.CardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfileName {
+    color: gray;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 17px;
+}
+
+.CardContainer .TitleContainer .LeftContainer .Title {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.CardContainer .TitleContainer .RightContainer {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.CardContainer .TitleContainer .RightContainer .StarContainer {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.CardContainer .TitleContainer .RightContainer .StarContainer .Star {
+    margin-left: 5px;
+    height: 80%;
+}
+
+.CardContainer .TitleContainer .RightContainer .TimeContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.CardContainer .TitleContainer .RightContainer .TimeContainer .Clock {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.CardContainer .TitleContainer .RightContainer .TimeContainer .Time {
+    color: rgb(92, 92, 92);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 17px;
+}
+
+.CardContainer .ContentContainer {
+    padding: 15px;
+    width: calc(100% - 30px);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.CardContainer .ContentContainer .InteractableContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.CardContainer .ContentContainer .InteractableContainer .TagContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.CardContainer .ContentContainer .InteractableContainer .TagContainer .Tag {
+    border-radius: 5px;
+    border: 2px solid;
+    margin-right: 10px;
+    font-size: 12px;
+    padding: 3px 7px 3px 7px;
+}
+
+.CardContainer .ContentContainer .InteractableContainer .ShareContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.CardContainer .ContentContainer .InteractableContainer .ShareContainer img {
+    margin-right: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+.CardContainer .ContentContainer .InfoContainer {
+    width: calc(100% - 40px);
+    height: auto;
+    padding: 20px 20px 30px 20px;
+
+    display:grid;
+    grid-template-columns: auto auto;
+    font-size: 20px;
+    font-weight: bold;
+    column-gap: 50px;
+    border-bottom: 1px solid rgb(180, 180, 180);
+
+}
+
+.CardContainer .ContentContainer .InfoContainer .DescriptionContainer {
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+.CardContainer .ContentContainer .InstructionsContainer {
+    height: auto;
+    padding: 20px 40px 20px 40px;
+    margin-top: 20px;
+}
+
+.CardContainer .ContentContainer .InstructionsContainer .Step {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
