@@ -16,6 +16,30 @@
     height: calc(100% - 10px);
 }
 
+.Header-Bar .Login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 0px 30px 0px 30px;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+    color: white;
+    background: black;
+    border: none;
+    border-radius: 50px;
+    transition: 0.25s
+}
+
+.Header-Bar .Login:hover {
+    cursor:pointer;
+    background:rgb(17, 152, 22);
+    transition: 0.25s
+}
+
+
+
 @media only screen 
 and (max-width :1000px) {
     .Header-Icon {

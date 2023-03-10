@@ -15,7 +15,10 @@ db.once('open', () => console.log('Connected to Database'))
 app.use(cors())
 app.use(express.json())
 
-const usersRouter = require('./routes/Users')
-app.use('/users', usersRouter)
+const authRouter = require('./routes/auth')
+app.use('/auth', authRouter)
+
+const testRouter = require('./routes/testing_endpoint')
+app.use('/endpoint', testRouter)
 
 app.listen(3000, ()=> console.log('Server Started'))

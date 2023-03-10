@@ -27,9 +27,6 @@ Project directory - 'Recipe/app'
 - starting the webpage: `npm start`
 
 
-
-
-
 # Default README stuff
 ## Available Scripts
 

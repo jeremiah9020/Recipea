@@ -1,29 +1,24 @@
-GET http://localhost:3000/users
-
-###
-
-GET http://localhost:3000/users/63eac52bf1c62dc4bb5429f1
-
-###
-
-POST http://localhost:3000/users
+POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-    "username": "3",
-    "email": "3@4.com",
+    "username": "JabberJerry",
+    "email": "test@cool.com",
     "password": "password"
 }
 
 ###
 
-DELETE http://localhost:3000/users/63eac22376e533542f98044c
-
-###
-
-PATCH http://localhost:3000/users/63eac52bf1c62dc4bb5429f1
+POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "username": "JibberJerry"
+    "name": "test@cool.com",
+    "password": "password"
 }
+
+###
+
+GET http://localhost:3000/endpoint/authorized
+Content-Type: application/json
+Authorization: Bearer ayJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2VkYjMxNWQ1MGU5Mjk5YThmM2U4ZDQiLCJ1c2VyRW1haWwiOiJ0ZXN0QGNvb2wuY29tIiwidXNlck5hbWUiOiJKYWJiZXJKZXJyeSIsImlhdCI6MTY3NjUyMzkzMCwiZXhwIjoxNjc5MTE1OTMwfQ.mY_9o5xE2bp1AgozKNpsFUb61ScCAANGm14eeMkft-4
