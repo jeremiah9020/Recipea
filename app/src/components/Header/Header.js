@@ -22,8 +22,8 @@ function Header(props) {
         <div className='Header-Bar'>
             <img src={title} className="Header-Title" alt="logo" />
             <img src={logo} className="Header-Icon" alt="logo" />
-            {props.token === '' && <Link className="Login" to="/login">Login</Link>}
-            {props.token !== '' && <button onClick={logout}>Logout</button>}
+            {props.token === '' && <Link className="LoginButton" to="/login">Login</Link>}
+            {props.token !== '' && <button className="LoginButton" onClick={logout}>Logout</button>}
         </div>
     )
 }

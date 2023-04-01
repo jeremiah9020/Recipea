@@ -16,7 +16,7 @@
     height: calc(100% - 10px);
 }
 
-.Header-Bar .Login {
+.Header-Bar .LoginButton {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,10 +29,10 @@
     background: black;
     border: none;
     border-radius: 50px;
-    transition: 0.25s
+    transition: 0.25s;
 }
 
-.Header-Bar .Login:hover {
+.Header-Bar .LoginButton:hover {
     cursor:pointer;
     background: var(--green-1);
     transition: 0.25s
