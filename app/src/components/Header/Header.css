@@ -34,7 +34,7 @@
 
 .Header-Bar .Login:hover {
     cursor:pointer;
-    background:rgb(17, 152, 22);
+    background: var(--green-1);
     transition: 0.25s
 }
 

@@ -3,31 +3,22 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './TestAPIConsumer.css';
 
-
-function TestAPIConsumer() {
-    const [users, setUsers] = useState([]);
-    const [error,setError] = useState(null);
+function TestAPIConsumer(props) {
+  const [response,setResponse] = useState("")
 
     useEffect(() => {
-        axios.get("http://localhost:3000/users")
+        axios.get("http://localhost:3001/testing/authorized",{headers:{Authorization: `Bearer ${props.token}`}})
           .then((response) => {
-            setUsers(response.data);
-            setError(null);
+            setResponse(response.data.message)
           })
-          .catch(setError);
-      }, []);
-
-      if (error) return <p>An error occurred</p>
+          .catch((e) => {
+            setResponse(e.message)
+          });
+      });
 
       return (
-        <div className='middle'>
-          {users.map(({ username, email, password }) => (
-            <div key="div" className='group'>
-                <span key="username">Username: {username}</span>
-                <span key="email">Email: {email}</span>
-                <span key="password">Password: {password}</span>
-            </div>
-          ))}
+        <div>
+          {response}
         </div>
       );
 }

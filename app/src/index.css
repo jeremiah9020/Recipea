@@ -3,4 +3,10 @@ body {
   font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --green-1: rgb(17, 152, 22);
+
+  --gray-1: rgb(150, 150, 150);
+
+  --red-1: rgb(195, 23, 23);
 }
