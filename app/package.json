@@ -1,26 +1,23 @@
 {
-  "name": "my-app",
+  "name": "recipea",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "axios": "^1.3.3",
-    "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^6.9.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "sequelize": "^6.30.0",
+    "sqlite3": "^5.1.6",
+    "universal-cookie": "^4.0.4"
   },
   "scripts": {
-    "serverstart": "nodemon server/run.js",
+    "serverstart": "nodemon ./server/bin/www",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
