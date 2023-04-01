@@ -65,7 +65,7 @@ function Login() {
     }
 
     return (
-        <div className="Whole">
+        <div className="Login">
             <div className="Graphic">
                 <img src={title} className="Title" alt="logo" />
             </div>

@@ -1,11 +1,12 @@
-.Whole {
+.Login {
     width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: row;
+    overflow: hidden;
 }
 
-.Graphic {
+.Login .Graphic {
     position: relative;
     width: calc(90% - 400px);
     height: 100%;
@@ -15,12 +16,12 @@
     align-items: center;
 }
 
-.Graphic .Title {
+.Login .Graphic .Title {
     padding-top: 40px;
     width: 40%
 }
 
-.FormContainer {
+.Login .FormContainer {
     width: calc(10% + 400px);
     height: 100%;
     min-height: 800px;
@@ -31,24 +32,24 @@
     padding-top:30px;
 }
 
-.FormContainer form {
+.Login .FormContainer form {
     width: 400px;
     height: 600px;
     border-radius: 10px;
     box-shadow: 0px 0px 5px rgb(150, 150, 150);
 }
 
-.FormContainer form h1 {
+.Login .FormContainer form h1 {
     margin: 0;
     padding: 20px;
     padding-top: 10px;
 }
 
-.Pad {
+.Login .Pad {
     padding-bottom: 20px;
 }
 
-.FormContainer form .Input {
+.Login .FormContainer form .Input {
     position: relative;
     margin: 0;
     width: 100%;
@@ -59,7 +60,7 @@
     align-items: center;
 }
 
-.FormContainer form .Forgot {
+.Login .FormContainer form .Forgot {
     position: relative;
     margin: 0;
     width: 100%;
@@ -71,7 +72,7 @@
     justify-content: flex-start;
 }
 
-.FormContainer form .Input input{
+.Login .FormContainer form .Input input{
     padding-left: 20px;
 
     border-radius: 5px;
@@ -81,7 +82,7 @@
     height: 100%;
 }
 
-.FormContainer form .Input input[type=submit] {
+.Login .FormContainer form .Input input[type=submit] {
     background-color: var(--green-1);
     color: white;
     font-weight: bold;
@@ -95,7 +96,7 @@
     height: 100%;
 }
 
-.FormContainer form .Input input[type=button] {
+.Login .FormContainer form .Input input[type=button] {
     background-color: rgb(100, 100, 100);
     color: rgb(200, 200, 200);
     font-weight: bold;
@@ -107,7 +108,7 @@
     height: 100%;
 }
 
-.FormContainer form button {
+.Login .FormContainer form button {
     border: none;
     background-color: transparent;
     font-size: 20px;
@@ -116,28 +117,28 @@
     font-weight: 500;
 }
 
-.FormContainer form .Input .Toggle {
+.Login .FormContainer form .Input .Toggle {
     position: absolute;
     right: 30px;
     top:calc(50% - 12px);
 }
 
-.FormContainer form .Input input:focus{
+.Login .FormContainer form .Input input:focus{
     outline-color: var(--green-1);
 }
 
-.FormContainer .JoinContainer {
+.Login .FormContainer .JoinContainer {
     padding:30px;
     font-size: 20px;
 }
 
-.FormContainer .JoinContainer a {
+.Login .FormContainer .JoinContainer a {
     font-weight: 500;
     text-decoration: none;
     color: var(--green-1)
 }
 
-.FormContainer .Divider {
+.Login .FormContainer .Divider {
     padding-left: 20px;
     width: 90%;
     height: 60px;
@@ -152,8 +153,8 @@
 }
 
 
-.FormContainer .Divider:before,
-.FormContainer .Divider:after {
+.Login .FormContainer .Divider:before,
+.Login .FormContainer .Divider:after {
     content: "";
     flex-grow: 1;
     background: var(--gray-1);
@@ -163,7 +164,7 @@
 }
 
 
-.ErrorBox {
+.Login .ErrorBox {
     position: absolute;
     text-align: center;
     top: -30px;
@@ -175,20 +176,20 @@
     transition: all 100ms;
 }
 
-.Animation {
+.Login .Animation {
     opacity: 1;
     top: 30px;
     transition: all 750ms;
 }
 
-button:hover {
+.Login button:hover {
     cursor: pointer;
 }
 
-input[type=button]:hover {
+.Login input[type=button]:hover {
     cursor: pointer;
 }
 
-input[type=submit]:hover {
+.Login input[type=submit]:hover {
     cursor: pointer;
 }

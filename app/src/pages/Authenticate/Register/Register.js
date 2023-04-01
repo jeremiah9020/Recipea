@@ -56,7 +56,7 @@ function Register() {
     }
 
     return (
-        <div className="Whole">
+        <div className="Register">
             <div className="Graphic">
                 <img src={title} className="Title" alt="logo" />
             </div>
