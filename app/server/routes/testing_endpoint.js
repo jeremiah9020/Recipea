@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const auth = require('../auth_middleware')
-
+const auth = require('../middleware/auth')
 
 // authentication endpoint
 router.get("/authorized", auth, (req, res) => {

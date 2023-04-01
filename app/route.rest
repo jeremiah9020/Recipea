@@ -13,12 +13,15 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "name": "test@cool.com",
+    "username": "JabberJerry",
     "password": "password"
 }
 
 ###
 
-GET http://localhost:3000/endpoint/authorized
-Content-Type: application/json
-Authorization: Bearer ayJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2VkYjMxNWQ1MGU5Mjk5YThmM2U4ZDQiLCJ1c2VyRW1haWwiOiJ0ZXN0QGNvb2wuY29tIiwidXNlck5hbWUiOiJKYWJiZXJKZXJyeSIsImlhdCI6MTY3NjUyMzkzMCwiZXhwIjoxNjc5MTE1OTMwfQ.mY_9o5xE2bp1AgozKNpsFUb61ScCAANGm14eeMkft-4
+POST http://localhost:3000/auth/logout
+
+###
+
+GET http://localhost:3000/testing/authorized
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJKYWJiZXJKZXJyeSIsImlhdCI6MTY4MDMwNzg4MCwiZXhwIjoxNjgwMzA3OTEwfQ.eZR8vZ8_gDhFcMsv1OUj13twTtP9GuZCbHNjyGx_gp8

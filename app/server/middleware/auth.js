@@ -6,6 +6,8 @@ module.exports = async (req, res, next) => {
     const decodedToken = await jwt.verify(token, "RANDOM-TOKEN");
 
     const user = await decodedToken;
+    console.log(user)
+
     req.user = user;
     next();
     
