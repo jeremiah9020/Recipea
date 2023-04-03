@@ -202,3 +202,48 @@ p {
     border-radius: 30px;
     padding: 5px 20px;
 }
+
+.add-row
+{
+    height: 50px;
+    width: 170px;
+    margin-top: 75px;
+    color: black;
+    background-color: var(--light-gray);
+}
+
+
+.add-row:hover
+{
+    cursor: pointer;
+}
+
+.remove-row
+{
+    height: 50px;
+    width: 170px;
+    margin-top: 75px;
+    color: black;
+    background-color: var(--light-gray);
+}
+
+.remove-row:hover
+{
+    cursor: pointer;
+}
+
+
+.tag-button:hover
+{
+    cursor: pointer;
+    border-style: groove;
+}
+
+.tag-button
+{
+    background-color: white;
+    outline: none;
+    border-style: none;
+    text-decoration: none;
+    color:transparent;
+}
