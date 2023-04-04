@@ -4,6 +4,7 @@ const cors = require('cors')
 
 const authRouter = require('./routes/auth')
 const testingRouter = require('./routes/testing_endpoint')
+const apiRouter = require('./routes/api');
 
 //DATABASE
 sequelize.sync(
@@ -20,5 +21,6 @@ app.set('trust proxy', 1)
 // ROUTES
 app.use('/auth', authRouter)
 app.use('/testing', testingRouter)
+app.use('/api', apiRouter);
 
 module.exports = app
