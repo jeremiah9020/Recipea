@@ -4,7 +4,7 @@ const fs = require('fs')
 const path = require('path');
 const apiRoute = path.resolve(process.cwd(), 'server/api');
 
-// Use every api in the api folder
+// Will use every file in the api folder as a router, and the route will be the name of the file
 fs.readdirSync(apiRoute).forEach((file) => {
     const name = file.substring(0,file.length - 3)
     let importedRouter = require("../api/" + name)
