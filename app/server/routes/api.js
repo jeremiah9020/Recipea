@@ -8,7 +8,6 @@ const apiRoute = path.resolve(process.cwd(), 'server/api');
 fs.readdirSync(apiRoute).forEach((file) => {
     let [currRouter,name] = require("../api/" + file.substring(0,file.length - 3))
     router.use(name,currRouter);
-    console.log(name)
 })  
 
 module.exports = router;
