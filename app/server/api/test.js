@@ -6,7 +6,7 @@ router.get('/', (req, res, next) => {
     res.json({msg:"You have accessed a free endpoint"})
 })
 
-router.post('/', authMiddleware, (req, res, next) => {
+router.post('/', authMiddleware, (_0, res, _1) => {
     res.json({msg:"You have accessed a restricted endpoint"})
 })
 
