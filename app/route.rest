@@ -46,3 +46,15 @@ Authorization: Bearer WRITE_TOKEN_HERE
     "steps": "Pour milk in a glass:Add chocolate syrup to glass:Stir for 30 seconds or until mixed",
     "description": "Delicious choclate milk, the way Grandma made it!"
 }
+
+###
+DELETE http://localhost:3001/api/development/recipes
+
+###
+DELETE http://localhost:3001/api/development/recipes/1
+
+###
+DELETE http://localhost:3001/api/development/users
+
+###
+DELETE http://localhost:3001/api/development/users/1
