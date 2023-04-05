@@ -6,8 +6,9 @@ const apiRoute = path.resolve(process.cwd(), 'server/api');
 
 // Use every api in the api folder
 fs.readdirSync(apiRoute).forEach((file) => {
-    let [currRouter,name] = require("../api/" + file.substring(0,file.length - 3))
-    router.use(name,currRouter);
+    const name = file.substring(0,file.length - 3)
+    let importedRouter = require("../api/" + name)
+    router.use(name,importedRouter);
 })  
 
 module.exports = router;

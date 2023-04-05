@@ -1,7 +1,7 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 const authMiddleware = require('../middleware/auth')
-const Recipe = require('../models/Recipe');
+const Recipe = require('../models/Recipe')
 
 router.get('/', async (req, res, next) => {
     try {
@@ -30,4 +30,4 @@ router.post('/', authMiddleware, async (req, res, next) => {
     }
 })
 
-module.exports = [router,'/recipes'];
+module.exports = router
