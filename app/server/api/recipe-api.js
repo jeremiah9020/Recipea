@@ -1,5 +1,6 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const authMiddleware = require('../middleware/auth')
 const Recipe = require('../models/Recipe');
 
 router.get('/', async (req, res, next) => {
@@ -11,10 +12,10 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', authMiddleware, async (req, res, next) => {
     try {
         const recipe = await Recipe.create({
-            user: req.body.user,
+            userid: req.user.id,
             title: req.body.title,
             image: req.body.image,
             time: req.body.time,
@@ -27,6 +28,6 @@ router.post('/', async (req, res, next) => {
     } catch (error) {
         res.status(500).json(error);
     }
-});
+})
 
 module.exports = router;
