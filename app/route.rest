@@ -1,27 +1,39 @@
-POST http://localhost:3000/auth/register
+POST http://localhost:3001/auth/register
 Content-Type: application/json
 
 {
-    "username": "JabberJerry",
-    "email": "test@cool.com",
-    "password": "password"
+    "username": "test",
+    "email": "test@xyz.com",
+    "password": "pwd"
 }
 
 ###
 
-POST http://localhost:3000/auth/login
+POST http://localhost:3001/auth/login
 Content-Type: application/json
 
 {
-    "username": "JabberJerry",
-    "password": "password"
+    "username": "test",
+    "password": "pwd"
 }
 
 ###
 
-POST http://localhost:3000/auth/logout
+POST http://localhost:3001/api/recipes
+Content-Type: application/json
+Authorization: Bearer WRITE_TOKEN_HERE
+
+{
+    "username": "test",
+    "title": "Chocolate Milk",
+    //"image": "ImageBlob!",
+    "time": "00:01:00",
+    "ingredients": "1 cup milk:4 Tbsp chocolate syrup",
+    //"tags": "1:2:3:4",
+    "steps": "Pour milk in a glass:Add chocolate syrup to glass:Stir for 30 seconds or until mixed",
+    "description": "Delicious choclate milk, the way Grandma made it!"
+}
 
 ###
 
-GET http://localhost:3000/testing/authorized
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJKYWJiZXJKZXJyeSIsImlhdCI6MTY4MDMwNzg4MCwiZXhwIjoxNjgwMzA3OTEwfQ.eZR8vZ8_gDhFcMsv1OUj13twTtP9GuZCbHNjyGx_gp8
+GET http://localhost:3001/api/recipes
