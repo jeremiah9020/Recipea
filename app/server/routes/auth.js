@@ -5,20 +5,6 @@ const User = require('../models/User')
 
 const router = express.Router()
 
-router.get('/test', (req, res,) => {
-    console.log(req.session.user)
-})
-
-
-router.post('/logout', (req, res, _) => {
-    if (req.session.user) {
-        req.session.destroy()
-        res.status(205).json({ msg: 'Successfully signed out.' })
-    } else {
-        res.status(205).json({ msg: 'No one signed in.' })
-    }
-})
-
 router.post('/login', async (req, res, _) => {
     const username = req.body.username
     const password = req.body.password
