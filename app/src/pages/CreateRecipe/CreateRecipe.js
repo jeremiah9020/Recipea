@@ -11,6 +11,29 @@ function CreateRecipe() {
         () => EditorState.createEmpty(),
     );
 
+    async function postRecipe(data)
+    {
+        let url = 'http://localhost:3001/api/recipe';
+
+        const response = await fetch(url, {
+            method: 'POST',
+            cache: 'no-cache',
+            // credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify(data),
+        });
+
+        return response.json();
+    }
+
+    async function postRecipe()
+    {
+        
+    }
+
     // can make bold, italic, or underline text - ctrl + b, ctrl + i, ctrl + u
     function handleKeyCommand(command, editorState) {
         const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -146,7 +169,7 @@ function CreateRecipe() {
             {/* <!-- save (s), cancel (c), or post (p) the recipe --> */}
             <div class="footer">
                 <div class="scp-container">
-                    <p class="save bold">save</p>
+                    <button class="save bold" onClick={postRecipe}>save</button>
                     <p class="cancel bold">cancel</p>
                     <p class="post bold">post</p>
                 </div>
