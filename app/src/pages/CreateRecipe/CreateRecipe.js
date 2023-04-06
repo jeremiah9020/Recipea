@@ -1,10 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
 import {Editor, EditorState, RichUtils} from 'draft-js';
 import 'draft-js/dist/Draft.css';
 
 // stylesheets
-import './CreateRecipe.css';
+import './CreateRecipe.scss';
 
 function CreateRecipe() {
     const [editorState, setEditorState] = React.useState(
@@ -27,11 +26,6 @@ function CreateRecipe() {
         });
 
         return response.json();
-    }
-
-    async function postRecipe()
-    {
-        
     }
 
     // can make bold, italic, or underline text - ctrl + b, ctrl + i, ctrl + u

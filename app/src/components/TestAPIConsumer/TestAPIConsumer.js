@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
 import { useAuth } from '../../context/authContext'
-import './TestAPIConsumer.css';
 
 function TestAPIConsumer(props) {
   const [response,setResponse] = useState("")

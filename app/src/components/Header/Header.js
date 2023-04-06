@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import logo from '../../assets/logo.svg';
 import title from '../../assets/title.svg';
-import './Header.css'
+import './Header.scss'
 import { useAuth } from '../../context/authContext';
 
 function Header() {   

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import title from '../../../assets/title.svg'
-import './Register.css'
+import './Register.scss'
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/authContext';
 
