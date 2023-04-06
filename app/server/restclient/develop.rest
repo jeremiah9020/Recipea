@@ -16,7 +16,6 @@ Content-Type: application/json
 
 {
     "permission": [
-        {"role": "manager"},
-        {"role": "admin","extra": "1"}
+        {"role": "admin"}
     ]
 }

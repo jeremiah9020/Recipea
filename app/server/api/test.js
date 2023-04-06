@@ -11,7 +11,7 @@ router.post('/', authMiddleware, (_0, res, _1) => {
     res.json({msg:"You have accessed a restricted endpoint"})
 })
 
-router.post('/admin', permMiddleware([{extra:"2"}]), (_0, res, _1) => {
+router.post('/admin', permMiddleware([{role:"admin"}]), (_0, res, _1) => {
     res.json({msg:"You have accessed a permission based endpoint"})
 })
 
