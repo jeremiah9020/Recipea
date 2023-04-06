@@ -1,0 +1,24 @@
+### REGISTER
+POST http://localhost:3001/auth/register
+Content-Type: application/json
+
+{
+    "username": "test",
+    "email": "test@xyz.com",
+    "password": "pwd"
+}
+
+### LOGIN
+POST http://localhost:3001/auth/login
+Content-Type: application/json
+
+{
+    "username": "test",
+    "password": "pwd"
+}
+
+### LOGOUT
+POST http://localhost:3001/auth/logout
+
+### CHECK FOR AUTH
+GET http://localhost:3001/auth/check

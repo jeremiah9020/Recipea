@@ -1,0 +1,10 @@
+### TEST UNAUTHORIZED ENDPOINT
+GET http://localhost:3001/api/test
+
+### TEST AUTHORIZED ENDPOINT
+POST http://localhost:3001/api/test
+// We now store the token in the cookies, so this should work without authorization header.
+//Authorization: Bearer WRITE_TOKEN_HERE
+
+### TEST PERMISSION BASED ENDPOINT
+POST http://localhost:3001/api/test/admin
