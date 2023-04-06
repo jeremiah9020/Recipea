@@ -28,7 +28,6 @@ function setTokens(user,res) {
 }
 
 router.get('/check', AuthMiddleware, (req, res, ) => {
-    console.log(req.cookies)
     res.status(200).json({ msg: 'Authorized' })
 })
 
@@ -62,7 +61,6 @@ router.post('/login', async (req, res, _) => {
 })
 
 router.post('/register', (req, res, _) => {
-    console.log(req.body)
     const username = req.body.username
     const password = req.body.password
     const email = req.body.email

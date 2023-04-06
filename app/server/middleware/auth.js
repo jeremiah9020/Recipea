@@ -7,7 +7,6 @@ async function verify(token) {
 }
 
 module.exports = async (req, res, next) => {
-  console.log(req.cookies)
   try { 
     if (req.headers.authorization) {
       req.user = await verify(req.headers.authorization.split(" ")[1])
