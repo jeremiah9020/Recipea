@@ -1,3 +1,4 @@
+### REGISTER
 POST http://localhost:3001/auth/register
 Content-Type: application/json
 
@@ -7,8 +8,7 @@ Content-Type: application/json
     "password": "pwd"
 }
 
-###
-
+### LOGIN
 POST http://localhost:3001/auth/login
 Content-Type: application/json
 
@@ -17,27 +17,29 @@ Content-Type: application/json
     "password": "pwd"
 }
 
-###
+### LOGOUT
+POST http://localhost:3001/auth/logout
 
+### CHECK FOR AUTH
+GET http://localhost:3001/auth/check
+
+### TEST UNAUTHORIZED ENDPOINT
 GET http://localhost:3001/api/test
 
-###
-
+### TEST AUTHORIZED ENDPOINT
 POST http://localhost:3001/api/test
-Authorization: Bearer WRITE_TOKEN_HERE
+// We now store the token in the cookies, so this should work without authorization header.
+//Authorization: Bearer WRITE_TOKEN_HERE
 
-###
-
+### GET ALL RECIPES
 GET http://localhost:3001/api/recipes
 
-###
-
+### CREATE RECIPE
 POST http://localhost:3001/api/recipes
 Content-Type: application/json
-Authorization: Bearer WRITE_TOKEN_HERE
+//Authorization: Bearer WRITE_TOKEN_HERE
 
 {
-    "username": "test",
     "title": "Chocolate Milk",
     //"image": "ImageBlob!",
     "time": "00:01:00",
@@ -47,14 +49,14 @@ Authorization: Bearer WRITE_TOKEN_HERE
     "description": "Delicious choclate milk, the way Grandma made it!"
 }
 
-###
+### DELETE ALL RECIPES
 DELETE http://localhost:3001/api/development/recipes
 
-###
+### DELETE RECIPE BY ID
 DELETE http://localhost:3001/api/development/recipes/1
 
-###
+### DELETE ALL USERS
 DELETE http://localhost:3001/api/development/users
 
-###
+### DELETE USER BY ID
 DELETE http://localhost:3001/api/development/users/1
