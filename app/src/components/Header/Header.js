@@ -1,30 +1,30 @@
-import React, { useEffect } from 'react';
-import { Link} from "react-router-dom";
+import React from 'react';
+import { Link } from "react-router-dom";
 
 import logo from '../../assets/logo.svg';
 import title from '../../assets/title.svg';
-import Cookies from "universal-cookie";
 import './Header.css'
-const cookies = new Cookies();
+import { useAuth } from '../../context/authContext';
 
-function Header(props) {    
-    useEffect(() => {
-        const cookieToken = cookies.get("TOKEN") || ""
-        props.setToken(cookieToken)
-    })
+function Header() {   
+    const { isAuthenticated, isLoading, setAuthenticated} = useAuth();
 
-    const logout = () => {
-        cookies.remove("TOKEN")
-        props.setToken("")
+    const logout = async () => {
+        await fetch('http://localhost:3001/auth/logout', {
+            method: 'POST',
+            credentials: 'include'
+        })
+        setAuthenticated(false)
     }
 
     return (
         <div className='Header-Bar'>
             <img src={title} className="Header-Title" alt="logo" />
             <img src={logo} className="Header-Icon" alt="logo" />
-            {props.token === '' && <Link className="LoginButton" to="/login">Login</Link>}
-            {props.token !== '' && <button className="LoginButton" onClick={logout}>Logout</button>}
+            {!isLoading && isAuthenticated && <button className="LoginButton" onClick={logout}>Logout</button>}
+            {!isLoading && !isAuthenticated && <Link className="LoginButton" to="/login">Login</Link>}
         </div>
+
     )
 }
 

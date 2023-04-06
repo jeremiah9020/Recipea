@@ -1,6 +1,7 @@
 const express = require('express')
 const sequelize = require('./database')
 const cors = require('cors')
+const cookieParser = require('cookie-parser')
 
 const authRouter = require('./routes/auth')
 const apiRouter = require('./routes/api');
@@ -12,7 +13,11 @@ sequelize.sync(
 
 //APP
 const app = express()
-app.use(cors())
+app.use(cookieParser())
+app.use(cors({
+    credentials: true,
+    origin: ['http://localhost:3000']
+}))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.set('trust proxy', 1)

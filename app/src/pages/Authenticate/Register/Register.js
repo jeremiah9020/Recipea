@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import title from '../../../assets/title.svg'
 import './Register.css'
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
+import { useAuth } from '../../../context/authContext';
 
 function Register() {
+    const { setAuthenticated } = useAuth();
     const [showPass, setShowPass] = useState(false);
     const navigate = useNavigate();
 
@@ -27,15 +26,17 @@ function Register() {
         var formDataObj = {};
         formData.forEach((value, key) => formDataObj[key] = value);
 
-        const url = 'http://localhost:3001/auth/register'
-        const json = JSON.stringify(formDataObj)
-        const headers = { headers: { 'Content-Type': 'application/json' } }
+        const response = await fetch('http://localhost:3001/auth/register', {
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formDataObj)
+        })
 
-        try {
-            const response = await axios.post(url, json, headers)
-            cookies.set("TOKEN", response.data.token)
+        if (response.ok) {
+            setAuthenticated(true)
             navigate('/')
-        } catch (e) {
+        } else {
             document.getElementById("GoogleDisabled").classList.remove("Animation")
             document.getElementById("OutlookDisabled").classList.remove("Animation")
             document.getElementById("UsernameTaken").classList.add("Animation")
