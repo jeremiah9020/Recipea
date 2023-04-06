@@ -35,4 +35,20 @@ router.delete('/users', async (req, res, next) => {
     res.send('Deleted all users')
 })
 
+
+router.patch('/permissions/:id', async (req, res, next) => {
+    const id = req.params.id
+    const body = req.body
+    try {
+        const user = await User.findByPk(id)
+
+        if (body.permission) {
+            user.update({permission: JSON.stringify(body.permission)})
+        }
+        res.send(`Updated permissions of user with id ${id}`)
+    } catch (err) {
+        res.send(`User with id ${id} not found`)
+    }
+})
+
 module.exports = router

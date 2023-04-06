@@ -20,6 +20,11 @@ User.init({
         allowNull: false
     },
 
+    permission: {
+        type: DataTypes.TEXT,
+        allowNull: true
+    },
+
     salt: {
         type: DataTypes.TEXT,
         allowNull: false
