@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import title from '../../../assets/title.svg'
 import './Register.css'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/authContext';
 
 function Register() {
@@ -59,25 +59,25 @@ function Register() {
     return (
         <div className="Register">
             <div className="Graphic">
-                <img src={title} className="Title" alt="logo" />
+                <img src={title} className="Title" alt="logo" onClick={() => { navigate('/') }} />
             </div>
             <div className="FormContainer">
-                <div className="ErrorBox" id="UsernameTaken">
-                    Username already taken
-                </div>
-                <div className="ErrorBox" id="GoogleDisabled">
-                    Google authentication not currently enabled
-                </div>
-                <div className="ErrorBox" id="OutlookDisabled">
-                    Outlook authentication not currently enabled
-                </div>
                 <form onSubmit={submit} id="loginform">
+                    <div className="ErrorBox" id="UsernameTaken">
+                        Username already taken
+                    </div>
+                    <div className="ErrorBox" id="GoogleDisabled">
+                        Google authentication not currently enabled
+                    </div>
+                    <div className="ErrorBox" id="OutlookDisabled">
+                        Outlook authentication not currently enabled
+                    </div>
                     <h1>Register</h1>
                     <section className="Input Pad">
                         <input id="email" name="email" placeholder="Email" type="text" autoComplete="email" required autoFocus />
                     </section>
                     <section className="Input Pad">
-                        <input id="username" name="username" placeholder="Username" type="text" required/>
+                        <input id="username" name="username" placeholder="Username" type="text" required />
                     </section>
                     <section className="Input Pad">
                         <input id="current-password" name="password" placeholder="Password" type="password" autoComplete="current-password" required />
@@ -85,7 +85,7 @@ function Register() {
                         {showPass && <button type="button" className="Toggle" onClick={toggleShowPass}>hide</button>}
                     </section>
                     <section className="Input">
-                        <input value="Register" type="submit"/> 
+                        <input value="Register" type="submit" />
                     </section>
 
                     <div className="Divider">
@@ -93,16 +93,16 @@ function Register() {
                     </div>
 
                     <section className="Input Pad">
-                        <input value="Register with Google" type="button" onClick={registerWithGoogle}/> 
+                        <input value="Register with Google" type="button" onClick={registerWithGoogle} />
                     </section>
 
                     <section className="Input Pad">
-                        <input value="Register with Outlook" type="button" onClick={registerWithOutlook}/> 
+                        <input value="Register with Outlook" type="button" onClick={registerWithOutlook} />
                     </section>
                 </form>
 
                 <div className="JoinContainer">
-                    Already have an account? <a href="/login">Login</a>
+                    Already have an account? <Link to="/login">Login</Link>
                 </div>
             </div>
         </div>

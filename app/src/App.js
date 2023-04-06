@@ -6,7 +6,6 @@ import Login from "./pages/Authenticate/Login/Login";
 import Register from "./pages/Authenticate/Register/Register";
 import NoPage from "./pages/NoPage/NoPage";
 import CreateRecipe from "./pages/CreateRecipe/CreateRecipe";
-import './App.css';
 
 function App() {
   return (

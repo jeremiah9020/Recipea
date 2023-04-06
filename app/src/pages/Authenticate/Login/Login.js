@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import title from '../../../assets/title.svg'
-import './Login.css'
-import { useNavigate } from 'react-router-dom';
+import './Login.scss'
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/authContext';
 
 function Login() {
@@ -68,22 +68,22 @@ function Login() {
     return (
         <div className="Login">
             <div className="Graphic">
-                <img src={title} className="Title" alt="logo" />
+                <img src={title} className="Title" alt="logo" onClick={() => { navigate('/') }} />
             </div>
             <div className="FormContainer">
-                <div className="ErrorBox" id="UsernamePassword">
-                    Incorrect username/password
-                </div>
-                <div className="ErrorBox" id="GoogleDisabled">
-                    Google authentication not currently enabled
-                </div>
-                <div className="ErrorBox" id="OutlookDisabled">
-                    Outlook authentication not currently enabled
-                </div>
-                <div className="ErrorBox" id="ForgotPassword">
-                    Forgot password is not currently enabled
-                </div>
                 <form onSubmit={submit} id="loginform">
+                    <div className="ErrorBox" id="UsernamePassword">
+                        Incorrect username/password
+                    </div>
+                    <div className="ErrorBox" id="GoogleDisabled">
+                        Google authentication not currently enabled
+                    </div>
+                    <div className="ErrorBox" id="OutlookDisabled">
+                        Outlook authentication not currently enabled
+                    </div>
+                    <div className="ErrorBox" id="ForgotPassword">
+                        Forgot password is not currently enabled
+                    </div>
                     <h1>Sign in</h1>
                     <section className="Input Pad">
                         <input id="username" name="username" placeholder="Username" type="text" autoComplete="username" required autoFocus />
@@ -97,7 +97,7 @@ function Login() {
                         <button type="button" onClick={generateForgotPassword}>Forgot password?</button>
                     </section>
                     <section className="Input">
-                        <input value="Login" type="submit"/> 
+                        <input value="Login" type="submit" />
                     </section>
 
                     <div className="Divider">
@@ -105,16 +105,16 @@ function Login() {
                     </div>
 
                     <section className="Input Pad">
-                        <input value="Sign in with Google" type="button" onClick={signinWithGoogle}/> 
+                        <input value="Sign in with Google" type="button" onClick={signinWithGoogle} />
                     </section>
 
                     <section className="Input Pad">
-                        <input value="Sign in with Outlook" type="button" onClick={signinWithOutlook}/> 
+                        <input value="Sign in with Outlook" type="button" onClick={signinWithOutlook} />
                     </section>
                 </form>
 
                 <div className="JoinContainer">
-                    New to Recipea? <a href="/register">Join now</a>
+                    New to Recipea? <Link to="/register">Sign up</Link>
                 </div>
             </div>
         </div>
