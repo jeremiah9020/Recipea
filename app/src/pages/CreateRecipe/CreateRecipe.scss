@@ -16,6 +16,32 @@ p {
     --width: 80vw;
 }
 
+input::placeholder {
+    font-weight: 800;
+    font-family: Inter;
+    color: black;
+}
+
+input[type="text"]:focus {
+    border: 1px solid black;
+}
+
+input[type="text"]:hover {
+    border: 1px solid black;
+}
+
+input[type="text"]:focus::placeholder {
+    color: transparent;
+}
+
+input[type="text"] {
+    font-weight: 800;
+    font-family: Inter;
+    font-size: 24px;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+}
+
 .bold {
     font-weight: 800;
     font-family: Inter;
@@ -179,7 +205,7 @@ p {
 
 .scp-container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: end;
     gap: 20px;
     width: var(--width);
     height: auto;
@@ -236,7 +262,6 @@ p {
 .tag-button:hover
 {
     cursor: pointer;
-    border-style: groove;
 }
 
 .tag-button
