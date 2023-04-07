@@ -40,17 +40,19 @@ router.post('/logout', (req, res, _) => {
 router.post('/login', async (req, res, _) => {
     const username = req.body.username
     const password = req.body.password
-    const user = await User.findOne({ where: { username: username } })
+    const userByUsername = await User.findOne({ where: { username: username } })
+    const userByEmail = await User.findOne({ where: { email: username } })
 
-    if (user == null) {
-        res.status(401).json({ msg: 'Incorrect username/password.' })
+    if (userByEmail == null && userByUsername == null) {
+        res.status(401).json({ msg: 'Incorrect email/username/password.' })
     } else {
+        const user = (userByEmail != null)? userByEmail : userByUsername
         crypto.pbkdf2(password, user.salt, 310000, 32, 'sha256', async function (err, hashedPassword) {
             if (err) {
                 res.status(500).json({ msg: 'Internal error.' })
             } else {
                 if (!crypto.timingSafeEqual(user.password, hashedPassword)) {
-                    res.status(401).json({ msg: 'Incorrect username/password.' })
+                    res.status(401).json({ msg: 'Incorrect email/username/password.' })
                 } else {
                     const [access_token,] = setTokens(user,res)
                     res.status(200).json(access_token)
@@ -73,7 +75,8 @@ router.post('/register', (req, res, _) => {
             const [access_token,] = setTokens(user,res)
             res.status(200).json(access_token)
         } catch (e) {
-            res.status(500).json({ msg: e.name })
+            console.log(e.fields[0])
+            res.status(409).json({ msg: e.fields[0] })
         }
     })
 })

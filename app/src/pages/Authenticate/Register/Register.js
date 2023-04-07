@@ -37,9 +37,16 @@ function Register() {
             setAuthenticated(true)
             navigate('/')
         } else {
+            const err = await response.json()
+            if (err.msg === 'email') {
+                document.getElementById("UsernameTaken").classList.remove("Animation")
+                document.getElementById("EmailTaken").classList.add("Animation")
+            } else {
+                document.getElementById("EmailTaken").classList.remove("Animation")
+                document.getElementById("UsernameTaken").classList.add("Animation")
+            }
             document.getElementById("GoogleDisabled").classList.remove("Animation")
             document.getElementById("OutlookDisabled").classList.remove("Animation")
-            document.getElementById("UsernameTaken").classList.add("Animation")
         }
     }
 
@@ -47,6 +54,7 @@ function Register() {
         document.getElementById("GoogleDisabled").classList.add("Animation")
         document.getElementById("OutlookDisabled").classList.remove("Animation")
         document.getElementById("UsernameTaken").classList.remove("Animation")
+        document.getElementById("EmailTaken").classList.remove("Animation")
 
     }
 
@@ -54,6 +62,7 @@ function Register() {
         document.getElementById("GoogleDisabled").classList.remove("Animation")
         document.getElementById("OutlookDisabled").classList.add("Animation")
         document.getElementById("UsernameTaken").classList.remove("Animation")
+        document.getElementById("EmailTaken").classList.remove("Animation")
     }
 
     return (
@@ -64,7 +73,10 @@ function Register() {
             <div className="FormContainer">
                 <form onSubmit={submit} id="loginform">
                     <div className="ErrorBox" id="UsernameTaken">
-                        Username already taken
+                        Username already used
+                    </div>
+                    <div className="ErrorBox" id="EmailTaken">
+                        Email already used
                     </div>
                     <div className="ErrorBox" id="GoogleDisabled">
                         Google authentication not currently enabled

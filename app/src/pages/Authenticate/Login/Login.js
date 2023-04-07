@@ -86,7 +86,7 @@ function Login() {
                     </div>
                     <h1>Sign in</h1>
                     <section className="Input Pad">
-                        <input id="username" name="username" placeholder="Username" type="text" autoComplete="username" required autoFocus />
+                        <input id="username" name="username" placeholder="Username/Email" type="text" autoComplete="username" required autoFocus />
                     </section>
                     <section className="Input">
                         <input id="current-password" name="password" placeholder="Password" type="password" autoComplete="current-password" required />
