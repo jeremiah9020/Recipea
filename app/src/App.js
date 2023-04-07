@@ -6,6 +6,8 @@ import Login from "./pages/Authenticate/Login/Login";
 import Register from "./pages/Authenticate/Register/Register";
 import NoPage from "./pages/NoPage/NoPage";
 import CreateRecipe from "./pages/CreateRecipe/CreateRecipe";
+import ResetPassword from './pages/Authenticate/ResetPassword/ResetPassword';
+import ForgotPassword from './pages/Authenticate/ForgotPassword/ForgotPassword';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route path="password-reset" element={<ResetPassword />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="create-recipe" element={<CreateRecipe />} />
@@ -20,7 +24,6 @@ function App() {
         </Routes>
       </BrowserRouter>
     </AuthProvider>
-
   );
 }
 

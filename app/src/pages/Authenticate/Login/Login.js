@@ -40,7 +40,6 @@ function Login() {
             document.getElementById("GoogleDisabled").classList.remove("Animation")
             document.getElementById("OutlookDisabled").classList.remove("Animation")
             document.getElementById("UsernamePassword").classList.add("Animation")
-            document.getElementById("ForgotPassword").classList.remove("Animation")
         }
     }
 
@@ -48,21 +47,16 @@ function Login() {
         document.getElementById("GoogleDisabled").classList.add("Animation")
         document.getElementById("OutlookDisabled").classList.remove("Animation")
         document.getElementById("UsernamePassword").classList.remove("Animation")
-        document.getElementById("ForgotPassword").classList.remove("Animation")
     }
 
     const signinWithOutlook = () => {
         document.getElementById("GoogleDisabled").classList.remove("Animation")
         document.getElementById("OutlookDisabled").classList.add("Animation")
         document.getElementById("UsernamePassword").classList.remove("Animation")
-        document.getElementById("ForgotPassword").classList.remove("Animation")
     }
 
     const generateForgotPassword = () => {
-        document.getElementById("GoogleDisabled").classList.remove("Animation")
-        document.getElementById("OutlookDisabled").classList.remove("Animation")
-        document.getElementById("UsernamePassword").classList.remove("Animation")
-        document.getElementById("ForgotPassword").classList.add("Animation")
+        navigate('/forgot-password')
     }
 
     return (
@@ -80,9 +74,6 @@ function Login() {
                     </div>
                     <div className="ErrorBox" id="OutlookDisabled">
                         Outlook authentication not currently enabled
-                    </div>
-                    <div className="ErrorBox" id="ForgotPassword">
-                        Forgot password is not currently enabled
                     </div>
                     <h1>Sign in</h1>
                     <section className="Input Pad">

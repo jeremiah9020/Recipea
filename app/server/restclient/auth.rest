@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "username": "test",
-    "email": "test@xyz.com",
+    "email": "jeremiah9020@gmail.com",
     "password": "pwd"
 }
 
@@ -22,3 +22,20 @@ POST http://localhost:3001/auth/logout
 
 ### CHECK FOR AUTH
 GET http://localhost:3001/auth/check
+
+### FORGOT PASSWORD EMAIL
+POST http://localhost:3001/auth/forgotpassword
+Content-Type: application/json
+
+{
+    "email": "jeremiah9020@gmail.com"
+}
+
+### RESET PASSWORD EMAIL
+POST http://localhost:3001/auth/resetpassword
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgwODg2MTA1LCJleHAiOjE2ODA4ODc5MDV9.zcYG5ClhPeUXZ2zBUd35iWt2M6aK1B0BTP30PLcL7ys",
+    "new": "pwd"
+}
