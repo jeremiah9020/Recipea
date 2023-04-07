@@ -1,0 +1,44 @@
+.TagItem 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    color: var(--teal);
+    border: 2.75px solid var(--teal);
+    border-radius: 30px;
+
+    .remove-tag:hover {
+        .remove-tag {
+            fill: var(--red);
+        }
+    }
+    
+    input[type="text"].tag-item {
+        border: none;
+        outline: none;
+        width: 200px;
+    }
+    
+    input[type="text"].tag-item:focus {
+        border: none;
+    }
+    
+    input[type="text"].tag-item:focus::placeholder {
+        color: transparent;
+    }
+    
+    input[type="text"].tag-item:hover {
+        border: none;
+        outline: none;
+    }
+    
+    input[type="text"].tag-item {
+        color: var(--teal);
+    }
+    
+    input[type="text"].tag-item::placeholder {
+        color: var(--teal);
+        text-align: center;
+    }
+}
