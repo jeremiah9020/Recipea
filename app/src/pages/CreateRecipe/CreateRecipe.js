@@ -77,6 +77,26 @@ function CreateRecipe() {
         }
     }
 
+    let tag_count = 2;
+    function addTag()
+    {
+        if (tag_count <= 4)
+        {
+            const tags_container = document.querySelector('#tag-container');
+            const tag_container = document.createElement('div');
+            tag_container.classList.add('tag');
+            const tag = document.createElement('input');
+            tag.setAttribute('type', 'text');
+            tag.setAttribute('placeholder', '#tag');
+            tag.setAttribute('list', 'tag-values');
+            tag.setAttribute('name', `tag${tag_container}`);
+            tag.classList.add('tag-item');
+            tag_container.appendChild(tag);
+            tags_container.appendChild(tag_container);
+            tag_count++;
+        }
+    }
+
     return (
             <div class="container">
             {/* <!-- user can upload image --> */}
@@ -89,7 +109,7 @@ function CreateRecipe() {
             </div>
             {/* <!-- user can change title and select time --> */}
             <div class="title-time-container">
-                <p class="title bold">title</p>
+            <input type="text" placeholder='title'></input>
 
                 <div class="time-container">
                     <svg class="clock" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -101,15 +121,31 @@ function CreateRecipe() {
 
             {/* <!-- user enters tags --> */}
             <div class="tag-container">
-            <button class="tag-button">
+                <datalist id="tag-values">
+                    <option value="budget"/>
+                    <option value="vegan"/>
+                    <option value="vegetarian"/>
+                    <option value="gluten free"/>
+                    <option value="fast"/>
+                    <option value="sweet"/>
+                    <option value="sour"/>
+                </datalist>
+            
+                {/* <!-- <p class="add-tag">+</p> --> */}
+                <div id="tag-container">
+                <div class="tag">
+                    <input type="text" list="tag-values" name="tag1" class="tag-item" placeholder="#tag"/>
+                    <svg class="remove-tag" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 11V13H17V11H7ZM12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="#387285" class="remove-tag"/>
+</svg>
+
+                </div>
+                </div>
+                <button class="tag-button" onClick={addTag}>
                 <svg class="add-tag" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M18.3333 28.3334H21.6666V21.6667H28.3333V18.3334H21.6666V11.6667H18.3333V18.3334H11.6666V21.6667H18.3333V28.3334ZM19.9999 36.6667C17.6944 36.6667 15.5277 36.2289 13.4999 35.3534C11.4721 34.4778 9.70825 33.2906 8.20825 31.7917C6.70825 30.2917 5.52103 28.5278 4.64659 26.5C3.77214 24.4723 3.33436 22.3056 3.33325 20C3.33325 17.6945 3.77103 15.5278 4.64659 13.5C5.52214 11.4723 6.70936 9.70837 8.20825 8.20837C9.70825 6.70837 11.4721 5.52115 13.4999 4.64671C15.5277 3.77226 17.6944 3.33449 19.9999 3.33337C22.3055 3.33337 24.4721 3.77115 26.4999 4.64671C28.5277 5.52226 30.2916 6.70949 31.7916 8.20837C33.2916 9.70837 34.4794 11.4723 35.3549 13.5C36.2305 15.5278 36.6677 17.6945 36.6666 20C36.6666 22.3056 36.2288 24.4723 35.3533 26.5C34.4777 28.5278 33.2905 30.2917 31.7916 31.7917C30.2916 33.2917 28.5277 34.4795 26.4999 35.355C24.4721 36.2306 22.3055 36.6678 19.9999 36.6667ZM19.9999 33.3334C23.7221 33.3334 26.8749 32.0417 29.4583 29.4584C32.0416 26.875 33.3333 23.7223 33.3333 20C33.3333 16.2778 32.0416 13.125 29.4583 10.5417C26.8749 7.95837 23.7221 6.66671 19.9999 6.66671C16.2777 6.66671 13.1249 7.95837 10.5416 10.5417C7.95825 13.125 6.66659 16.2778 6.66659 20C6.66659 23.7223 7.95825 26.875 10.5416 29.4584C13.1249 32.0417 16.2777 33.3334 19.9999 33.3334Z" fill="#387285"/>
-                </svg>   
-                </button>
-                {/* <!-- <p class="add-tag">+</p> --> */}
-                <div class="tag">
-                    <p>#tag</p>
-                </div>
+                </svg>
+            </button>
             </div>
 
             {/* <!-- create two columns --> */}

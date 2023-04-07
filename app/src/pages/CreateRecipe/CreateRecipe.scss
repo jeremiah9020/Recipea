@@ -16,6 +16,32 @@ p {
     --width: 80vw;
 }
 
+input::placeholder {
+    font-weight: 800;
+    font-family: Inter;
+    color: black;
+}
+
+input[type="text"]:focus {
+    border: 1px solid black;
+}
+
+input[type="text"]:hover {
+    border: 1px solid black;
+}
+
+input[type="text"]:focus::placeholder {
+    color: transparent;
+}
+
+input[type="text"] {
+    font-weight: 800;
+    font-family: Inter;
+    font-size: 24px;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+}
+
 .bold {
     font-weight: 800;
     font-family: Inter;
@@ -84,19 +110,55 @@ p {
     align-items: center;
 }
 
-.add-tag {
-    width: 32px;
+#tag-container {
+    flex: 0;
+    width: var(--width);
+    display: flex;
+    align-items: center;
+}
+
+.remove-tag:hover {
+    .remove-tag {
+        fill: var(--red);
+    }
 }
 
 .tag {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
+    padding: 10px;
     color: var(--teal);
     border: 2.75px solid var(--teal);
     border-radius: 30px;
-    height: 25px;
+}
+
+input[type="text"].tag-item {
+    border: none;
+    outline: none;
+    width: 200px;
+}
+
+input[type="text"].tag-item:focus {
+    border: none;
+}
+
+input[type="text"].tag-item:focus::placeholder {
+    color: transparent;
+}
+
+input[type="text"].tag-item:hover {
+    border: none;
+    outline: none;
+}
+
+input[type="text"].tag-item {
+    color: var(--teal);
+}
+
+input[type="text"].tag-item::placeholder {
+    color: var(--teal);
+    text-align: center;
 }
 
 /* ingredient-description-container */
@@ -179,7 +241,7 @@ p {
 
 .scp-container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: end;
     gap: 20px;
     width: var(--width);
     height: auto;
@@ -236,7 +298,6 @@ p {
 .tag-button:hover
 {
     cursor: pointer;
-    border-style: groove;
 }
 
 .tag-button
