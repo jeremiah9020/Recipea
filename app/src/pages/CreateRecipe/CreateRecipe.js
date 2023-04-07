@@ -98,7 +98,7 @@ function CreateRecipe() {
     }
 
     return (
-            <div class="container">
+            <div class="CreateRecipeContainer">
             {/* <!-- user can upload image --> */}
             <div class="image-container">
                 <svg class="upload-img" width="104" height="104" viewBox="0 0 104 104" fill="none" xmlns="http://www.w3.org/2000/svg">
