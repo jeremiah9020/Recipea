@@ -35,12 +35,12 @@ function Card(props) {
             return [];
         })
 
-        setImageBlob(() => {
-            return new Blob(props.recipe.image);
-        })
-        setImageURL(() => {
-            return URL.createObjectURL(imageBlob);
-        })
+        // setImageBlob(() => {
+        //     return new Blob(props.recipe.image);
+        // })
+        // setImageURL(() => {
+        //     return URL.createObjectURL(imageBlob);
+        // })
     }, [imageBlob, props.recipe.image, props.recipe?.ingredients, props.recipe?.tags], );
     
 
