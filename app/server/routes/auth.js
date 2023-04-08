@@ -123,7 +123,12 @@ router.post('/forgotpassword', async (req, res, _) => {
       from: 'Recipea Help Team',
       to: req.body.email,
       subject: 'Recipea - Forgot Password?',
-      html: htmlToSend 
+      html: htmlToSend,
+      attachments: [{
+        filename: 'forgotpassword.png',
+        path: publicPath + '/forgotpassword.jpg',
+        cid: 'title'
+   }]
     }
 
     transporter.sendMail(mailOptions, function (error, info) {
