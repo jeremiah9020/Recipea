@@ -89,12 +89,10 @@ router.post('/register', (req, res, _) => {
     try {
       const user = await User.create({ email: email, username: username, password: hashedPassword, salt: salt })
       const profile = await UserProfile.create({ userid: user.id, username: username});
-      console.log(profile);
       const [access_token,] = setTokens(user, res)
       res.status(200).json(access_token)
     } catch (e) {
-      console.log(e.fields[0])
-      res.status(409).json({ msg: e.fields[0] })
+      res.status(409).json({ msg: e })
     }
   })
 })

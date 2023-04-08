@@ -1,35 +1,32 @@
 import {React, useState, useEffect} from 'react';
 import Helmet from 'react-helmet'
 import Header from '../../components/Header/Header'
-import TestAPIConsumer from '../../components/TestAPIConsumer/TestAPIConsumer'
 import Card from '../../components/Card/Card'
 
 function Home() {
-  const recipe = {
-    'title': 'Yummy Flapjacks',
-    'time': '00:25:00',
-    'tags':'glutenfree:breakfast',
-    'ingredients':'2 cup Flour:1 tbsp Baking Powder:1 cup Sugar:2 tsp Salt:2 Eggs:1/2 cup Milk:1/2 cup Butter',
-    'image':null,
-  }
-  const user = {
-    'username': 'MasterChef',
-    'profilepicture': null,
-  }
-
-  const [recipes, setRecipes] = useState([]);
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    async function getRecipes() {
-      const response = await fetch('http://localhost:3001/api/recipes', {
+    async function getCards() {
+      let response = await fetch('http://localhost:3001/api/recipes', {
         method: 'GET',
         credentials: 'include'
       })
+      const recipes = await response.json()
 
-      const obj = await response.json()
-      setRecipes(obj)
+      const cards = []
+      for (let recipe of recipes) {
+        response = await fetch(`http://localhost:3001/api/profiles/${recipe.userid}`, {
+          method: 'GET',
+          credentials: 'include'
+          })
+        const user = await response.json()
+        cards.push(<Card recipe={recipe} user={user} />)
+      }
+
+      setCards(cards)
     }
-    getRecipes()
+    getCards()
   }, [])
 
   return (
@@ -40,20 +37,7 @@ function Home() {
         <meta name="description" content="Recipea Web Application" />
       </Helmet>
       <Header/>
-
-      {
-        recipes.map(async recipe => {
-          const response = await fetch(`http://localhost:3001/api/profiles/${recipe.userid}`, {
-            method: 'GET',
-            credentials: 'include'
-          })
-          const user = await response.json()
-          return (<Card recipe={recipe} user={user} />)
-        })
-      }
-
-
-      <Card recipe={recipe} user={user} />
+      {cards}
     </div>
   )
 }
