@@ -1,11 +1,9 @@
 @import '../../styles/_mixins.scss';
 @import '../../styles/_variables.scss';
 
-.Header-Bar {
-    padding: 10px;
-    height: 50px;
-    width: calc(100% - 20px);
-    overflow:hidden;
+.HeaderBar {
+    height: 60px;
+    width: 100%;
 
     display: flex;
     justify-content: space-between;
@@ -13,51 +11,115 @@
 
     border-bottom: 1px solid rgb(231, 231, 231);
 
-    .Header-icon,.Header-Title {
-        padding: 5px;
-        height: calc(100% - 10px);
+    .Icon,.Title {
+        padding: 8px;
+        height: calc(100% - 16px);
     }
 
-    .LoginButton {
+    .Navigation {
+        height: 100%;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        padding: 0px 30px 0px 30px;
-        font-weight: bold;
-        font-size: 18px;
-        text-decoration: none;
-        color: white;
-        background: black;
-        border: none;
-        border-radius: 50px;
-        transition: 0.25s;
+        flex-direction: row;
+        justify-content: space-between;
 
-        &:hover {
-            cursor:pointer;
-            background: $green-1;
-            transition: 0.25s
+        .NavigationButton {
+            color: black;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            height: 100%;
+            margin: 0px 40px 0px 40px;
+        
+
+            svg {
+                position: relative;
+                width: calc(1vw + 30px);
+            }
+        }
+
+        .Selected {
+            border-top: 4px solid transparent;
+            box-sizing: border-box;
+            border-bottom: 4px inset $green-1
+        }
+
+        .Disabled {   
+            cursor: default;
+
+            svg {
+                color: rgb(220, 220, 220);
+            }
+        }
+    }
+
+    .Profile {
+        width: 140px;
+        height: 100%;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+
+        
+        .LoginButton {
+            margin: 5px;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            padding: 0px 30px 0px 30px;
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
+            color: white;
+            background: black;
+            border: none;
+            border-radius: 5px;
+            transition: 0.25s;
+    
+            &:hover {
+                cursor:pointer;
+                background: $green-1;
+                transition: 0.25s
+            }
         }
     }
 }
 
 
-@media only screen and (max-width : 1000px) {
-    .Header-Icon {
-        display: block;
+@media only screen and (max-width : 1200px) {
+    .HeaderBar {
+        .Navigation {
+            .NavigationButton {
+                
+                margin: 0px calc(4vw - 8px) 0px calc(4vw - 8px);
+            }
+        }
     }
+}
 
-    .Header-Title {
-        display: none;
+@media only screen and (max-width : 1000px) {
+    .HeaderBar {
+        .Icon {
+            display: block;
+        }
+    
+        .Title {
+            display: none;
+        }
     }
 }
 
 @media only screen and (min-width : 1000px) {
-    .Header-Icon {
-        display: none;
-    }
-
-    .Header-Title {
-        display: block;
+    .HeaderBar {
+        .Icon {
+            display: none;
+        }
+    
+        .Title {
+            display: block;
+        }
     }
 }

@@ -1,0 +1,44 @@
+@import '../../styles/_mixins.scss';
+@import '../../styles/_variables.scss';
+
+.NavProfile {
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .Badge {
+        @include no-select;
+
+        cursor: pointer;
+        
+        width: 45px;
+        height: 45px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+
+        background-color: $green-1;
+        border-radius: 50%;
+
+        border: 4px solid $green-2;
+
+        .Alert {
+            color: white;
+            width : 32px;
+            height: 32px;
+        }
+
+        .Default {
+            color: white;
+            width : 48px;
+            height: 48px;
+        }
+    }
+}

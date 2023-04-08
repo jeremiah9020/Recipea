@@ -1,0 +1,103 @@
+@import '../../styles/_mixins.scss';
+@import '../../styles/_variables.scss';
+
+.DropdownMenu {
+    position: relative;
+
+    .Dropdown {
+        position: absolute;
+        background-color: white;
+        right: -10px;
+        top: 30px;
+        width: 300px;
+        min-height: 10px;
+    
+        z-index: 2;
+
+        border-radius: 5px;
+        filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.25));
+    }
+
+    .Dropdown:before {
+        position: absolute;
+        content: '';
+        right: 5px;
+        top: -15px;
+
+        z-index: 1;
+        border-left: 21px solid transparent;
+        border-right: 21px solid transparent;
+        border-bottom: 15px solid white;
+    }
+}
+
+.DropdownButton {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 5px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+
+    color: white;
+    background-color: $gray-1;
+    width: calc(100% - 10px);
+    height: 40px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.DropdownLink {
+    position: relative;
+    margin: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: calc(100% - 10px);
+    border-bottom: 1px solid $gray-2;
+
+    .Link {
+        display: block;
+        color: black;
+        font-family: 'Poppins', Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        text-decoration: none;
+        width: 100%;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:after {
+        position:absolute;
+        border-left: 12px solid black;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+
+        content: '';
+        right: 5px;
+        top: 13px;
+    }
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.DropdownItem {
+    position: relative;
+    margin: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: calc(100% - 10px);
+    border-bottom: 1px solid $gray-2;
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
