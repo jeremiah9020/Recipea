@@ -129,7 +129,7 @@
         }
 
         .Divider {
-            padding-left: 20px;
+            padding-left: 15px;
             width: 90%;
             height: 60px;
             font-weight: 500;
@@ -141,7 +141,7 @@
             color: $gray-1;
             margin: 0px 0px;
 
-            &:before,:after {
+            &:before, &:after {
                 content: "";
                 flex-grow: 1;
                 background: $gray-1;
