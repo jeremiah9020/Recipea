@@ -5,6 +5,8 @@ import './Card.scss';
 function Card(props) {
     const [ingredients, setIngredients] = useState([]);
     const [tags, setTags] = useState([]);
+    const [imageBlob, setImageBlob] = useState();
+    const [imageURL, setImageURL] = useState();
 
     useEffect(() => {
         setIngredients(() => {
@@ -32,7 +34,14 @@ function Card(props) {
 
             return [];
         })
-    }, [props.recipe.ingredients, props.recipe.tags], );
+
+        setImageBlob(() => {
+            return new Blob(props.recipe.image);
+        })
+        setImageURL(() => {
+            return URL.createObjectURL(imageBlob);
+        })
+    }, [imageBlob, props.recipe.image, props.recipe?.ingredients, props.recipe?.tags], );
     
 
   return (
@@ -40,7 +49,7 @@ function Card(props) {
         <div className="Center">
             <div className="CardContainer">
                 <div className="ImageContainer">
-                    <img className="Image" src="" alt='none'/>
+                    <img className="Image" src={imageURL} alt='none'/>
                 </div>
                 <div className="TitleContainer">
                     <div className="LeftContainer">

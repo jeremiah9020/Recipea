@@ -1,4 +1,5 @@
 import {React, useEffect, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import 'draft-js/dist/Draft.css';
 
 // stylesheets
@@ -12,6 +13,7 @@ import Helmet from 'react-helmet';
 import Header from '../../components/Header/Header';
 
 function CreateRecipe() {
+    const navigate = useNavigate();
     const [tags, setTagState] = useState([]);
     const [tag_values, setTagValues] = useState([]);
     const [tag_count, setTagCount] = useState(0);
@@ -137,7 +139,7 @@ function CreateRecipe() {
         fr.readAsDataURL(upload.files[0]);
     }
 
-    function getRecipeData()
+    async function getRecipeData()
     {
         const data = {}
 
@@ -166,7 +168,27 @@ function CreateRecipe() {
 
         // image
         const upload = document.getElementById('photo')
-        const image = upload.files.length > 0 ? upload.files[0] : null;
+        let image = null;
+
+        if (upload.files.length > 0)
+        {
+            const formData = new FormData();
+            formData.append('image', upload.files[0], 'test');
+            try {
+                console.log(formData);
+                await fetch('http://localhost:3001/api/upload/image',{
+                method: 'post',
+                body: formData,
+                headers: {
+                    'Content-Type':'multipart/form-data'
+                },
+                credentials: 'include',
+                cache: 'no-cache',
+                })
+            } catch (error) {
+                console.log(error);
+            }
+        }
 
         data['title'] = title;
         data['time'] = time;
@@ -176,13 +198,15 @@ function CreateRecipe() {
         data['description'] = description;
         data['image'] = image;
 
+        console.log(data['image']);
+
         return data;
     }
 
     async function postRecipe()
     {
         let url = 'http://localhost:3001/api/recipes';
-        let data = getRecipeData();
+        let data = await getRecipeData();
 
         const response = await fetch(url, {
             method: 'POST',
@@ -203,7 +227,7 @@ function CreateRecipe() {
     }
 
     function cancelRecipe() {
-
+        navigate('/');
     }
 
     return (
