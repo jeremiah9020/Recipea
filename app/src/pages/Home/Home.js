@@ -20,10 +20,16 @@ function Home() {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    // get all recipes
-    fetch('http://localhost:3001/api/recipes')
-      .then((res) => res.json())
-      .then((res) => setRecipes(res));
+    async function getRecipes() {
+      const response = await fetch('http://localhost:3001/api/recipes', {
+        method: 'GET',
+        credentials: 'include'
+      })
+
+      const obj = await response.json()
+      setRecipes(obj)
+    }
+    getRecipes()
   }, [])
 
   return (
@@ -33,16 +39,20 @@ function Home() {
         <title>Recipea</title>
         <meta name="description" content="Recipea Web Application" />
       </Helmet>
-      <Header></Header>
+      <Header/>
       {
         recipes.map(async recipe => {
-          const user = await fetch(`http://localhost:3001/api/profile/${recipe.userid}`)
+          const user = await fetch(`http://localhost:3001/api/profiles/${recipe.userid}`, {
+            method: 'GET',
+            credentials: 'include'
+          })
             .then(res => res.json());
+
+          console.log(user)
           return (<Card recipe={recipe} user={user} />)
         })
       }
       <Card recipe={recipe} user={user} />
-      <TestAPIConsumer></TestAPIConsumer>
     </div>
   )
 }

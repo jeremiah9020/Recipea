@@ -16,16 +16,15 @@ router.get('/:id', async (req, res, next) => {
     const id = req.params.id;
     try {
         const profile = await UserProfile.findByPk(id);
-
         if (profile !== null)
         {
             res.json(profile);
+        } else {
+            res.json(`failed to find user with id ${id}`);
         }
     } catch(error) {
         res.status(500).json(error);
     }
-
-    res.json(`failed to find user with id ${id}`);
 })
 
 module.exports = router;
