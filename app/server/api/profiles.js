@@ -4,12 +4,26 @@ const authMiddleware = require('../middleware/auth')
 const UserProfile = require('../models/UserProfile')
 
 router.get('/', async (req, res, next) => {
-    try {
-        const profiles = await UserProfile.findAll();
-        res.json(profiles);   
-    } catch (error) {
-        res.status(500).json(error);
-    }
+    const username = req.query.username
+    if (username) {
+        try {
+            const profile = await UserProfile.findOne({where: {username: username}});
+            if (profile) {
+                res.json(profile);   
+            } else {
+                res.status(404).json({msg:"No user with that username."});
+            }
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    } else {
+        try {
+            const profiles = await UserProfile.findAll();
+            res.json(profiles);   
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    }   
 })
 
 router.get('/authenticated', authMiddleware, async (req, res, next) => {
