@@ -1,5 +1,4 @@
-import {React, useRef, useEffect,useState} from 'react';
-import {Editor, EditorState, RichUtils} from 'draft-js';
+import {React, useEffect, useState} from 'react';
 import 'draft-js/dist/Draft.css';
 
 // stylesheets
@@ -13,10 +12,6 @@ import Helmet from 'react-helmet';
 import Header from '../../components/Header/Header';
 
 function CreateRecipe() {
-    const [editorState, setEditorState] = useState(
-        () => EditorState.createEmpty(),
-    );
-
     const [tags, setTagState] = useState([]);
     const [tag_values, setTagValues] = useState([]);
     const [tag_count, setTagCount] = useState(0);
@@ -35,7 +30,7 @@ function CreateRecipe() {
 
         //Get the tags that are currently in the Database.
         useEffect(()=>{
-            const data = fetch('http://localhost:3001/api/tag')
+            fetch('http://localhost:3001/api/tag')
             .then((res)=> res.json())
             .then((data) => setTagsInData(data))
         },[])
@@ -51,56 +46,6 @@ function CreateRecipe() {
         },[tagsInData])
         /////// This will get the tags from the api and then populate them into the datalist so
         /////// the user has a something to go off of.
-    
-
-    // can make bold, italic, or underline text - ctrl + b, ctrl + i, ctrl + u
-    function handleKeyCommand(command, editorState) {
-        const newState = RichUtils.handleKeyCommand(editorState, command);
-
-        if (newState) {
-            setEditorState(newState);
-            return 'handled';
-        }
-
-        return 'not-handled';
-    }
-
-    // called by the bold button
-    const _onBoldClick = () => {
-        setEditorState(RichUtils.toggleInlineStyle(editorState, 'BOLD'))
-    } 
-
-    const _addRow = ()=>
-    {
-        let row = document.getElementById("measurements")
-        let r = row.insertRow()
-        let i = r.insertCell(0)
-        let j = r.insertCell(1)
-        
-        let f = r.insertCell(2)
-        i.innerHTML = "Ingredient"
-        j.innerHTML = "Measurement"
-        f.innerHTML = document.getElementById("measurements").rows.length
-        i.contentEditable = true
-        j.contentEditable = true
-        // https://www.w3schools.com/jsref/met_table_insertrow.asp
-        // https://www.w3schools.com/jsref/coll_table_rows.asp
-        //Documents
-    }
-
-    const _removeRow = ()=>
-    {
-        let row = document.getElementById("Rows").value
-        if (row <= document.getElementById("measurements").rows.length)
-        {
-            let y = document.getElementById("measurements")
-            y.deleteRow(row - 1)
-        }
-        else
-        {
-            //Tell the user that this isn't an authorized thing   
-        }
-    }
 
     function addTagItem()
     {
