@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Recipe = require('../models/Recipe')
 const User = require('../models/User')
+const UserProfile = require('../models/UserProfile');
 
 router.delete('/recipes/:id', async (req, res, next) => {
     const id = req.params.id
@@ -33,6 +34,11 @@ router.delete('/users/:id', async (req, res, next) => {
 router.delete('/users', async (req, res, next) => {
     User.truncate()
     res.send('Deleted all users')
+})
+
+router.delete('/profiles', async (req, res, next) => {
+    UserProfile.truncate();
+    res.send('Deleted all profiles');
 })
 
 

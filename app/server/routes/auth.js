@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer');
 const handlebars = require('handlebars')
 const User = require('../models/User')
+const UserProfile = require('../models/UserProfile');
 const path = require('path');
 
 const AuthMiddleware = require("../middleware/auth");
@@ -87,6 +88,8 @@ router.post('/register', (req, res, _) => {
     if (err) { res.status(500).json({ msg: 'Internal error.' }) }
     try {
       const user = await User.create({ email: email, username: username, password: hashedPassword, salt: salt })
+      const profile = await UserProfile.create({ userid: user.id, username: username});
+      console.log(profile);
       const [access_token,] = setTokens(user, res)
       res.status(200).json(access_token)
     } catch (e) {

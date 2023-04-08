@@ -10,6 +10,9 @@ DELETE http://localhost:3001/api/development/users
 ### DELETE USER BY ID
 DELETE http://localhost:3001/api/development/users/1
 
+### DELETE ALL PROFILES
+DELETE http://localhost:3001/api/development/profiles
+
 ### UPDATE PERMISSION OF USER BY ID
 PATCH http://localhost:3001/api/development/permissions/1
 Content-Type: application/json

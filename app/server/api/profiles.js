@@ -15,6 +15,8 @@ router.get('/:id', async (req, res, next) => {
     } catch(error) {
         res.status(500).json(error);
     }
+
+    res.send(`failed to find user with id ${id}`);
 })
 
 module.exports = router;
