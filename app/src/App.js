@@ -8,6 +8,7 @@ import NoPage from "./pages/NoPage/NoPage";
 import CreateRecipe from "./pages/CreateRecipe/CreateRecipe";
 import ResetPassword from './pages/Authenticate/ResetPassword/ResetPassword';
 import ForgotPassword from './pages/Authenticate/ForgotPassword/ForgotPassword';
+import Profile from './pages/Profile/Profile';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="create-recipe" element={<CreateRecipe />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
       </BrowserRouter>

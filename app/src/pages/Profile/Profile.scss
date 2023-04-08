@@ -1,0 +1,67 @@
+@import '../../styles/_mixins.scss';
+@import '../../styles/_variables.scss';
+
+.Profile {
+    .BannerContainer {
+        position: relative;
+        width: 100%;
+        height: 300px;
+
+        .Nametag {
+            box-sizing: border-box;
+            position: absolute;
+            left: 50px;
+            bottom: 30px;
+            width: 400px;
+            height: 110px;
+            border-radius: 10px;
+            background-color: white;
+            filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.25));
+
+            display:flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 10px;
+
+            .ProfilePicture {
+                width: 80px;
+                height: 80px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+        
+                background-color: $green-1;
+                border-radius: 50%;
+        
+                border: 5px solid $green-2;
+        
+                .Default {
+                    color: white;
+                }
+            }
+
+            .NameBox {
+                padding-left: 15px;
+                padding-top: 15px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: space-around;
+                width: 100%;
+
+                .Chef {
+                    color: $green-2;
+                    line-height: 10px;
+                    font-weight: 600;
+                    font-size: 24px;
+                }
+
+                .Username {
+                    font-weight: 800;
+                    font-size: 32px;
+                }
+            }
+        }
+    }
+}
