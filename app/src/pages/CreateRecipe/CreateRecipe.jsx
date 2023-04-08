@@ -9,6 +9,8 @@ import './CreateRecipe.scss';
 import TagItem from './TagItem';
 import IngredientItem from './IngredientItem';
 import StepItem from './StepItem';
+import Helmet from 'react-helmet';
+import Header from '../../components/Header/Header';
 
 function CreateRecipe() {
     const [editorState, setEditorState] = useState(
@@ -237,6 +239,12 @@ function CreateRecipe() {
 
     return (
             <div className="CreateRecipeContainer">
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Recipea</title>
+                <meta name="description" content="Recipea Web Application" />
+            </Helmet>
+            <Header></Header>
             {/* <!-- user can upload image --> */}
             <div className="image-container" style={{backgroundImage: background_image}} onClick={uploadImage}>
                 <svg className="upload-img" width="104" height="104" viewBox="0 0 104 104" fill="none" xmlns="http://www.w3.org/2000/svg">
