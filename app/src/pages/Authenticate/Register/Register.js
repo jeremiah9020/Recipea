@@ -38,10 +38,12 @@ function Register() {
             navigate('/')
         } else {
             const err = await response.json()
-            if (err.msg === 'email') {
+            const type = err?.msg?.fields[0]
+            
+            if (type === 'email') {
                 document.getElementById("UsernameTaken").classList.remove("Animation")
                 document.getElementById("EmailTaken").classList.add("Animation")
-            } else {
+            } else if (type === 'username') {
                 document.getElementById("EmailTaken").classList.remove("Animation")
                 document.getElementById("UsernameTaken").classList.add("Animation")
             }
