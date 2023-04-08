@@ -6,7 +6,14 @@ class UserProfile extends Model {}
 UserProfile.init({
     userid: {
         type: DataTypes.INTEGER,
+        primaryKey: true,
         allowNull: false,
+    },
+
+    username: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        unique: true
     },
 
     profilepicture: {
