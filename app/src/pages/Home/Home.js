@@ -40,18 +40,19 @@ function Home() {
         <meta name="description" content="Recipea Web Application" />
       </Helmet>
       <Header/>
+
       {
         recipes.map(async recipe => {
-          const user = await fetch(`http://localhost:3001/api/profiles/${recipe.userid}`, {
+          const response = await fetch(`http://localhost:3001/api/profiles/${recipe.userid}`, {
             method: 'GET',
             credentials: 'include'
           })
-            .then(res => res.json());
-
-          console.log(user)
+          const user = await response.json()
           return (<Card recipe={recipe} user={user} />)
         })
       }
+
+
       <Card recipe={recipe} user={user} />
     </div>
   )
