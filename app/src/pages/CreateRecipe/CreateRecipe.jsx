@@ -1,4 +1,4 @@
-import {React, useRef, useState} from 'react';
+import {React, useRef, useEffect,useState} from 'react';
 import {Editor, EditorState, RichUtils} from 'draft-js';
 import 'draft-js/dist/Draft.css';
 
@@ -28,6 +28,30 @@ function CreateRecipe() {
     const [steps, setStepState] = useState([]);
     const [step_values, setStepValues] = useState([]);
     const [step_count, setStepCount] = useState(0);
+
+
+    const [tagsInData, setTagsInData] = useState([])
+
+
+        //Get the tags that are currently in the Database.
+        useEffect(()=>{
+            const data = fetch('http://localhost:3001/api/tag')
+            .then((res)=> res.json())
+            .then((data) => setTagsInData(data))
+        },[])
+    
+        useEffect(()=>{
+            let list = document.getElementById("tag-values")
+            tagsInData.forEach((tagging)=>
+            {
+                let y = document.createElement('option')
+                y.innerText = tagging.name
+                list.appendChild(y)
+            })
+        },[tagsInData])
+        /////// This will get the tags from the api and then populate them into the datalist so
+        /////// the user has a something to go off of.
+    
 
     // can make bold, italic, or underline text - ctrl + b, ctrl + i, ctrl + u
     function handleKeyCommand(command, editorState) {
@@ -272,13 +296,6 @@ function CreateRecipe() {
             {/* <!-- user enters tags --> */}
             <div className="tag-container">
                 <datalist id="tag-values">
-                    <option value="budget"/>
-                    <option value="vegan"/>
-                    <option value="vegetarian"/>
-                    <option value="gluten free"/>
-                    <option value="fast"/>
-                    <option value="sweet"/>
-                    <option value="sour"/>
                 </datalist>
 
                 <div id="tag-container">
