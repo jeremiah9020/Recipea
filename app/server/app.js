@@ -9,7 +9,7 @@ const apiRouter = require('./routes/api');
 
 //DATABASE
 sequelize.sync(
-    //{force: true}
+    // {force: true}
 ).then(()=> console.log('db is ready!'))
 
 //APP

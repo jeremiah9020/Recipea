@@ -37,7 +37,9 @@ function Home() {
         <meta name="description" content="Recipea Web Application" />
       </Helmet>
       <Header/>
-      {cards}
+      <div className="flex">
+        {cards}
+      </div>
     </div>
   )
 }
