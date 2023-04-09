@@ -5,7 +5,6 @@ import './Card.scss';
 function Card(props) {
     const [ingredients, setIngredients] = useState([]);
     const [tags, setTags] = useState([]);
-    const [imageBlob, setImageBlob] = useState();
     const [imageURL, setImageURL] = useState();
 
     useEffect(() => {
@@ -37,7 +36,7 @@ function Card(props) {
 
         setImageURL('http://localhost:3001/static/' + props.recipe.image)
 
-    }, [imageBlob, props.recipe.image, props.recipe?.ingredients, props.recipe?.tags]);
+    }, [props.recipe.image, props.recipe?.ingredients, props.recipe?.tags]);
 
   return (
     <div className ="Card">
