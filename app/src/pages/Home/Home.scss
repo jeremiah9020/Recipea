@@ -1,8 +1,16 @@
-@import '../../../styles/_mixins.scss';
-@import '../../../styles/_variables.scss';
+@import '../../styles/_mixins.scss';
+@import '../../styles/_variables.scss';
 
 .App {
+    .HeaderBar {
+        margin-bottom: 10px;
+    }
+
     .flex {
         display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        row-gap: 5px;
+        margin-bottom: 10px;
     }
 }

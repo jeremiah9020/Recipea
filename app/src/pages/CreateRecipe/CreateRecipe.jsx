@@ -169,55 +169,7 @@ function CreateRecipe() {
 
         // image
         const upload = document.getElementById('photo')
-        let image = null;
-
-        if (upload.files.length > 0)
-        {
-            let fr = new FileReader();
-            image = uuid();
-            fr.onload = () => {
-                const result = {uuid:image, data:fr.result};
-                fetch('http://localhost:3001/api/upload/image',{
-                method: 'POST',
-                body: JSON.stringify(result),
-                headers: {
-                    'Content-Type':'application/json'
-                },
-                credentials: 'include',
-                cache: 'no-cache',
-                })
-            }
-            // fr.onload = () => {
-            //     image = fr.result;
-            //     data['image'] = image;
-
-            //     fetch(url,{
-            //     method: 'POST',
-            //     body: JSON.stringify(data),
-            //     headers: {
-            //         'Content-Type':'application/json'
-            //     },
-            //     credentials: 'include',
-            //     cache: 'no-cache',
-            //     })
-            // }
-            fr.readAsDataURL(upload.files[0]);
-        }
-        // else
-        // {
-        //     data['image'] = image;
-
-        //     fetch(url, {
-        //         method: 'POST',
-        //         cache: 'no-cache',
-        //         credentials: 'include',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //         referrerPolicy: 'no-referrer',
-        //         body: JSON.stringify(data),
-        //     });
-        // }
+        const image = upload.files[0]? upload.files[0] : null
 
         data['title'] = title;
         data['time'] = time;
@@ -232,19 +184,23 @@ function CreateRecipe() {
 
     async function postRecipe()
     {
-        let url = 'http://localhost:3001/api/recipes';
-        let data = await getRecipeData();
-        console.log(data);
+        const url = 'http://localhost:3001/api/recipes';
+        const data = await getRecipeData();
+
+        const formData = new FormData()
+        for (let name in data) {
+            formData.append(name,data[name])
+        }
 
         fetch(url, {
             method: 'POST',
             cache: 'no-cache',
             credentials: 'include',
             headers: {
-                'Content-Type': 'application/json',
+                'enctype': 'multipart/form-data',
             },
             referrerPolicy: 'no-referrer',
-            body: JSON.stringify(data),
+            body: formData
         });
     }
 

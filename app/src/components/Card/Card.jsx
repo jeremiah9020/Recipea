@@ -35,20 +35,8 @@ function Card(props) {
             return [];
         })
 
-        // setImageBlob(() => {
-        //     return new Blob(props.recipe.image);
-        // })
-        // setImageURL(() => {
-        //     return URL.createObjectURL(imageBlob);
-        // })
-        console.log('refresh');
-            fetch(`http://localhost:3001/api/upload/${props.recipe.image}`,{
-                method: 'GET',
-                credentials: 'include'
-            }).then(res => res.blob()).then(blob => setImageURL(()=> {
-                console.log(blob);
-                return URL.createObjectURL(blob)
-            }))
+        setImageURL('http://localhost:3001/static/' + props.recipe.image)
+
     }, [imageBlob, props.recipe.image, props.recipe?.ingredients, props.recipe?.tags]);
 
   return (

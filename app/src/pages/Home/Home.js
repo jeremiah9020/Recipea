@@ -2,6 +2,7 @@ import {React, useState, useEffect} from 'react';
 import Helmet from 'react-helmet'
 import Header from '../../components/Header/Header'
 import Card from '../../components/Card/Card'
+import './Home.scss';
 
 function Home() {
   const [cards, setCards] = useState([]);

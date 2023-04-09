@@ -1,9 +1,9 @@
 const express = require('express')
 const sequelize = require('./database')
 const cors = require('cors')
+const path = require('path')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser');
-
 const authRouter = require('./routes/auth')
 const apiRouter = require('./routes/api');
 
@@ -14,6 +14,7 @@ sequelize.sync(
 
 //APP
 const app = express()
+app.use('/static', express.static(path.join(__dirname, 'images')))
 app.use(bodyParser.json({ limit: '100mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '100mb' }));
 app.use(cookieParser())
