@@ -22,6 +22,10 @@
     p {
         margin: 0px;
     }
+
+    .HeaderBar {
+        margin-bottom: 10px;
+    }
     
     input::placeholder {
         font-weight: 800;
@@ -64,8 +68,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-size: 100% 100%;
+        background-position: center;
         background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
     }
 
     .image-container:hover {
@@ -214,16 +220,48 @@
         padding: 5px 20px;
     }
     
-    .cancel {
-        background-color: var(--red);
-        border-radius: 30px;
-        padding: 5px 20px;
+    #post-button {
+        width: 200px;
+        height: 60px;
+        border: none;
+        outline: none;
+        background: #2f2f2f;
+        color: #fff;
+        font-size: 22px;
+        border-radius: 40px;
+        text-align: center;
+        box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    #post-button:hover {
+        background-color: #4fac2f;
+        box-shadow: 0 6px 20px -5px rgba(42, 145, 22, 0.4);
+        transition: .5s;
     }
     
-    .post {
-        background-color: var(--green);
-        border-radius: 30px;
-        padding: 5px 20px;
+    #cancel-button {
+        width: 200px;
+        height: 60px;
+        border: none;
+        outline: none;
+        background: #2f2f2f;
+        color: #fff;
+        font-size: 22px;
+        border-radius: 40px;
+        text-align: center;
+        box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    #cancel-button:hover {
+        background-color: #d64937;
+        box-shadow: 0 6px 20px -5px rgba(235, 76, 40, 0.4);
+        transition: .5s;
     }
     
     .add-row
@@ -259,6 +297,8 @@
     .tag-button:hover
     {
         cursor: pointer;
+        opacity: 80%; 
+        transition: .5s;
     }
     
     .tag-button
@@ -268,5 +308,9 @@
         border-style: none;
         text-decoration: none;
         color:transparent;
+    }
+
+    .footer {
+        margin-bottom: 10px;
     }
 }

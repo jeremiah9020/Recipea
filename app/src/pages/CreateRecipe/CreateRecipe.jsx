@@ -202,10 +202,8 @@ function CreateRecipe() {
             referrerPolicy: 'no-referrer',
             body: formData
         });
-    }
 
-    function saveRecipe() {
-
+        navigate('/');
     }
 
     function cancelRecipe() {
@@ -328,9 +326,13 @@ function CreateRecipe() {
             {/* <!-- save (s), cancel (c), or post (p) the recipe --> */}
             <div className="footer">
                 <div className="scp-container">
-                    <button className="save bold" onClick={saveRecipe}>save</button>
-                    <p className="cancel bold" onClick={cancelRecipe}>cancel</p>
-                    <p className="post bold" onClick={postRecipe}>post</p>
+                    {/* <button className="save bold" onClick={saveRecipe}>save</button> */}
+                    <button id='cancel-button' onClick={cancelRecipe}>
+                        <p>Cancel</p>
+                    </button>
+                    <button id='post-button' onClick={postRecipe}>
+                        <p className="post-button-text">Post</p>
+                    </button>
                 </div>
             </div>
         </div>
