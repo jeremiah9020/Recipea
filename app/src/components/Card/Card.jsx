@@ -41,11 +41,18 @@ function Card(props) {
         // setImageURL(() => {
         //     return URL.createObjectURL(imageBlob);
         // })
-    }, [imageBlob, props.recipe.image, props.recipe?.ingredients, props.recipe?.tags], );
-    
+        console.log('refresh');
+            fetch(`http://localhost:3001/api/upload/${props.recipe.image}`,{
+                method: 'GET',
+                credentials: 'include'
+            }).then(res => res.blob()).then(blob => setImageURL(()=> {
+                console.log(blob);
+                return URL.createObjectURL(blob)
+            }))
+    }, [imageBlob, props.recipe.image, props.recipe?.ingredients, props.recipe?.tags]);
 
   return (
-    <div class ="Card">
+    <div className ="Card">
         <div className="Center">
             <div className="CardContainer">
                 <div className="ImageContainer">

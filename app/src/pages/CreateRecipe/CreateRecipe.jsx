@@ -1,5 +1,6 @@
 import {React, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import uuid from 'react-uuid';
 import 'draft-js/dist/Draft.css';
 
 // stylesheets
@@ -172,23 +173,51 @@ function CreateRecipe() {
 
         if (upload.files.length > 0)
         {
-            const formData = new FormData();
-            formData.append('image', upload.files[0], 'test');
-            try {
-                console.log(formData);
-                await fetch('http://localhost:3001/api/upload/image',{
-                method: 'post',
-                body: formData,
+            let fr = new FileReader();
+            image = uuid();
+            fr.onload = () => {
+                const result = {uuid:image, data:fr.result};
+                fetch('http://localhost:3001/api/upload/image',{
+                method: 'POST',
+                body: JSON.stringify(result),
                 headers: {
-                    'Content-Type':'multipart/form-data'
+                    'Content-Type':'application/json'
                 },
                 credentials: 'include',
                 cache: 'no-cache',
                 })
-            } catch (error) {
-                console.log(error);
             }
+            // fr.onload = () => {
+            //     image = fr.result;
+            //     data['image'] = image;
+
+            //     fetch(url,{
+            //     method: 'POST',
+            //     body: JSON.stringify(data),
+            //     headers: {
+            //         'Content-Type':'application/json'
+            //     },
+            //     credentials: 'include',
+            //     cache: 'no-cache',
+            //     })
+            // }
+            fr.readAsDataURL(upload.files[0]);
         }
+        // else
+        // {
+        //     data['image'] = image;
+
+        //     fetch(url, {
+        //         method: 'POST',
+        //         cache: 'no-cache',
+        //         credentials: 'include',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //         referrerPolicy: 'no-referrer',
+        //         body: JSON.stringify(data),
+        //     });
+        // }
 
         data['title'] = title;
         data['time'] = time;
@@ -198,8 +227,6 @@ function CreateRecipe() {
         data['description'] = description;
         data['image'] = image;
 
-        console.log(data['image']);
-
         return data;
     }
 
@@ -207,8 +234,9 @@ function CreateRecipe() {
     {
         let url = 'http://localhost:3001/api/recipes';
         let data = await getRecipeData();
+        console.log(data);
 
-        const response = await fetch(url, {
+        fetch(url, {
             method: 'POST',
             cache: 'no-cache',
             credentials: 'include',
@@ -218,8 +246,6 @@ function CreateRecipe() {
             referrerPolicy: 'no-referrer',
             body: JSON.stringify(data),
         });
-
-        return response.json();
     }
 
     function saveRecipe() {
