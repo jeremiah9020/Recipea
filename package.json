@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "react-uuid": "^2.0.0",
-    "sanitize-filename": "^1.6.3"
-  }
-}

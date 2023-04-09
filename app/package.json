@@ -16,6 +16,8 @@
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
+    "react-uuid": "^2.0.0",
+    "sanitize-filename": "^1.6.3",
     "sass": "^1.60.0",
     "sequelize": "^6.30.0",
     "sqlite3": "^5.1.6"
