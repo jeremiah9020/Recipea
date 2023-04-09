@@ -33,10 +33,7 @@ router.post('/', authMiddleware, upload.single('image'), async (req, res, next) 
             fs.writeFileSync(`${imagesPath}/${filepath}`, buffer)
         } catch (e) {
             res.status(500).json(e);
-<<<<<<< HEAD
-            return;
-=======
->>>>>>> b602f4a02dc3ae5f7780d693022814636c7e9b48
+            return; // otherwise will send multiple responses
         }
 
         image = filepath
