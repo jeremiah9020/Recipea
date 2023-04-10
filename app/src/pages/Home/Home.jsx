@@ -2,10 +2,12 @@ import {React, useState, useEffect} from 'react';
 import Helmet from 'react-helmet'
 import Header from '../../components/Header/Header'
 import Card from '../../components/Card/Card'
+import ExtendedCard from '../../components/ExtendedCard/ExtendedCard';
 import './Home.scss';
 
 function Home() {
   const [cards, setCards] = useState([]);
+  const [extendedCard, setExtendedCard] = useState();
 
   useEffect(() => {
     async function getCards() {
@@ -22,7 +24,7 @@ function Home() {
           credentials: 'include'
           })
         const user = await response.json()
-        cards.push(<Card recipe={recipe} user={user} onClick={cardClick}/>)
+        cards.push(<Card recipe={recipe} user={user} onClick={cardClick} setExtendedCard={setExtendedCard}/>)
       }
 
       setCards(cards)
@@ -32,7 +34,8 @@ function Home() {
 
   function cardClick()
   {
-
+    console.log("CLICKED");
+    setExtendedCard(<ExtendedCard/>)
   }
 
   return (
@@ -46,6 +49,7 @@ function Home() {
       <div className="flex">
         {cards}
       </div>
+      {extendedCard}
     </div>
   )
 }
