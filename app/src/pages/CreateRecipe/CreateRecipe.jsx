@@ -1,6 +1,5 @@
 import {React, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import 'draft-js/dist/Draft.css';
 
 // stylesheets
 import './CreateRecipe.scss';
