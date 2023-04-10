@@ -22,13 +22,18 @@ function Home() {
           credentials: 'include'
           })
         const user = await response.json()
-        cards.push(<Card recipe={recipe} user={user} />)
+        cards.push(<Card recipe={recipe} user={user} onClick={cardClick}/>)
       }
 
       setCards(cards)
     }
     getCards()
   }, [])
+
+  function cardClick()
+  {
+
+  }
 
   return (
     <div className="App">
