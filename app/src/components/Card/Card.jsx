@@ -55,7 +55,7 @@ function Card(props) {
 
     function clickCard()
     {
-        props.setExtendedCard(<ExtendedCard setExtendedCard={props.setExtendedCard} toggleHoverable={toggleHoverable}/>)
+        props.setExtendedCard(<ExtendedCard setExtendedCard={props.setExtendedCard} toggleHoverable={toggleHoverable} user={props.user} recipe={props.recipe} imageURL={imageURL} ingredients={ingredients} tags={tags}/>)
         toggleHoverable();
     }
 

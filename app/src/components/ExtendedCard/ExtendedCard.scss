@@ -7,6 +7,10 @@
     .Yellow {
         color: rgb(148, 148, 71);
     }
+
+    .Teal {
+        color: #387285;
+    }
     
     .BackgroundContainer {
         height: auto;
@@ -211,8 +215,11 @@
     
     .CardContainer .ContentContainer .InstructionsContainer {
         height: auto;
-        padding: 20px 40px 20px 40px;
-        margin-top: 20px;
+        padding: 20px 20px 20px 20px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 20px;
+        font-weight: bold;
     }
     
     .CardContainer .ContentContainer .InstructionsContainer .Step {
