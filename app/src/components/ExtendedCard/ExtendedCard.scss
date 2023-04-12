@@ -1,16 +1,4 @@
-.Card 
-{
-    background-color: white; // otherwise on grow, adjacent cards will show through transparent background
-    border-radius: 20px; // to match rounded edge of other elements when not transparent
-
-    .Center {
-        width: 100%;
-        height: 100%;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.ExtendedCard {
 
     .Blue {
         color: rgb(69, 69, 208);
@@ -24,30 +12,55 @@
         color: #387285;
     }
     
+    .BackgroundContainer {
+        height: auto;
+        background-color: rgba(0, 0, 0, 70%);
+        position: absolute;
+        left: 0;
+        top: 0;
+    
+        width: 100%;
+    
+        display: flex;
+        justify-content: center;
+    }
+    
+    // Chome, Safari, and Opera
+    // .CardContainer::-webkit-scrollbar {
+    //     display: none;
+    // }
+
     .CardContainer {
-        width: 500px;
-        height: 550px;
-    
+        // -ms-overflow-style: none; // IE and Edge
+        // scrollbar-width: none; // Firefox
+        // overflow-y: scroll;
+        margin-top: 3em;
+        margin-bottom: 3em;
         border-radius: 20px;
-        border: 1px solid black;
-        background-color: transparent;
-    
-        box-shadow: 0px 0px 10px black;
-        overflow: hidden;
-        object-fit: fill;
-    
+        // height: 100vh;
+        height: auto;
+        position: relative;
+        width: 800px;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
     }
     
     .CardContainer .ImageContainer {
         position: relative;
-        height: 45%;
+        margin: 25px 25px 10px 25px;
+        height: 300px;
+        width: 750px;
+        border-radius: 20px;
         overflow: hidden;
     }
     
     .CardContainer .Image {
         position: absolute;
         left: 0;
-        top: -10%;
+        top: -20%;
         max-width: 100%;
         object-fit: scale-down;
     }
@@ -126,8 +139,8 @@
     .CardContainer .TitleContainer .RightContainer .TimeContainer {
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
         align-items: center;
+        justify-content: flex-start;
     }
     
     .CardContainer .TitleContainer .RightContainer .TimeContainer .Clock {
@@ -146,7 +159,7 @@
     .CardContainer .ContentContainer {
         padding: 15px;
         width: calc(100% - 30px);
-        height: 197px;
+        height: auto;
         display: flex;
         flex-direction: column;
     }
@@ -181,14 +194,37 @@
         height: 30px;
     }
     
-    .CardContainer .ContentContainer .IngredientsContainer {
-        width: 100%;
-        height: 100%;
-        padding: 20px 20px 20px 20px;
+    .CardContainer .ContentContainer .InfoContainer {
+        width: calc(100% - 40px);
+        height: auto;
+        padding: 20px 20px 30px 20px;
     
         display:grid;
         grid-template-columns: auto auto;
         font-size: 20px;
         font-weight: bold;
+        column-gap: 50px;
+        border-bottom: 1px solid rgb(180, 180, 180);
+    
+    }
+    
+    .CardContainer .ContentContainer .InfoContainer .DescriptionContainer {
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+    
+    .CardContainer .ContentContainer .InstructionsContainer {
+        height: auto;
+        padding: 20px 20px 20px 20px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    
+    .CardContainer .ContentContainer .InstructionsContainer .Step {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 30px;
     }
 }

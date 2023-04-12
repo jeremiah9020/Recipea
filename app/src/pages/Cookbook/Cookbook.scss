@@ -1,0 +1,162 @@
+.Card {
+    transition: all .2s ease-in-out;
+}
+
+.Hoverable:hover {
+    // transition: all .2s ease-in;
+    transform: scale(1.05);
+    z-index: 1;
+}
+
+.container
+{
+    color: violet;
+}
+
+.Recipesforuser
+{
+
+    width:fit-content;
+    height: 100px;
+    margin-left: 78px;
+    margin-top: 25px;
+    align-content: center;
+    align-self: center;
+    font-size: 35px;
+}
+
+    .flex {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        row-gap: 5px;
+        margin-bottom: 10px;
+    }
+
+
+.addcook
+{
+    background-color: rgb(94, 199, 75);
+    width: 120px;
+    height: 50px;
+    border-radius: 12px;
+    outline-color: rgb(94, 199, 75);
+    outline-style: none;
+    border: none;
+    font-family:'Poppins';
+}
+
+
+.removecook
+{
+    background-color: rgb(255, 0, 0);
+    width: 120px;
+    height: 50px;
+    border-radius: 12px;
+    outline-color: rgb(255, 0, 0);
+    outline-style: none;
+    border: none;
+    font-family:'Poppins';
+}
+
+.removecook:hover
+{
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.addcook:hover
+{
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.searchingCB
+{
+    background-color: rgb(191, 186, 186);
+    width: 120px;
+    height: 50px;
+    border-radius: 12px;
+    outline-color: rgb(191, 186, 186);
+    outline-style: none;
+    border: none;
+    font-family:'Poppins';
+}
+
+.searchingCB:hover
+{
+    font-weight: bold;
+    cursor: pointer;    
+}
+
+.Logo
+{
+    padding-top: 30px;
+    padding-left: 15px;
+    object-fit: cover;
+    width: 510px;
+}
+
+.CookBook-selected
+{
+    font-family: 'Poppins';
+    font-size: 40px;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.Place
+{
+    font-family: 'Poppins';
+    font-size: 50px;
+}
+
+.removecook
+{
+    font-family: 'Poppins';
+}
+
+.addcook
+{
+    font-family: 'Poppins';
+}
+
+.searchingCB
+{
+    font-family: 'Poppins';
+}
+
+.recipestoAdd
+{
+    background-color: rgb(94, 199, 75);
+    width: 120px;
+    height: 50px;
+    border-radius: 12px;
+    outline-color: rgb(94, 199, 75);
+    outline-style: none;
+    border: none;
+    font-family:'Poppins';
+}
+
+.recipestoAdd:hover
+{
+
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.recipestochoose
+{
+    font-family: 'Poppins';
+    margin-left: 80px;
+    width: 440px;
+    height: 110px;
+    font-size: 35px;
+    border-radius: 12px;
+}
+
+.Recipesforuser
+{
+    border-radius: 12px;
+}
