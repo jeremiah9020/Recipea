@@ -17,12 +17,12 @@ UserProfile.init({
     },
 
     profilepicture: {
-        type: DataTypes.BLOB,
+        type: DataTypes.TEXT,
         allowNull: true,
     },
 
     profilebanner: {
-        type: DataTypes.BLOB,
+        type: DataTypes.TEXT,
         allowNull: true,
     },
     

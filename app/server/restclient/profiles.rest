@@ -1,0 +1,23 @@
+### GET ALL PROFILES
+GET http://localhost:3001/api/profiles/
+
+### GET SINGLE PROFILE
+GET http://localhost:3001/api/profiles/1
+
+### GET CURRENTLY AUTHENTICATED PROFILE
+GET http://localhost:3001/api/profiles/authenticated
+
+### UPDATE 
+PATCH http://localhost:3001/api/profiles/updateinfo
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+Description updated here!
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="profilebanner"; filename="Sitemap.png"
+Content-Type: image/png
+
+< ./Sitemap.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

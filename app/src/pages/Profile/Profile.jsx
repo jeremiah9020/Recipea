@@ -54,9 +54,10 @@ function Profile() {
                 const profile = await response.json()
                 if (profile.username === authenticatedUsername) setEditable(true)
                 setUsername(profile.username)
-                if (profile.description) setDescription(profile.description)
-                if (profile.profilepicture) setProfilePicture(<img src={profile.profilepicture} alt="Profile"/>)
-                if (profile.profilepicture) setProfileBanner(<img src={profile.profilebanner} alt="Banner"/>)
+
+                if (profile.description != null) setDescription(profile.description)
+                if (profile.profilepicture != null) setProfilePicture(<img src={'http://localhost:3001/static/' + profile.profilepicture} alt="Profile"/>)
+                if (profile.profilebanner != null) setProfileBanner(<img src={'http://localhost:3001/static/' + profile.profilebanner} alt="Banner"/>)
             }
         }      
         
