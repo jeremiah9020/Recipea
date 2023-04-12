@@ -46,10 +46,10 @@ function NavProfile() {
             })
 
             const profile = await response.json()
-            if (profile.profilepicture) setProfilePicture(<img src={profile.profilepicture} alt="Profile"/>)
+            if (profile.profilepicture) setProfilePicture(<img src={'http://localhost:3001/static/' + profile.profilepicture} alt="Profile"/>)
         } 
         getUserProfileData()
-    })
+    },[])
 
     return (
         <div className="NavProfile">

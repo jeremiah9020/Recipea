@@ -14,6 +14,8 @@
     .Badge {
         @include no-select;
 
+        overflow: hidden;
+
         cursor: pointer;
         
         width: 45px;
@@ -39,6 +41,10 @@
             color: white;
             width : 48px;
             height: 48px;
+        }
+
+        img {
+            height: 100%;
         }
     }
 }
