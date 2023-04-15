@@ -1,11 +1,14 @@
 import {React, useState, useEffect} from 'react'
 import ExtendedCard from '../ExtendedCard/ExtendedCard';
+import Alert from 'react-bootstrap/Alert';
+import Rating from '@mui/material/Rating';
 import './Card.scss';
 
 function Card(props) {
     const [ingredients, setIngredients] = useState([]);
     const [tags, setTags] = useState([]);
     const [imageURL, setImageURL] = useState();
+    const [value, setValue] = useState(0); // for stars
 
     useEffect(() => {
         setIngredients(() => {
@@ -59,6 +62,115 @@ function Card(props) {
         toggleHoverable();
     }
 
+    function CookbookClicked(event)
+    {
+        event.stopPropagation();
+        // add recipe to user's default cookbook
+
+        // create successful alert
+        props.setToastContent(`Added ${props.recipe.title} to your cookbook`);
+    }
+
+    function FollowClicked(event)
+    {
+        event.stopPropagation();
+
+        props.setToastContent(`Now following ${props.user.username}`);
+    }
+
+    function ShareClicked(event)
+    {
+        event.stopPropagation();
+
+        // initiate upload
+    }
+
+    function UploadClicked(event)
+    {
+        event.stopPropagation();
+
+        // initiate upload
+    }
+
+    // function applyStarClass(event, classname)
+    // {
+    //     let star1 = document.querySelector('.Star1');
+    //     let star2 = document.querySelector('.Star2');
+    //     let star3 = document.querySelector('.Star3');
+    //     let star4 = document.querySelector('.Star4');
+    //     let star5 = document.querySelector('.Star5');
+
+    //     if (event.target.classList.contains('Star1'))
+    //     {
+    //         star1.classList.add(classname);
+    //         star2.classList.remove(classname);
+    //         star3.classList.remove(classname);
+    //         star4.classList.remove(classname);
+    //         star5.classList.remove(classname);
+    //         console.log('star 1');
+    //     }
+    //     else if (event.target.classList.contains('Star2'))
+    //     {
+    //         star1.classList.add(classname);
+    //         star2.classList.add(classname);
+    //         star3.classList.remove(classname);
+    //         star4.classList.remove(classname);
+    //         star5.classList.remove(classname);
+    //         console.log('star 2');
+    //     }
+    //     else if (event.target.classList.contains('Star3'))
+    //     {
+    //         star1.classList.add(classname);
+    //         star2.classList.add(classname);
+    //         star3.classList.add(classname);
+    //         star4.classList.remove(classname);
+    //         star5.classList.remove(classname);
+    //         console.log('star 3');
+    //     }
+    //     else if (event.target.classList.contains('Star4'))
+    //     {
+    //         star1.classList.add(classname);
+    //         star2.classList.add(classname);
+    //         star3.classList.add(classname);
+    //         star4.classList.add(classname);
+    //         star5.classList.remove(classname);
+    //         console.log('star 4');
+    //     }
+    //     else if (event.target.classList.contains('Star5'))
+    //     {
+    //         star1.classList.add(classname);
+    //         star2.classList.add(classname);
+    //         star3.classList.add(classname);
+    //         star4.classList.add(classname);
+    //         star5.classList.add(classname);
+    //         console.log('star 5');
+    //     }
+    // }
+
+    // function mouseEnterStar(event) {
+    //     applyStarClass(event, 'HighlightStar');
+    // }
+
+    // function mouseLeaveStar(event) {
+    //     document.querySelector('.Star1').classList.remove('HighlightStar');
+    //     document.querySelector('.Star2').classList.remove('HighlightStar');
+    //     document.querySelector('.Star3').classList.remove('HighlightStar');
+    //     document.querySelector('.Star4').classList.remove('HighlightStar');
+    //     document.querySelector('.Star5').classList.remove('HighlightStar');
+    // }
+
+    // function clickStar(event) {
+    //     // event.stopPropagation();
+    //     applyStarClass(event, 'SelectStar');
+    // }
+
+    function handleStarClick(event)
+    {
+        event.stopPropagation();
+
+        // fetch request to update rating
+    }
+
   return (
     <div className ={`Card ${hoverable}`} onClick={clickCard}>
         <div className="Center">
@@ -78,21 +190,30 @@ function Card(props) {
                     </div>
                     <div className="RightContainer">
                         <div className="StarContainer">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            {/* <svg className="Star1" onMouseEnter={mouseEnterStar} onMouseLeave={mouseLeaveStar} onClick={clickStar} width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5.825 22L7.45 14.975L2 10.25L9.2 9.625L12 3L14.8 9.625L22 10.25L16.55 14.975L18.175 22L12 18.275L5.825 22Z" fill="black" />
                             </svg>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg className="Star2" onMouseEnter={mouseEnterStar} onMouseLeave={mouseLeaveStar} onClick={clickStar} width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5.825 22L7.45 14.975L2 10.25L9.2 9.625L12 3L14.8 9.625L22 10.25L16.55 14.975L18.175 22L12 18.275L5.825 22Z" fill="black" />
                             </svg>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg className="Star3" onMouseEnter={mouseEnterStar} onMouseLeave={mouseLeaveStar} onClick={clickStar} width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5.825 22L7.45 14.975L2 10.25L9.2 9.625L12 3L14.8 9.625L22 10.25L16.55 14.975L18.175 22L12 18.275L5.825 22Z" fill="black" />
                             </svg>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg className="Star4" onMouseEnter={mouseEnterStar} onMouseLeave={mouseLeaveStar} onClick={clickStar} width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5.825 22L7.45 14.975L2 10.25L9.2 9.625L12 3L14.8 9.625L22 10.25L16.55 14.975L18.175 22L12 18.275L5.825 22Z" fill="black" />
                             </svg>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg className="Star5" onMouseEnter={mouseEnterStar} onMouseLeave={mouseLeaveStar} onClick={clickStar} width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5.825 22L7.45 14.975L2 10.25L9.2 9.625L12 3L14.8 9.625L22 10.25L16.55 14.975L18.175 22L12 18.275L5.825 22Z" fill="black" />
-                            </svg>
+                            </svg> */}
+                            <Rating
+                                name="simple-controlled"
+                                value={value}
+                                onChange={(event, newValue) => {
+                                setValue(newValue);
+                                }}
+
+                                onClick={handleStarClick}
+                            />
                         </div>
                         <div className="TimeContainer">
                             <svg width="30" height="30" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -116,16 +237,16 @@ function Card(props) {
                             }
                         </div>
                         <div className="ShareContainer">
-                            <svg width="30" height="30" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg className="Icon" onClick={FollowClicked} width="30" height="30" viewBox="0 0 43 43" fill="black" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17.5135 21.5C16.4385 21.5 15.5427 21.0968 14.826 20.2906C14.1093 19.4843 13.8257 18.5437 13.975 17.4687L14.5573 13.0791C14.7961 11.377 15.5725 9.96581 16.8864 8.84542C18.2003 7.72503 19.7382 7.16543 21.5 7.16663C23.2618 7.16663 24.7996 7.72682 26.1135 8.84721C27.4274 9.9676 28.2038 11.3782 28.4427 13.0791L29.025 17.4687C29.1743 18.5437 28.8906 19.4843 28.1739 20.2906C27.4573 21.0968 26.5614 21.5 25.4864 21.5H17.5135ZM17.5135 17.9166H25.4864L24.9041 13.6166C24.7847 12.7805 24.4042 12.0937 23.7628 11.5562C23.1214 11.0187 22.3671 10.75 21.5 10.75C20.634 10.75 19.8797 11.0187 19.2371 11.5562C18.5945 12.0937 18.214 12.7805 18.0958 13.6166L17.5135 17.9166ZM7.16663 35.8333V30.8166C7.16663 29.8014 7.42821 28.8679 7.95138 28.0163C8.47454 27.1646 9.16851 26.5154 10.0333 26.0687C11.8847 25.143 13.7659 24.4484 15.677 23.985C17.5882 23.5216 19.5291 23.2904 21.5 23.2916C23.4708 23.2916 25.4118 23.5233 27.3229 23.9868C29.234 24.4502 31.1152 25.1442 32.9666 26.0687C33.8326 26.5166 34.5272 27.1664 35.0503 28.018C35.5735 28.8697 35.8345 29.8025 35.8333 30.8166V35.8333H7.16663ZM10.75 32.25H32.25V30.8166C32.25 30.4882 32.1675 30.1895 32.0027 29.9208C31.8379 29.652 31.6217 29.443 31.3541 29.2937C29.7416 28.4875 28.1142 27.8831 26.4718 27.4805C24.8295 27.078 23.1722 26.8762 21.5 26.875C19.8277 26.875 18.1704 27.0768 16.5281 27.4805C14.8857 27.8843 13.2583 28.4887 11.6458 29.2937C11.377 29.443 11.1603 29.652 10.9954 29.9208C10.8306 30.1895 10.7488 30.4882 10.75 30.8166V32.25Z" fill="black" />
                             </svg>
-                            <svg width="30" height="30" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg className="Icon" onClick={CookbookClicked} width="30" height="30" viewBox="0 0 49 49" fill="black" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12.25 44.9167C11.127 44.9167 10.1654 44.5165 9.36509 43.7162C8.56475 42.9159 8.16527 41.9549 8.16663 40.8334V8.16671C8.16663 7.04379 8.5668 6.08217 9.36713 5.28184C10.1675 4.4815 11.1284 4.08202 12.25 4.08338H36.75C37.8729 4.08338 38.8345 4.48354 39.6348 5.28388C40.4352 6.08421 40.8347 7.04516 40.8333 8.16671V40.8334C40.8333 41.9563 40.4331 42.9179 39.6328 43.7183C38.8325 44.5186 37.8715 44.9181 36.75 44.9167H12.25ZM12.25 40.8334H36.75V8.16671H32.6666V20.6719C32.6666 21.0803 32.4965 21.3783 32.1562 21.5662C31.8159 21.754 31.4757 21.7452 31.1354 21.5396L27.5625 19.3959L23.9895 21.5396C23.6493 21.7438 23.309 21.7526 22.9687 21.5662C22.6284 21.3797 22.4583 21.0816 22.4583 20.6719V8.16671H12.25V40.8334Z" fill="black" />
                             </svg>
-                            <svg width="30" height="30" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg className="Icon" onClick={UploadClicked} width="30" height="30" viewBox="0 0 49 49" fill="black" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12.25 46.9583C11.127 46.9583 10.1654 46.5581 9.36509 45.7578C8.56475 44.9575 8.16527 43.9965 8.16663 42.875V20.4166C8.16663 19.2937 8.5668 18.3321 9.36713 17.5318C10.1675 16.7314 11.1284 16.3319 12.25 16.3333H18.375V20.4166H12.25V42.875H36.75V20.4166H30.625V16.3333H36.75C37.8729 16.3333 38.8345 16.7335 39.6348 17.5338C40.4352 18.3341 40.8347 19.2951 40.8333 20.4166V42.875C40.8333 43.9979 40.4331 44.9595 39.6328 45.7598C38.8325 46.5602 37.8715 46.9597 36.75 46.9583H12.25ZM22.4583 32.6666V9.851L19.1916 13.1177L16.3333 10.2083L24.5 2.04163L32.6666 10.2083L29.8083 13.1177L26.5416 9.851V32.6666H22.4583Z" fill="black" />
                             </svg>
-                            <svg width="30" height="30" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg className="Icon" onClick={ShareClicked} width="30" height="30" viewBox="0 0 49 49" fill="black" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.125 40.8333V8.16663L44.9167 24.5M10.2083 34.7083L34.4021 24.5L10.2083 14.2916V21.4375L22.4583 24.5L10.2083 27.5625M10.2083 34.7083V14.2916V27.5625V34.7083Z" fill="black" />
                             </svg>
                         </div>
@@ -149,6 +270,7 @@ function Card(props) {
                 </div>
             </div>
         </div>
+        {alert}
     </div>
   );
 }

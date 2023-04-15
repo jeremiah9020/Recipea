@@ -3,11 +3,21 @@ import Helmet from 'react-helmet'
 import Header from '../../components/Header/Header'
 import Card from '../../components/Card/Card'
 import ExtendedCard from '../../components/ExtendedCard/ExtendedCard';
+import Toast from 'react-bootstrap/Toast';
+import ToastContainer from 'react-bootstrap/ToastContainer';
 import './Home.scss';
 
 function Home() {
   const [cards, setCards] = useState([]);
   const [extendedCard, setExtendedCard] = useState();
+  const [toastValue, setToastValue] = useState();
+  const [show, setShow] = useState(false); // for toast
+
+  function setToastContent(content)
+  {
+    setToastValue(content);
+    setShow(true);
+  }
 
   useEffect(() => {
     async function getCards() {
@@ -24,7 +34,7 @@ function Home() {
           credentials: 'include'
           })
         const user = await response.json()
-        cards.push(<Card recipe={recipe} user={user} onClick={cardClick} setExtendedCard={setExtendedCard}/>)
+        cards.push(<Card setToastContent={setToastContent} recipe={recipe} user={user} onClick={cardClick} setExtendedCard={setExtendedCard}/>)
       }
 
       setCards(cards)
@@ -46,6 +56,11 @@ function Home() {
         <meta name="description" content="Recipea Web Application" />
       </Helmet>
       <Header/>
+      <ToastContainer className='p-3 position-fixed' position='bottom-start'>
+        <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
+            <Toast.Body>{toastValue}</Toast.Body>
+        </Toast>
+      </ToastContainer>
       <div className="flex">
         {cards}
       </div>

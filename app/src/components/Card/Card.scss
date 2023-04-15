@@ -122,6 +122,18 @@
         margin-left: 5px;
         height: 80%;
     }
+
+    .CardContainer .TitleContainer .RightContainer .StarContainer .SelectStar {
+        fill: greenyellow;
+    }
+
+    .CardContainer .TitleContainer .RightContainer .StarContainer .HighlightStar {
+        fill: gold;
+    }
+
+    .CardContainer .TitleContainer .RightContainer .StarContainer path {
+        fill: inherit;
+    }
     
     .CardContainer .TitleContainer .RightContainer .TimeContainer {
         display: flex;
@@ -173,6 +185,16 @@
     .CardContainer .ContentContainer .InteractableContainer .ShareContainer {
         display: flex;
         flex-direction: row;
+    }
+
+    .CardContainer .ContentContainer .InteractableContainer .ShareContainer .Icon:hover {
+        fill: rgb(21, 146, 104);
+        cursor: pointer;
+    }
+
+    .CardContainer .ContentContainer .InteractableContainer .ShareContainer .Icon path {
+        fill: inherit;
+        cursor: pointer;
     }
     
     .CardContainer .ContentContainer .InteractableContainer .ShareContainer img {
