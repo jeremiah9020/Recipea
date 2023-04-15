@@ -11,10 +11,10 @@
     .Teal {
         color: #387285;
     }
-    
+
     .BackgroundContainer {
+        background-color: rgba(0, 0, 0, 0.5);
         height: auto;
-        background-color: rgba(0, 0, 0, 70%);
         position: absolute;
         left: 0;
         top: 0;
@@ -24,20 +24,11 @@
         display: flex;
         justify-content: center;
     }
-    
-    // Chome, Safari, and Opera
-    // .CardContainer::-webkit-scrollbar {
-    //     display: none;
-    // }
 
     .CardContainer {
-        // -ms-overflow-style: none; // IE and Edge
-        // scrollbar-width: none; // Firefox
-        // overflow-y: scroll;
         margin-top: 3em;
         margin-bottom: 3em;
         border-radius: 20px;
-        // height: 100vh;
         height: auto;
         position: relative;
         width: 800px;

@@ -1,23 +1,21 @@
 import {React, useState, useEffect} from 'react'
+import Modal from 'react-bootstrap/Modal'
 
 import './ExtendedCard.scss';
 
 function ExtendedCard(props) {
     const [steps, setSteps] = useState([])
+    const handleClose = () => props.setExtendedCard();
+
     useEffect(()=>{
         setSteps(() => {
             return props.recipe.steps.split(':');
         })
     }, [props?.recipe?.steps])
 
-    function clickBackground()
-    {
-        props.setExtendedCard(() => null);
-        props.toggleHoverable();
-    }
   return (
     <div className="ExtendedCard">
-        <div class ="BackgroundContainer" onClick={clickBackground}>
+        <Modal className='BackgroundContainer' show={true} onHide={handleClose}>
             <div className="CardContainer">
                 <div className="ImageContainer">
                     <img className="Image" src={props?.imageURL} alt='none'/>
@@ -114,7 +112,7 @@ function ExtendedCard(props) {
                     </div>
                 </div>
             </div>
-        </div>
+        </Modal>
     </div>
   )
 }

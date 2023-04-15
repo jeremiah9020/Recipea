@@ -1,6 +1,5 @@
 import {React, useState, useEffect} from 'react'
 import ExtendedCard from '../ExtendedCard/ExtendedCard';
-import Alert from 'react-bootstrap/Alert';
 import Rating from '@mui/material/Rating';
 import './Card.scss';
 
@@ -41,25 +40,9 @@ function Card(props) {
 
     }, [props.recipe.image, props.recipe?.ingredients, props.recipe?.tags]);
 
-    const [hoverable, setHoverable] = useState('Hoverable');
-    function toggleHoverable()
-    {
-        setHoverable(prev => {
-            if (prev === 'Hoverable')
-            {
-                return 'Not-Hoverable';
-            }
-            else
-            {
-                return 'Hoverable';
-            }
-        })
-    }
-
     function clickCard()
     {
-        props.setExtendedCard(<ExtendedCard setExtendedCard={props.setExtendedCard} toggleHoverable={toggleHoverable} user={props.user} recipe={props.recipe} imageURL={imageURL} ingredients={ingredients} tags={tags}/>)
-        toggleHoverable();
+        props.setExtendedCard(<ExtendedCard setExtendedCard={props.setExtendedCard} user={props.user} recipe={props.recipe} imageURL={imageURL} ingredients={ingredients} tags={tags}/>)
     }
 
     function CookbookClicked(event)
@@ -92,78 +75,6 @@ function Card(props) {
         // initiate upload
     }
 
-    // function applyStarClass(event, classname)
-    // {
-    //     let star1 = document.querySelector('.Star1');
-    //     let star2 = document.querySelector('.Star2');
-    //     let star3 = document.querySelector('.Star3');
-    //     let star4 = document.querySelector('.Star4');
-    //     let star5 = document.querySelector('.Star5');
-
-    //     if (event.target.classList.contains('Star1'))
-    //     {
-    //         star1.classList.add(classname);
-    //         star2.classList.remove(classname);
-    //         star3.classList.remove(classname);
-    //         star4.classList.remove(classname);
-    //         star5.classList.remove(classname);
-    //         console.log('star 1');
-    //     }
-    //     else if (event.target.classList.contains('Star2'))
-    //     {
-    //         star1.classList.add(classname);
-    //         star2.classList.add(classname);
-    //         star3.classList.remove(classname);
-    //         star4.classList.remove(classname);
-    //         star5.classList.remove(classname);
-    //         console.log('star 2');
-    //     }
-    //     else if (event.target.classList.contains('Star3'))
-    //     {
-    //         star1.classList.add(classname);
-    //         star2.classList.add(classname);
-    //         star3.classList.add(classname);
-    //         star4.classList.remove(classname);
-    //         star5.classList.remove(classname);
-    //         console.log('star 3');
-    //     }
-    //     else if (event.target.classList.contains('Star4'))
-    //     {
-    //         star1.classList.add(classname);
-    //         star2.classList.add(classname);
-    //         star3.classList.add(classname);
-    //         star4.classList.add(classname);
-    //         star5.classList.remove(classname);
-    //         console.log('star 4');
-    //     }
-    //     else if (event.target.classList.contains('Star5'))
-    //     {
-    //         star1.classList.add(classname);
-    //         star2.classList.add(classname);
-    //         star3.classList.add(classname);
-    //         star4.classList.add(classname);
-    //         star5.classList.add(classname);
-    //         console.log('star 5');
-    //     }
-    // }
-
-    // function mouseEnterStar(event) {
-    //     applyStarClass(event, 'HighlightStar');
-    // }
-
-    // function mouseLeaveStar(event) {
-    //     document.querySelector('.Star1').classList.remove('HighlightStar');
-    //     document.querySelector('.Star2').classList.remove('HighlightStar');
-    //     document.querySelector('.Star3').classList.remove('HighlightStar');
-    //     document.querySelector('.Star4').classList.remove('HighlightStar');
-    //     document.querySelector('.Star5').classList.remove('HighlightStar');
-    // }
-
-    // function clickStar(event) {
-    //     // event.stopPropagation();
-    //     applyStarClass(event, 'SelectStar');
-    // }
-
     function handleStarClick(event)
     {
         event.stopPropagation();
@@ -172,7 +83,7 @@ function Card(props) {
     }
 
   return (
-    <div className ={`Card ${hoverable}`} onClick={clickCard}>
+    <div className='Card Hoverable' onClick={clickCard}>
         <div className="Center">
             <div className="CardContainer">
                 <div className="ImageContainer">
@@ -190,21 +101,6 @@ function Card(props) {
                     </div>
                     <div className="RightContainer">
                         <div className="StarContainer">
-                            {/* <svg className="Star1" onMouseEnter={mouseEnterStar} onMouseLeave={mouseLeaveStar} onClick={clickStar} width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5.825 22L7.45 14.975L2 10.25L9.2 9.625L12 3L14.8 9.625L22 10.25L16.55 14.975L18.175 22L12 18.275L5.825 22Z" fill="black" />
-                            </svg>
-                            <svg className="Star2" onMouseEnter={mouseEnterStar} onMouseLeave={mouseLeaveStar} onClick={clickStar} width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5.825 22L7.45 14.975L2 10.25L9.2 9.625L12 3L14.8 9.625L22 10.25L16.55 14.975L18.175 22L12 18.275L5.825 22Z" fill="black" />
-                            </svg>
-                            <svg className="Star3" onMouseEnter={mouseEnterStar} onMouseLeave={mouseLeaveStar} onClick={clickStar} width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5.825 22L7.45 14.975L2 10.25L9.2 9.625L12 3L14.8 9.625L22 10.25L16.55 14.975L18.175 22L12 18.275L5.825 22Z" fill="black" />
-                            </svg>
-                            <svg className="Star4" onMouseEnter={mouseEnterStar} onMouseLeave={mouseLeaveStar} onClick={clickStar} width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5.825 22L7.45 14.975L2 10.25L9.2 9.625L12 3L14.8 9.625L22 10.25L16.55 14.975L18.175 22L12 18.275L5.825 22Z" fill="black" />
-                            </svg>
-                            <svg className="Star5" onMouseEnter={mouseEnterStar} onMouseLeave={mouseLeaveStar} onClick={clickStar} width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5.825 22L7.45 14.975L2 10.25L9.2 9.625L12 3L14.8 9.625L22 10.25L16.55 14.975L18.175 22L12 18.275L5.825 22Z" fill="black" />
-                            </svg> */}
                             <Rating
                                 name="simple-controlled"
                                 value={value}
@@ -226,8 +122,6 @@ function Card(props) {
                 <div className="ContentContainer">
                     <div className="InteractableContainer">
                         <div className="TagContainer">
-                            {/* <div className="Tag Yellow">#{props.recipe.tags}</div>
-                            <div className="Tag Blue">#{props.recipe.tags}</div> */}
                             {
                                 tags.map(tag => {
                                     return (<div className='Tag Teal'>
@@ -252,13 +146,6 @@ function Card(props) {
                         </div>
                     </div>
                     <div className="IngredientsContainer">
-                        {/* <div>• 2 cup Flour</div>
-                        <div>• 1 tbsp Baking Powder</div>
-                        <div>• 1 cup Sugar</div>
-                        <div>• 2 tsp Salt</div>
-                        <div>• 2 Eggs</div>
-                        <div>• 1/2 cup Milk</div>
-                        <div>• 1/2 cup Butter</div> */}
                         {
                             ingredients.map(ingredient => {
                                 return (<div>
