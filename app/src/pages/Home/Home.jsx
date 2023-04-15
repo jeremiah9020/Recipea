@@ -34,19 +34,13 @@ function Home() {
           credentials: 'include'
           })
         const user = await response.json()
-        cards.push(<Card setToastContent={setToastContent} recipe={recipe} user={user} onClick={cardClick} setExtendedCard={setExtendedCard}/>)
+        cards.push(<Card setToastContent={setToastContent} recipe={recipe} user={user} setExtendedCard={setExtendedCard}/>)
       }
 
       setCards(cards)
     }
     getCards()
   }, [])
-
-  function cardClick()
-  {
-    console.log("CLICKED");
-    setExtendedCard(<ExtendedCard/>)
-  }
 
   return (
     <div className="App">
