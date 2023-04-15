@@ -190,7 +190,7 @@ function CreateRecipe() {
             formData.append(name,data[name])
         }
 
-        fetch(url, {
+        await fetch(url, {
             method: 'POST',
             cache: 'no-cache',
             credentials: 'include',
