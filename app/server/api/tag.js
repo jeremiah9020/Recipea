@@ -7,7 +7,6 @@ const Tag = require('../models/Tag')
 router.get('/', async (req, res, next) => {
     try {
         const tag = await Tag.findAll();
-        console.log(tag);
         res.json(tag);
     } catch (error) {
         res.status(500).json(error);

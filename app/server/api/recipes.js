@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const authMiddleware = require('../middleware/auth')
 const Recipe = require('../models/Recipe')
+const Tag = require('../models/Tag')
 const fs = require('fs')
 const path = require('path')
 const uuid = require('uuid')
@@ -50,6 +51,22 @@ router.post('/', authMiddleware, upload.single('image'), async (req, res, next) 
             steps: req.body.steps,
             description: req.body.description
         });
+
+        //Enter the tags into the database instead of calling the api do it in the recipe
+        //api
+        let tags = req.body.tags.split(":")
+        for(var t = 0; t < tags.length; t++)
+        {
+            if(! await Tag.findOne({where: {name:tags[t]}}))
+            {
+                await Tag.create  
+                ({
+                    name: tags[t],
+                    tagcolor: 1234
+                })
+            }            
+        }
+
         res.status(200).json(recipe);
     } catch (error) {
         res.status(500).json(error);
