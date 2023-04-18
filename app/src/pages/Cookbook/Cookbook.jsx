@@ -227,6 +227,7 @@ function Cookbook() {
                 <div className='CookBook-selected'>
                     Selected CookBook {selected}
                 </div>
+                <div className='flexbox'>
                 <input list="books" id="namesofCB" placeholder='Cookbooks' className='Recipesforuser'></input>
                 <datalist className='listofCook' id='books'>
                 </datalist>
@@ -237,22 +238,20 @@ function Cookbook() {
                 <button onClick={AddCook} className='addcook'>
                     Add CookBook
                 </button>
-                <br></br>
-                <br></br>
+                </div>
+                <div className='flexbox'>
                 <input list="booksRemove" id="removeCB" placeholder='Remove CookBook' className='Recipesforuser'></input>
                 <datalist className='listofCook' id='booksRemove'>
                 </datalist>
                 <button onClick={RemoveCook} id="removeButton" className='removecook'>
                     Remove CookBook
                 </button>
-
                 <select className="recipestochoose" id="recipestochoose"></select>
                 <button onClick={AddRecipe} id="AddRecipe" className='recipestoAdd'>
                     Add Recipe to CookBook
                 </button>
-                <br></br> <br></br> <br></br> <br></br>
+                </div>
             <hr></hr>
-            <br></br>
             </div>
             <div className='flex'>
             {cards}
