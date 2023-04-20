@@ -74,7 +74,7 @@ function saveImage(file) {
     return filepath
 }
 
-router.patch('/updateinfo', authMiddleware, upload.any([{name:'profilepicture',maxCount: 1},{name:'profilebanner',maxCount: 1}]), async (req, res, next) => {
+router.patch('/updateinfo', authMiddleware, upload.any([{name:'profilepicture',maxCount: 1},{name:'profilebanner',maxCount: 1}]), async (req, res, next) => {    
     const profilepicture = req.files.find(item => item.fieldname === 'profilepicture');
     const profilebanner = req.files.find(item => item.fieldname === 'profilebanner');
     const description = req.body.description
@@ -107,8 +107,8 @@ router.patch('/updateinfo', authMiddleware, upload.any([{name:'profilepicture',m
             if (pbFilepath) updateObj['profilebanner'] = pbFilepath
             if (description) updateObj['description'] = description
 
-            userProfile.update(updateObj)
-            res.status(200).send();
+            await userProfile.update(updateObj)
+            res.status(200).json(userProfile);
         } catch (error) {
             res.status(500).json(error);
         }
