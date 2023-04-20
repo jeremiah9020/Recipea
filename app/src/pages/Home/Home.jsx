@@ -1,45 +1,25 @@
 import {React, useState, useEffect} from 'react';
 import Helmet from 'react-helmet'
 import Header from '../../components/Header/Header'
-import Card from '../../components/Card/Card'
-import ExtendedCard from '../../components/ExtendedCard/ExtendedCard';
-import Toast from 'react-bootstrap/Toast';
-import ToastContainer from 'react-bootstrap/ToastContainer';
+import CardContainer from '../../components/CardContainer/CardContainer';
 import './Home.scss';
 
 function Home() {
-  const [cards, setCards] = useState([]);
-  const [extendedCard, setExtendedCard] = useState();
-  const [toastValue, setToastValue] = useState();
-  const [show, setShow] = useState(false); // for toast
-
-  function setToastContent(content)
-  {
-    setToastValue(content);
-    setShow(true);
-  }
+  const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    async function getCards() {
+    async function populateCardContainer() {
+      // get the recipes we want to include in the container (all of them in this case)
       let response = await fetch('http://localhost:3001/api/recipes', {
         method: 'GET',
         credentials: 'include'
       })
       const recipes = await response.json()
 
-      const cards = []
-      for (let recipe of recipes) {
-        response = await fetch(`http://localhost:3001/api/profiles/${recipe.userid}`, {
-          method: 'GET',
-          credentials: 'include'
-          })
-        const user = await response.json()
-        cards.push(<Card setToastContent={setToastContent} recipe={recipe} user={user} setExtendedCard={setExtendedCard}/>)
-      }
-
-      setCards(cards)
+      // set the recipes prop of the container and that's it
+      setRecipes(recipes);
     }
-    getCards()
+    populateCardContainer()
   }, [])
 
   return (
@@ -50,15 +30,7 @@ function Home() {
         <meta name="description" content="Recipea Web Application" />
       </Helmet>
       <Header/>
-      <ToastContainer className='p-3 position-fixed' position='bottom-start'>
-        <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
-            <Toast.Body>{toastValue}</Toast.Body>
-        </Toast>
-      </ToastContainer>
-      <div className="flex">
-        {cards}
-      </div>
-      {extendedCard}
+      <CardContainer recipes={recipes} />
     </div>
   )
 }

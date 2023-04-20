@@ -15,6 +15,8 @@ function Card(props) {
             if (ingredient_string)
             {
                 let arr = ingredient_string.split(':');
+
+                // only display the first 7 ingredients in the card view
                 if (arr.length > 7)
                 {
                     arr = arr.slice(0, 7);
