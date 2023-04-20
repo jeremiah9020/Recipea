@@ -56,7 +56,6 @@ function Profile() {
             } else {
                 const profile = await response.json()
 
-                console.log(profile)
                 if (profile.username === authenticatedUsername) setEditable(true)
                 setUsername(profile.username)
 
