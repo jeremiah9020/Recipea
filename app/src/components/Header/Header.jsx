@@ -13,7 +13,7 @@ import './Header.scss'
 import { useAuth } from '../../context/authContext';
 import NavProfile from '../NavProfile/NavProfile'
 
-function Header() {
+function Header({refresh}) {
     const { isAuthenticated, isLoading } = useAuth();
     const location = useLocation();
 
@@ -65,7 +65,7 @@ function Header() {
             </div>
             <div className="Profile">
             {!isLoading && !isAuthenticated && <Link className="LoginButton" to="/login">Login</Link>}
-            {!isLoading && isAuthenticated && <NavProfile/>}
+            {!isLoading && isAuthenticated && <NavProfile refresh={refresh}/>}
             </div>
         </div>
 

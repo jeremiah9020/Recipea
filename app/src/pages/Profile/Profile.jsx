@@ -6,9 +6,11 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import {ReactComponent as DefaultProfilePicture}  from '../../assets/profile/default.svg'
 
 import './Profile.scss'
+import useRefresh from '../../hooks/refreshHook';
 
 function Profile() {
     const navigate = useNavigate();
+    const [refresh,forceRefresh] = useRefresh();
     const [searchParams,setSearchParams] = useSearchParams();
     const [editable, setEditable] = useState(false)
     const [username, setUsername] = useState('')
@@ -114,7 +116,8 @@ function Profile() {
 
         const response = await updateProfile(formData)
         const profile = await response.json()
-         setProfilePicture(<img src={'http://localhost:3001/static/' + profile.profilepicture} alt="Profile"/>)
+        setProfilePicture(<img src={'http://localhost:3001/static/' + profile.profilepicture} alt="Profile"/>)
+        forceRefresh()
     }
 
     async function changeProfileBanner({target}) {
@@ -138,7 +141,7 @@ function Profile() {
                 <title>Recipea | {username}</title>
                 <meta name="description" content="Recipea Web Application" />
             </Helmet>
-            <Header/>
+            <Header refresh={refresh}/>
 
             <div className="BannerContainer">
                 {profileBanner}

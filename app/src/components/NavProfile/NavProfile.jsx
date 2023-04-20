@@ -12,7 +12,7 @@ import './NavProfile.scss'
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function NavProfile() {
+function NavProfile({refresh}) {
     const { setAuthenticated } = useAuth();
     const [profilePicture,setProfilePicture] = useState(<DefaultProfilePicture className="Default"/>)
     const [showAlerts,setShowAlerts] = useState(false)
@@ -49,7 +49,7 @@ function NavProfile() {
             if (profile.profilepicture) setProfilePicture(<img src={'http://localhost:3001/static/' + profile.profilepicture} alt="Profile"/>)
         } 
         getUserProfileData()
-    },[])
+    },[refresh])
 
     return (
         <div className="NavProfile">
