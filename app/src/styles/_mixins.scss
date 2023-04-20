@@ -5,3 +5,14 @@
     -khtml-user-select: none; /* webkit (konqueror) browsers */
     -ms-user-select: none; /* IE10+ */
 }
+
+@mixin animate {
+    animation-duration: 0.5s;
+    animation-name: animate-fade;
+    animation-fill-mode: backwards;
+}
+
+@keyframes animate-fade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
