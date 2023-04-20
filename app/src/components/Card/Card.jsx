@@ -93,7 +93,7 @@ function Card(props) {
                     <div className="LeftContainer">
                         <div className="ProfileContainer">
                             <div className="ProfilePictureContainer">
-                                <img className="ProfilePicture" src="" alt='none'/>
+                                <img className="ProfilePicture" src={'http://localhost:3001/static/' + props.user.profilepicture} alt='none'/>
                             </div>
                             <div className="ProfileName">@{props.user.username}</div>
                         </div>
