@@ -24,7 +24,7 @@
         color: #387285;
     }
     
-    .CardContainer {
+    .LocalCardContainer {
         width: 500px;
         height: 550px;
     
@@ -38,13 +38,13 @@
     
     }
     
-    .CardContainer .ImageContainer {
+    .LocalCardContainer .ImageContainer {
         position: relative;
         height: 45%;
         overflow: hidden;
     }
     
-    .CardContainer .Image {
+    .LocalCardContainer .Image {
         position: absolute;
         left: 0;
         top: -10%;
@@ -52,7 +52,7 @@
         object-fit: scale-down;
     }
     
-    .CardContainer .TitleContainer {
+    .LocalCardContainer .TitleContainer {
         padding-top:10px;
         margin-left: 15px;
         margin-right: 15px;
@@ -66,19 +66,19 @@
         justify-content: space-between;
     }
     
-    .CardContainer .TitleContainer .LeftContainer {
+    .LocalCardContainer .TitleContainer .LeftContainer {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
     }
     
-    .CardContainer .TitleContainer .LeftContainer .ProfileContainer {
+    .LocalCardContainer .TitleContainer .LeftContainer .ProfileContainer {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
     }
     
-    .CardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfilePictureContainer {
+    .LocalCardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfilePictureContainer {
         border-radius: 20px;
         margin-right: 5px;
         width: 20px;
@@ -86,23 +86,23 @@
         overflow: hidden;
     }
     
-    .CardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfilePictureContainer .ProfilePicture {
+    .LocalCardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfilePictureContainer .ProfilePicture {
         max-width: 100%;
     }
     
-    .CardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfileName {
+    .LocalCardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfileName {
         color: gray;
         font-weight: 400;
         font-size: 16px;
         line-height: 17px;
     }
     
-    .CardContainer .TitleContainer .LeftContainer .Title {
+    .LocalCardContainer .TitleContainer .LeftContainer .Title {
         font-weight: bold;
         font-size: 22px;
     }
     
-    .CardContainer .TitleContainer .RightContainer {
+    .LocalCardContainer .TitleContainer .RightContainer {
         height: 100%;
         width: 30%;
         display: flex;
@@ -110,7 +110,7 @@
         justify-content: space-between;
     }
     
-    .CardContainer .TitleContainer .RightContainer .StarContainer {
+    .LocalCardContainer .TitleContainer .RightContainer .StarContainer {
         width: 100%;
         height: 50%;
         display: flex;
@@ -118,44 +118,44 @@
         justify-content: space-evenly;
     }
     
-    .CardContainer .TitleContainer .RightContainer .StarContainer .Star {
+    .LocalCardContainer .TitleContainer .RightContainer .StarContainer .Star {
         margin-left: 5px;
         height: 80%;
     }
 
-    .CardContainer .TitleContainer .RightContainer .StarContainer .SelectStar {
+    .LocalCardContainer .TitleContainer .RightContainer .StarContainer .SelectStar {
         fill: greenyellow;
     }
 
-    .CardContainer .TitleContainer .RightContainer .StarContainer .HighlightStar {
+    .LocalCardContainer .TitleContainer .RightContainer .StarContainer .HighlightStar {
         fill: gold;
     }
 
-    .CardContainer .TitleContainer .RightContainer .StarContainer path {
+    .LocalCardContainer .TitleContainer .RightContainer .StarContainer path {
         fill: inherit;
     }
     
-    .CardContainer .TitleContainer .RightContainer .TimeContainer {
+    .LocalCardContainer .TitleContainer .RightContainer .TimeContainer {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
     }
     
-    .CardContainer .TitleContainer .RightContainer .TimeContainer .Clock {
+    .LocalCardContainer .TitleContainer .RightContainer .TimeContainer .Clock {
         width: 20px;
         height: 20px;
         margin-right: 10px;
     }
     
-    .CardContainer .TitleContainer .RightContainer .TimeContainer .Time {
+    .LocalCardContainer .TitleContainer .RightContainer .TimeContainer .Time {
         color: rgb(92, 92, 92);
         font-weight: 500;
         font-size: 20px;
         line-height: 17px;
     }
     
-    .CardContainer .ContentContainer {
+    .LocalCardContainer .ContentContainer {
         padding: 15px;
         width: calc(100% - 30px);
         height: 197px;
@@ -163,18 +163,18 @@
         flex-direction: column;
     }
     
-    .CardContainer .ContentContainer .InteractableContainer {
+    .LocalCardContainer .ContentContainer .InteractableContainer {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
     
-    .CardContainer .ContentContainer .InteractableContainer .TagContainer {
+    .LocalCardContainer .ContentContainer .InteractableContainer .TagContainer {
         display: flex;
         flex-direction: row;
     }
     
-    .CardContainer .ContentContainer .InteractableContainer .TagContainer .Tag {
+    .LocalCardContainer .ContentContainer .InteractableContainer .TagContainer .Tag {
         border-radius: 5px;
         border: 2px solid;
         margin-right: 10px;
@@ -182,28 +182,28 @@
         padding: 3px 7px 3px 7px;
     }
     
-    .CardContainer .ContentContainer .InteractableContainer .ShareContainer {
+    .LocalCardContainer .ContentContainer .InteractableContainer .ShareContainer {
         display: flex;
         flex-direction: row;
     }
 
-    .CardContainer .ContentContainer .InteractableContainer .ShareContainer .Icon:hover {
+    .LocalCardContainer .ContentContainer .InteractableContainer .ShareContainer .Icon:hover {
         fill: rgb(21, 146, 104);
         cursor: pointer;
     }
 
-    .CardContainer .ContentContainer .InteractableContainer .ShareContainer .Icon path {
+    .LocalCardContainer .ContentContainer .InteractableContainer .ShareContainer .Icon path {
         fill: inherit;
         cursor: pointer;
     }
     
-    .CardContainer .ContentContainer .InteractableContainer .ShareContainer img {
+    .LocalCardContainer .ContentContainer .InteractableContainer .ShareContainer img {
         margin-right: 5px;
         width: 30px;
         height: 30px;
     }
     
-    .CardContainer .ContentContainer .IngredientsContainer {
+    .LocalCardContainer .ContentContainer .IngredientsContainer {
         width: 100%;
         height: 100%;
         padding: 20px 20px 20px 20px;

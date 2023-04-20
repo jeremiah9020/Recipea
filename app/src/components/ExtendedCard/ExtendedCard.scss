@@ -1,4 +1,6 @@
 .ExtendedCard {
+    // width: 0;
+    // height: 0;
 
     .Blue {
         color: rgb(69, 69, 208);
@@ -12,20 +14,20 @@
         color: #387285;
     }
 
-    .BackgroundContainer {
-        background-color: rgba(0, 0, 0, 0.5);
-        height: auto;
-        position: absolute;
-        left: 0;
-        top: 0;
+    // .BackgroundContainer {
+    //     background-color: rgba(0, 0, 0, 0.5);
+    //     height: auto;
+    //     position: absolute;
+    //     left: 0;
+    //     top: 0;
     
-        width: 100%;
+    //     width: 100%;
     
-        display: flex;
-        justify-content: center;
-    }
+    //     display: flex;
+    //     justify-content: center;
+    // }
 
-    .CardContainer {
+    .LocalCardContainer {
         margin-top: 3em;
         margin-bottom: 3em;
         border-radius: 20px;
@@ -39,7 +41,7 @@
         align-items: center;
     }
     
-    .CardContainer .ImageContainer {
+    .LocalCardContainer .ImageContainer {
         position: relative;
         margin: 25px 25px 10px 25px;
         height: 300px;
@@ -48,7 +50,7 @@
         overflow: hidden;
     }
     
-    .CardContainer .Image {
+    .LocalCardContainer .Image {
         position: absolute;
         left: 0;
         top: -20%;
@@ -56,7 +58,7 @@
         object-fit: scale-down;
     }
     
-    .CardContainer .TitleContainer {
+    .LocalCardContainer .TitleContainer {
         padding-top:10px;
         margin-left: 15px;
         margin-right: 15px;
@@ -70,19 +72,19 @@
         justify-content: space-between;
     }
     
-    .CardContainer .TitleContainer .LeftContainer {
+    .LocalCardContainer .TitleContainer .LeftContainer {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
     }
     
-    .CardContainer .TitleContainer .LeftContainer .ProfileContainer {
+    .LocalCardContainer .TitleContainer .LeftContainer .ProfileContainer {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
     }
     
-    .CardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfilePictureContainer {
+    .LocalCardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfilePictureContainer {
         border-radius: 20px;
         margin-right: 5px;
         width: 20px;
@@ -90,23 +92,23 @@
         overflow: hidden;
     }
     
-    .CardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfilePictureContainer .ProfilePicture {
+    .LocalCardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfilePictureContainer .ProfilePicture {
         max-width: 100%;
     }
     
-    .CardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfileName {
+    .LocalCardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfileName {
         color: gray;
         font-weight: 400;
         font-size: 16px;
         line-height: 17px;
     }
     
-    .CardContainer .TitleContainer .LeftContainer .Title {
+    .LocalCardContainer .TitleContainer .LeftContainer .Title {
         font-weight: bold;
         font-size: 22px;
     }
     
-    .CardContainer .TitleContainer .RightContainer {
+    .LocalCardContainer .TitleContainer .RightContainer {
         height: 100%;
         width: 30%;
         display: flex;
@@ -114,7 +116,7 @@
         justify-content: space-between;
     }
     
-    .CardContainer .TitleContainer .RightContainer .StarContainer {
+    .LocalCardContainer .TitleContainer .RightContainer .StarContainer {
         width: 100%;
         height: 50%;
         display: flex;
@@ -122,32 +124,32 @@
         justify-content: space-evenly;
     }
     
-    .CardContainer .TitleContainer .RightContainer .StarContainer .Star {
+    .LocalCardContainer .TitleContainer .RightContainer .StarContainer .Star {
         margin-left: 5px;
         height: 80%;
     }
     
-    .CardContainer .TitleContainer .RightContainer .TimeContainer {
+    .LocalCardContainer .TitleContainer .RightContainer .TimeContainer {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: flex-start;
     }
     
-    .CardContainer .TitleContainer .RightContainer .TimeContainer .Clock {
+    .LocalCardContainer .TitleContainer .RightContainer .TimeContainer .Clock {
         width: 20px;
         height: 20px;
         margin-right: 10px;
     }
     
-    .CardContainer .TitleContainer .RightContainer .TimeContainer .Time {
+    .LocalCardContainer .TitleContainer .RightContainer .TimeContainer .Time {
         color: rgb(92, 92, 92);
         font-weight: 500;
         font-size: 20px;
         line-height: 17px;
     }
     
-    .CardContainer .ContentContainer {
+    .LocalCardContainer .ContentContainer {
         padding: 15px;
         width: calc(100% - 30px);
         height: auto;
@@ -155,18 +157,18 @@
         flex-direction: column;
     }
     
-    .CardContainer .ContentContainer .InteractableContainer {
+    .LocalCardContainer .ContentContainer .InteractableContainer {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
     
-    .CardContainer .ContentContainer .InteractableContainer .TagContainer {
+    .LocalCardContainer .ContentContainer .InteractableContainer .TagContainer {
         display: flex;
         flex-direction: row;
     }
     
-    .CardContainer .ContentContainer .InteractableContainer .TagContainer .Tag {
+    .LocalCardContainer .ContentContainer .InteractableContainer .TagContainer .Tag {
         border-radius: 5px;
         border: 2px solid;
         margin-right: 10px;
@@ -174,18 +176,18 @@
         padding: 3px 7px 3px 7px;
     }
     
-    .CardContainer .ContentContainer .InteractableContainer .ShareContainer {
+    .LocalCardContainer .ContentContainer .InteractableContainer .ShareContainer {
         display: flex;
         flex-direction: row;
     }
     
-    .CardContainer .ContentContainer .InteractableContainer .ShareContainer img {
+    .LocalCardContainer .ContentContainer .InteractableContainer .ShareContainer img {
         margin-right: 5px;
         width: 30px;
         height: 30px;
     }
     
-    .CardContainer .ContentContainer .InfoContainer {
+    .LocalCardContainer .ContentContainer .InfoContainer {
         width: calc(100% - 40px);
         height: auto;
         padding: 20px 20px 30px 20px;
@@ -199,12 +201,12 @@
     
     }
     
-    .CardContainer .ContentContainer .InfoContainer .DescriptionContainer {
+    .LocalCardContainer .ContentContainer .InfoContainer .DescriptionContainer {
         padding-left: 80px;
         padding-right: 80px;
     }
     
-    .CardContainer .ContentContainer .InstructionsContainer {
+    .LocalCardContainer .ContentContainer .InstructionsContainer {
         height: auto;
         padding: 20px 20px 20px 20px;
         margin-top: 0px;
@@ -213,7 +215,7 @@
         font-weight: bold;
     }
     
-    .CardContainer .ContentContainer .InstructionsContainer .Step {
+    .LocalCardContainer .ContentContainer .InstructionsContainer .Step {
         font-size: 28px;
         font-weight: bold;
         margin-bottom: 30px;

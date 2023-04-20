@@ -1,11 +1,9 @@
 import {React, useState, useEffect} from 'react'
-import Modal from 'react-bootstrap/Modal'
 
 import './ExtendedCard.scss';
 
 function ExtendedCard(props) {
     const [steps, setSteps] = useState([])
-    const handleClose = () => props.setExtendedCard();
 
     useEffect(()=>{
         setSteps(() => {
@@ -15,8 +13,7 @@ function ExtendedCard(props) {
 
   return (
     <div className="ExtendedCard">
-        <Modal className='BackgroundContainer' show={true} onHide={handleClose}>
-            <div className="CardContainer">
+            <div className="LocalCardContainer">
                 <div className="ImageContainer">
                     <img className="Image" src={props?.imageURL} alt='none'/>
                 </div>
@@ -112,7 +109,6 @@ function ExtendedCard(props) {
                     </div>
                 </div>
             </div>
-        </Modal>
     </div>
   )
 }

@@ -2,6 +2,7 @@ import {React, useState, useEffect} from 'react'
 import Card from '../../components/Card/Card'
 import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
+import Modal from 'react-bootstrap/Modal'
 import './CardContainer.scss';
 
 // takes in a list of recipes insided of props.recipes
@@ -11,6 +12,7 @@ function CardContainer(props) {
     const [extendedCard, setExtendedCard] = useState();
     const [toastValue, setToastValue] = useState();
     const [show, setShow] = useState(false); // for toast
+    const [modalShow, setModalShow] = useState(false); // for modal
 
     function setToastContent(content)
     {
@@ -29,13 +31,17 @@ function CardContainer(props) {
                     credentials: 'include'
                     })
                 const user = await response.json()
-                cards.push(<Card setToastContent={setToastContent} recipe={recipe} user={user} setExtendedCard={setExtendedCard}/>)
+                cards.push(<Card setToastContent={setToastContent} recipe={recipe} user={user} setExtendedCard={setExtendedCard} setModalShow={setModalShow}/>)
                 console.log(recipe);
             }
             setCards(cards)
         }
         createCards();
     }, [])
+
+    function handleHide() {
+        setModalShow(false);
+    }
 
   return (
     <div className='CardContainer'>
@@ -47,7 +53,9 @@ function CardContainer(props) {
         <div className="flex">
             {cards}
         </div>
+        <Modal show={modalShow} onHide={handleHide}>
         {extendedCard}
+        </Modal>
     </div>
   )
 }

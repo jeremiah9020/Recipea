@@ -45,6 +45,7 @@ function Card(props) {
     function clickCard()
     {
         props.setExtendedCard(<ExtendedCard setExtendedCard={props.setExtendedCard} user={props.user} recipe={props.recipe} imageURL={imageURL} ingredients={ingredients} tags={tags}/>)
+        props.setModalShow(true);
     }
 
     function CookbookClicked(event)
@@ -87,7 +88,7 @@ function Card(props) {
   return (
     <div className='Card Hoverable' onClick={clickCard}>
         <div className="Center">
-            <div className="CardContainer">
+            <div className="LocalCardContainer">
                 <div className="ImageContainer">
                     <img className="Image" src={imageURL} alt='none'/>
                 </div>
