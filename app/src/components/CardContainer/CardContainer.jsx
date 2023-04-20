@@ -37,7 +37,7 @@ function CardContainer(props) {
             setCards(cards)
         }
         createCards();
-    }, [])
+    }, [props.recipes])
 
     function handleHide() {
         setModalShow(false);
