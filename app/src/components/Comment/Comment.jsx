@@ -43,6 +43,9 @@ function Comment(props) {
 
             // add comment
             setComments(prev => [comment, ...prev])
+
+            // reset textarea
+            textarea.value = '';
         }
     }
 
