@@ -63,7 +63,7 @@ function CardContainer(props) {
         }
 
         
-        currentVal += e.deltaY/5
+        currentVal -= e.deltaY/5
         
         if (currentVal > 0) currentVal = 0
         else if (currentVal < screenheight-height) currentVal = screenheight-height
