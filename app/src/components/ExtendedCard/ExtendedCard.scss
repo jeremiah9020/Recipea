@@ -78,11 +78,24 @@
         flex-direction: column;
         justify-content: space-between;
     }
-    
+
     .LocalCardContainer .TitleContainer .LeftContainer .ProfileContainer {
+        color: gray;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
+        cursor: pointer;
+    }
+
+    .LocalCardContainer .TitleContainer .LeftContainer .ProfileContainer:hover {
+        color: #0645AD;
+    }
+    
+    .LocalCardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfileName {
+        color: inherit;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 17px;
     }
     
     .LocalCardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfilePictureContainer {
@@ -95,13 +108,6 @@
     
     .LocalCardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfilePictureContainer .ProfilePicture {
         max-width: 100%;
-    }
-    
-    .LocalCardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfileName {
-        color: gray;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 17px;
     }
     
     .LocalCardContainer .TitleContainer .LeftContainer .Title {
@@ -122,7 +128,6 @@
         height: 50%;
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
     }
     
     .LocalCardContainer .TitleContainer .RightContainer .StarContainer .Star {
@@ -187,6 +192,16 @@
         width: 30px;
         height: 30px;
     }
+
+    .LocalCardContainer .ContentContainer .InteractableContainer .ShareContainer .Icon:hover {
+        fill: rgb(21, 146, 104);
+        cursor: pointer;
+    }
+
+    .LocalCardContainer .ContentContainer .InteractableContainer .ShareContainer .Icon path {
+        fill: inherit;
+        cursor: pointer;
+    }
     
     .LocalCardContainer .ContentContainer .InfoContainer {
         width: calc(100% - 40px);
@@ -196,10 +211,14 @@
         display:grid;
         grid-template-columns: auto auto;
         font-size: 20px;
-        font-weight: bold;
+        font-weight: normal;
         column-gap: 50px;
         border-bottom: 1px solid rgb(180, 180, 180);
     
+    }
+
+    .LocalCardContainer .ContentContainer .InfoContainer p {
+        font-weight: bold;
     }
     
     .LocalCardContainer .ContentContainer .InfoContainer .DescriptionContainer {
@@ -217,9 +236,8 @@
     }
     
     .LocalCardContainer .ContentContainer .InstructionsContainer .Step {
-        font-size: 28px;
-        font-weight: bold;
-        margin-bottom: 30px;
+        font-size: 20px;
+        font-weight: normal;
     }
 
     .LocalCardContainer .CommentContainer {
@@ -257,9 +275,13 @@
         margin-bottom: 0px;
     }
 
+    .LocalCardContainer .CommentContainer .Comment .CommentInfoContainer p {
+        margin-bottom: 0px;
+    }
+
     .LocalCardContainer .CommentContainer .Comment .CommentContent {
         border: 1px solid rgb(180, 180, 180);
         padding: 10px;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
     }
 }

@@ -1,9 +1,11 @@
 import {React, useState, useEffect} from 'react'
 import ExtendedCard from '../ExtendedCard/ExtendedCard';
 import Rating from '@mui/material/Rating';
+import { useNavigate } from 'react-router-dom';
 import './Card.scss';
 
 function Card(props) {
+    const navigate = useNavigate();
     const [ingredients, setIngredients] = useState([]);
     const [tags, setTags] = useState([]);
     const [imageURL, setImageURL] = useState();
@@ -43,7 +45,6 @@ function Card(props) {
     }, [props.recipe.image, props.recipe?.ingredients, props.recipe?.tags]);
 
     useEffect(() => {
-        console.log(props);
         async function setDefaultRating() {
             const url = `http://localhost:3001/api/ratings/${props.recipe.id}`;
 
@@ -60,11 +61,11 @@ function Card(props) {
             }
         }
         setDefaultRating();
-    }, [props.user])
+    }, [props.recipe.id])
 
     function clickCard()
     {
-        props.setExtendedCard(<ExtendedCard setExtendedCard={props.setExtendedCard} user={props.user} recipe={props.recipe} imageURL={imageURL} ingredients={ingredients} tags={tags}/>)
+        props.setExtendedCard(<ExtendedCard setExtendedCard={props.setExtendedCard} user={props.user} recipe={props.recipe} imageURL={imageURL} ingredients={ingredients} tags={tags} setStarValue={setValue} starValue={value}/>)
         props.setModalShow(true);
     }
 
@@ -88,7 +89,8 @@ function Card(props) {
     {
         event.stopPropagation();
 
-        // initiate upload
+        // initiate share
+        props.setToastContent(`Shared ${props.recipe.title} with null`);
     }
 
     function UploadClicked(event)
@@ -96,6 +98,7 @@ function Card(props) {
         event.stopPropagation();
 
         // initiate upload
+        props.setToastContent(`${props.recipe.title} uploaded to null`);
     }
 
     function handleStarChange(value)
@@ -128,6 +131,14 @@ function Card(props) {
         event.stopPropagation();
     }
 
+    function handleProfileClick(event)
+    {
+        // prevent modal trigger
+        event.stopPropagation();
+
+        navigate('/profile');
+    }
+
   return (
     <div className='Card Hoverable' onClick={clickCard}>
         <div className="Center">
@@ -137,7 +148,7 @@ function Card(props) {
                 </div>
                 <div className="TitleContainer">
                     <div className="LeftContainer">
-                        <div className="ProfileContainer">
+                        <div className="ProfileContainer" onClick={handleProfileClick}>
                             <div className="ProfilePictureContainer">
                                 <img className="ProfilePicture" src={'http://localhost:3001/static/' + props.user.profilepicture} alt='none'/>
                             </div>

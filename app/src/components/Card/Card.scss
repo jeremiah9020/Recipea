@@ -89,9 +89,18 @@
     .LocalCardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfilePictureContainer .ProfilePicture {
         max-width: 100%;
     }
+
+    .LocalCardContainer .TitleContainer .LeftContainer .ProfileContainer {
+        color: gray;
+        cursor: pointer;
+    }
+
+    .LocalCardContainer .TitleContainer .LeftContainer .ProfileContainer:hover {
+        color: #0645AD;
+    }
     
     .LocalCardContainer .TitleContainer .LeftContainer .ProfileContainer .ProfileName {
-        color: gray;
+        color: inherit;
         font-weight: 400;
         font-size: 16px;
         line-height: 17px;
@@ -115,7 +124,6 @@
         height: 50%;
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
     }
     
     .LocalCardContainer .TitleContainer .RightContainer .StarContainer .Star {
