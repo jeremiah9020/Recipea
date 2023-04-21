@@ -43,8 +43,47 @@ function CardContainer(props) {
         setModalShow(false);
     }
 
+    useEffect(()=> {
+        window.addEventListener('mousewheel', scrollHandler, {passive:false})
+
+        return () => {
+            window.removeEventListener('mousewheel', scrollHandler, {passive:false})
+        }
+    })
+
+    const scrollHandler = (e) => {
+        if (!modalShow) return;
+
+        const card = document.getElementById("ExtendedCard")
+
+        const current = card.style.top
+        const height = card.clientHeight
+
+        const screenheight = window.innerHeight
+
+        console.log(screenheight)
+
+        let currentVal = 0
+        if (current !== "") {
+            currentVal = parseInt(current.slice(0,current.length-2))
+        }
+
+        
+        currentVal += e.deltaY/5
+        
+        if (currentVal > 0) currentVal = 0
+        else if (currentVal < screenheight-height) currentVal = screenheight-height
+        
+       
+        document.getElementById("ExtendedCard").style.top = currentVal + "px"
+
+
+
+        e.preventDefault()
+    }
+
   return (
-    <div className='CardContainer'>
+    <div className={modalShow? 'CardContainer NoScroll' : 'CardContainer'}>
         <ToastContainer className='p-3 position-fixed' position='bottom-start'>
         <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
             <Toast.Body>{toastValue}</Toast.Body>
@@ -53,9 +92,11 @@ function CardContainer(props) {
         <div className="flex">
             {cards}
         </div>
-        <Modal show={modalShow} onHide={handleHide}>
-        {extendedCard}
-        </Modal>
+
+        {modalShow && 
+        <div className="ModalContainer" onClick={()=>{setModalShow(false)}} >
+            {extendedCard}
+        </div>}
     </div>
   )
 }

@@ -12,7 +12,7 @@ function ExtendedCard(props) {
     }, [props?.recipe?.steps])
 
   return (
-    <div className="ExtendedCard">
+    <div id="ExtendedCard" className="ExtendedCard" onClick={(e) => e.stopPropagation()}>
             <div className="LocalCardContainer">
                 <div className="ImageContainer">
                     <img className="Image" src={props?.imageURL} alt='none'/>
