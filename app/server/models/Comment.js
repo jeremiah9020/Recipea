@@ -9,6 +9,11 @@ Comment.init({
         allowNull: false,
     },
 
+    username: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+    },
+
     userid: {
         type: DataTypes.INTEGER,
         allowNull: false,

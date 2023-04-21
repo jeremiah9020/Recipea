@@ -221,4 +221,45 @@
         font-weight: bold;
         margin-bottom: 30px;
     }
+
+    .LocalCardContainer .CommentContainer {
+        width: 100%;
+        padding: 20px;
+        border-top: 1px solid rgb(180, 180, 180);
+    }
+
+    .LocalCardContainer .CommentContainer button {
+        margin-top: 10px;
+        padding: 5px 20px;
+        border: none;
+        outline: none;
+        background: #2f2f2f;
+        color: #fff;
+        font-size: 22px;
+        border-radius: 40px;
+        text-align: center;
+        box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
+        cursor: pointer;
+    }
+
+    .LocalCardContainer .CommentContainer button:hover {
+        background-color: #4fac2f;
+        box-shadow: 0 6px 20px -5px rgba(42, 145, 22, 0.4);
+        transition: .5s;
+    }
+
+    .LocalCardContainer .CommentContainer .Comment .CommentInfoContainer {
+        display: flex;
+    }
+
+    .LocalCardContainer .CommentContainer .Comment .CommentInfoContainer span {
+        font-weight: bold;
+        margin-bottom: 0px;
+    }
+
+    .LocalCardContainer .CommentContainer .Comment .CommentContent {
+        border: 1px solid rgb(180, 180, 180);
+        padding: 10px;
+        margin-bottom: 10px;
+    }
 }
