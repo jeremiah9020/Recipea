@@ -3,6 +3,14 @@
         transition: all .2s ease-in-out;
     }
 
+    .flex {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        row-gap: 5px;
+        margin-bottom: 10px;
+    }
+
     .Hoverable:hover {
         // transition: all .2s ease-in;
         transform: scale(1.05);

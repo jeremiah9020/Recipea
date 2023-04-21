@@ -221,7 +221,7 @@ function Cookbook() {
 
 
     return(
-        <div>
+        <div className='CookBook'>
             <Header></Header>
             <div>
                 <div className='CookBook-selected'>
