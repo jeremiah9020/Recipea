@@ -42,6 +42,26 @@ function Card(props) {
 
     }, [props.recipe.image, props.recipe?.ingredients, props.recipe?.tags]);
 
+    useEffect(() => {
+        console.log(props);
+        async function setDefaultRating() {
+            const url = `http://localhost:3001/api/ratings/${props.recipe.id}`;
+
+            const result = await fetch(url, {
+                method: 'GET',
+                credentials: 'include'
+            })
+
+            const rating = await result.json();
+
+            if (rating)
+            {
+                setValue(rating.score);
+            }
+        }
+        setDefaultRating();
+    }, [props.user])
+
     function clickCard()
     {
         props.setExtendedCard(<ExtendedCard setExtendedCard={props.setExtendedCard} user={props.user} recipe={props.recipe} imageURL={imageURL} ingredients={ingredients} tags={tags}/>)
@@ -78,11 +98,34 @@ function Card(props) {
         // initiate upload
     }
 
+    function handleStarChange(value)
+    {
+        if (!value) value = 0;
+
+        async function handleStarValue()
+        {
+            // fetch request to update rating
+            const url = `http://localhost:3001/api/ratings`;
+            const body = {score: value, recipeid: props.recipe.id};
+
+            await fetch(url, {
+                method: 'POST',
+                cache: 'no-cache',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                referrerPolicy: 'no-referrer',
+                body: JSON.stringify(body)
+            });
+        }
+        handleStarValue()
+    }
+
     function handleStarClick(event)
     {
+        // prevent modal
         event.stopPropagation();
-
-        // fetch request to update rating
     }
 
   return (
@@ -109,6 +152,7 @@ function Card(props) {
                                 value={value}
                                 onChange={(event, newValue) => {
                                 setValue(newValue);
+                                handleStarChange(newValue);
                                 }}
 
                                 onClick={handleStarClick}

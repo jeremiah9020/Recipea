@@ -2,7 +2,6 @@ import {React, useState, useEffect} from 'react'
 import Card from '../../components/Card/Card'
 import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
-import Modal from 'react-bootstrap/Modal'
 import './CardContainer.scss';
 
 // takes in a list of recipes insided of props.recipes
@@ -32,16 +31,11 @@ function CardContainer(props) {
                     })
                 const user = await response.json()
                 cards.push(<Card setToastContent={setToastContent} recipe={recipe} user={user} setExtendedCard={setExtendedCard} setModalShow={setModalShow}/>)
-                console.log(recipe);
             }
             setCards(cards)
         }
         createCards();
     }, [props.recipes])
-
-    function handleHide() {
-        setModalShow(false);
-    }
 
     useEffect(()=> {
         window.addEventListener('mousewheel', scrollHandler, {passive:false})
