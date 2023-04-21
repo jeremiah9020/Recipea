@@ -1,17 +1,17 @@
 @import "~bootstrap/scss/bootstrap";
 
-// .modal-content {
-//   border: none;
-// }
+.modal-dialog {
+  display: flex;
+  justify-content: center;
+}
 
-// div.fade.modal.show {
-//   display: flex;
-//   justify-content: center;
-// }
-
-// .modal-dialog {
-//   margin: auto;
-// }
+.modal-content {
+  background-color: transparent;
+  border: none;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+}
 
 body {
   margin: 0;
