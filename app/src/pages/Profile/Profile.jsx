@@ -163,14 +163,14 @@ function Profile() {
                 </div>
             </div>
             <div class="DescriptionContainer">
-               {description && <textarea 
+                <textarea 
                     defaultValue={description} 
                     class="DescriptionArea" 
                     id="ProfileDescription" 
                     readOnly={!editable} 
                     onBeforeInput={textAreaBeforeInputHandler} 
                     onChange={textAreaChangeHandler}/>
-               }
+               
 
                 {editable && descriptionChanged && 
                 <input className="SaveDescriptionChange" type="button" value="SAVE" onClick={submitDescriptionChange}/>}
