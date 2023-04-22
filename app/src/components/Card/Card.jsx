@@ -9,6 +9,22 @@ function Card(props) {
     const [ingredients, setIngredients] = useState([]);
     const [tags, setTags] = useState([]);
     const [imageURL, setImageURL] = useState();
+    const [deletable, setDeletable] = useState(false);
+
+    useEffect(() => {
+        async function getUserProfileData() {
+            const response = await fetch(`http://localhost:3001/api/profiles/authenticated`, {
+                method: 'GET',
+                credentials: 'include'
+            })
+
+            const profile = await response.json()
+            if (profile && profile.userid) {
+                if (profile.userid === props.recipe.userid) setDeletable(true)
+            }
+        } 
+        getUserProfileData()
+    })
 
     useEffect(() => {
         setIngredients(() => {
@@ -89,8 +105,32 @@ function Card(props) {
         navigate('/profile');
     }
 
+    async function handleDeleteRecipe(event) {
+        event.stopPropagation()
+
+        // fetch request to update rating
+        const url = `http://localhost:3001/api/recipes`;
+        const body = {recipeid: props.recipe.id};
+
+        const response = await fetch(url, {
+            method: 'DELETE',
+            cache: 'no-cache',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify(body)
+        });
+
+        props.forceRefresh()
+    }
+
   return (
     <div className='Card Hoverable' onClick={clickCard}>
+        {deletable && <div className="Deletable" onClick={handleDeleteRecipe}>
+            DELETE
+        </div>}
         <div className="Center">
             <div className="LocalCardContainer">
                 <div className="ImageContainer">

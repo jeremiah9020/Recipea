@@ -21,6 +21,9 @@ function CardContainer(props) {
 
     // create cards based on props.recipes
     useEffect(() => {
+        console.log(props.recipes)
+
+
         async function createCards() {
             const cards = []
             for (const recipe of props.recipes)
@@ -30,7 +33,7 @@ function CardContainer(props) {
                     credentials: 'include'
                     })
                 const user = await response.json()
-                cards.push(<Card setToastContent={setToastContent} recipe={recipe} user={user} setExtendedCard={setExtendedCard} setModalShow={setModalShow}/>)
+                cards.push(<Card forceRefresh={props.forceRefresh} setToastContent={setToastContent} recipe={recipe} user={user} setExtendedCard={setExtendedCard} setModalShow={setModalShow}/>)
             }
             setCards(cards)
         }

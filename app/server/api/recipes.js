@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const authMiddleware = require('../middleware/auth')
 const Recipe = require('../models/Recipe')
+const Comment = require('../models/Comment')
+const Rating = require('../models/Rating')
 const Tag = require('../models/Tag')
 const fs = require('fs')
 const path = require('path')
@@ -14,7 +16,7 @@ router.get('/', async (req, res, next) => {
     const userid = req.query.userid
     if (userid) {
         try {
-            const recipes = await Recipe.findAll({where: {userid: userid}});
+            const recipes = await Recipe.findAll({where: {userid: userid}, order: [['updatedAt', 'DESC']]});
             if (recipes) {
                 res.json(recipes);   
             } else {
@@ -25,7 +27,7 @@ router.get('/', async (req, res, next) => {
         }
     } else {
         try {
-            const recipes = await Recipe.findAll();
+            const recipes = await Recipe.findAll({order: [['updatedAt', 'DESC']]});
             res.json(recipes);
         } catch (error) {
             res.status(500).json(error);
@@ -85,6 +87,33 @@ router.post('/', authMiddleware, upload.single('image'), async (req, res, next) 
     } catch (error) {
         res.status(500).json(error);
     }
+})
+
+router.delete('/', authMiddleware, async (req, res, next) => { 
+    const recipeid = req.body.recipeid
+
+    const recipe = await Recipe.findByPk(recipeid)
+
+    if (recipe) {
+        const image = recipe.image
+
+
+        if (image) {  
+            try {
+                fs.unlinkSync(`${imagesPath}/${image}`)
+            } catch (e) {
+                res.status(500).json(e);
+                return; // otherwise will send multiple responses
+            }
+        }
+    
+        recipe.destroy()
+        Comment.destroy({where:{recipeid:recipeid}})
+        Rating.destroy({where:{recipeid:recipeid}})
+        res.status(200).send("Deleted")
+        return
+    }
+    res.status(404).send("Not Found")
 })
 
 module.exports = router

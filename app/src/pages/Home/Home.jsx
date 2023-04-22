@@ -3,8 +3,11 @@ import Helmet from 'react-helmet'
 import Header from '../../components/Header/Header'
 import CardContainer from '../../components/CardContainer/CardContainer';
 import './Home.scss';
+import useRefresh from '../../hooks/refreshHook'
+
 
 function Home() {
+  const [refresh,forceRefresh] = useRefresh()
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
@@ -20,7 +23,7 @@ function Home() {
       setRecipes(recipes);
     }
     populateCardContainer()
-  }, [])
+  }, [refresh])
 
   return (
     <div className="App">
@@ -30,7 +33,7 @@ function Home() {
         <meta name="description" content="Recipea Web Application" />
       </Helmet>
       <Header/>
-      <CardContainer recipes={recipes} />
+      <CardContainer forceRefresh={forceRefresh} recipes={recipes} />
     </div>
   )
 }
