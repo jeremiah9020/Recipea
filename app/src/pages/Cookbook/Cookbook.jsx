@@ -2,8 +2,7 @@
 import {React, useState, useEffect} from 'react';
 import './Cookbook.scss'
 import Header from '../../components/Header/Header';
-import ExtendedCard from '../../components/ExtendedCard/ExtendedCard';
-import Card from '../../components/Card/Card'
+import CardContainer from '../../components/CardContainer/CardContainer';
 var user_data
 var cards1
 var valueofbook = ""
@@ -15,7 +14,6 @@ function Cookbook() {
     const [profiles,setProfiles] = useState(0)
     const [recipes,setRecipes] = useState([])
     const [cards, setCards] = useState([])
-    const [extendedCard, setExtendedCard] = useState();
 
     //This was used in the navigation bar and from the authContext.js to get the user profile
     useEffect(() => {
@@ -99,6 +97,8 @@ function Cookbook() {
         }        
         if(valueofbook === -1)
         {
+            document.getElementById("namesofCB").value = ""
+            setCards([])
             return
         }
         setselected(document.getElementById('namesofCB').value)
@@ -109,20 +109,13 @@ function Cookbook() {
             {
                 if(values.includes((recipes[re].id).toString()))
                 {
-                    cards1.push(<Card recipe={recipes[re]} user={user_data} onClick={cardClick} setExtendedCard={setExtendedCard} />)
+                    cards1.push(recipes[re])
                 }
             }
             // console.log(cards);
         }
         setCards(cards1)
     }
-
-    function cardClick()
-    {
-      console.log("CLICKED");
-      setExtendedCard(<ExtendedCard/>)
-    }
-  
 
     ///Make sure that this cookbook is unique
     //Add a cookbook for the user
@@ -164,7 +157,7 @@ function Cookbook() {
     //Remove a cookbook for the user
     async function RemoveCook() {
         const url = 'http://localhost:3001/api/cookbook'
-        let h = await fetch(url, {
+        await fetch(url, {
             method: 'DELETE',
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
@@ -200,7 +193,7 @@ function Cookbook() {
                 break
             }
         }
-        let a = await fetch(url, {
+        await fetch(url, {
             method: 'PATCH',
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
@@ -254,10 +247,9 @@ function Cookbook() {
             <hr></hr>
             </div>
             <div className='flex'>
-            {cards}
             </div>
             <div>
-                {extendedCard}
+                <CardContainer recipes={cards} />
             </div>
         </div>
     )
