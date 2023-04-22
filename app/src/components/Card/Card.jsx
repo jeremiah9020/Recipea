@@ -9,7 +9,6 @@ function Card(props) {
     const [ingredients, setIngredients] = useState([]);
     const [tags, setTags] = useState([]);
     const [imageURL, setImageURL] = useState();
-    const [value, setValue] = useState(0); // for stars
 
     useEffect(() => {
         setIngredients(() => {
