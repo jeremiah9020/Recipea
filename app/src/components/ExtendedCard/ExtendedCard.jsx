@@ -5,6 +5,7 @@ import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
 import Comment from '../Comment/Comment';
 import './ExtendedCard.scss';
+import StarRating from '../StarRating/StarRating';
 
 function ExtendedCard(props) {
     const navigate = useNavigate();
@@ -18,51 +19,6 @@ function ExtendedCard(props) {
             return props.recipe.steps.split(':');
         })
     }, [props?.recipe?.steps])
-
-    // for stars
-    useEffect(() => {
-        async function setDefaultRating() {
-            const url = `http://localhost:3001/api/ratings/${props.recipe.id}`;
-
-            const result = await fetch(url, {
-                method: 'GET',
-                credentials: 'include'
-            })
-
-            const rating = await result.json();
-
-            if (rating)
-            {
-                props.setStarValue(rating.score);
-            }
-        }
-        setDefaultRating();
-    }, [props.recipe.id])
-
-    function handleStarChange(value)
-    {
-        if (!value) value = 0;
-
-        async function handleStarValue()
-        {
-            // fetch request to update rating
-            const url = `http://localhost:3001/api/ratings`;
-            const body = {score: value, recipeid: props.recipe.id};
-
-            await fetch(url, {
-                method: 'POST',
-                cache: 'no-cache',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                referrerPolicy: 'no-referrer',
-                body: JSON.stringify(body)
-            });
-            setStarValue(value);
-        }
-        handleStarValue()
-    }
 
     function handleProfileClick(event)
     {
@@ -123,14 +79,7 @@ function ExtendedCard(props) {
                     </div>
                     <div className="RightContainer">
                         <div className="StarContainer">
-                            <Rating
-                                name="simple-controlled"
-                                value={starValue}
-                                onChange={(event, newValue) => {
-                                    props.setStarValue(newValue);
-                                    handleStarChange(newValue);
-                                }}
-                            />
+                            {props.StarRating}
                         </div>
                         <div className="TimeContainer">
                             <svg width="30" height="30" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">

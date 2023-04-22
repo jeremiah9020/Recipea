@@ -22,7 +22,7 @@ function StarRating(props) {
             }
         }
         setDefaultRating();
-    }, [props.recipeip])
+    }, [props.recipeid])
 
     function handleStarChange(value)
     {
