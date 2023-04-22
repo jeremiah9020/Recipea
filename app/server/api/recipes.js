@@ -11,11 +11,25 @@ const upload = multer()
 const imagesPath = path.resolve(process.cwd(), 'server/images');
 
 router.get('/', async (req, res, next) => {
-    try {
-        const recipes = await Recipe.findAll();
-        res.json(recipes);
-    } catch (error) {
-        res.status(500).json(error);
+    const userid = req.query.userid
+    if (userid) {
+        try {
+            const recipes = await Recipe.findAll({where: {userid: userid}});
+            if (recipes) {
+                res.json(recipes);   
+            } else {
+                res.status(404).json({msg:"No user with that userid."});
+            }
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    } else {
+        try {
+            const recipes = await Recipe.findAll();
+            res.json(recipes);
+        } catch (error) {
+            res.status(500).json(error);
+        }
     }
 });
 

@@ -7,12 +7,15 @@ import {ReactComponent as DefaultProfilePicture}  from '../../assets/profile/def
 
 import './Profile.scss'
 import useRefresh from '../../hooks/refreshHook';
+import CardContainer from '../../components/CardContainer/CardContainer';
 
 function Profile() {
     const navigate = useNavigate();
     const [refresh,forceRefresh] = useRefresh();
     const [searchParams,setSearchParams] = useSearchParams();
+    const [recipes, setRecipes] = useState(null)
     const [editable, setEditable] = useState(false)
+    const [userid, setUserid] = useState(null)
     const [username, setUsername] = useState('')
     const [description, setDescription] = useState('')
     const [descriptionChanged, setDescriptionChanged] = useState(false)
@@ -58,6 +61,7 @@ function Profile() {
 
                 if (profile.username === authenticatedUsername) setEditable(true)
                 setUsername(profile.username)
+                setUserid(profile.userid)
 
                 if (profile.description != null) setDescription(profile.description)
                 if (profile.profilepicture != null) setProfilePicture(<img src={'http://localhost:3001/static/' + profile.profilepicture} alt="Profile"/>)
@@ -67,6 +71,21 @@ function Profile() {
         
         getData()
     },[searchParams,setSearchParams,navigate])
+
+    useEffect(() => {
+        async function populateCardContainer() {
+          // get the recipes we want to include in the container (all of them in this case)
+          let response = await fetch(`http://localhost:3001/api/recipes?userid=${userid}`, {
+            method: 'GET',
+            credentials: 'include'
+          })
+          const recipes = await response.json()
+    
+          // set the recipes prop of the container and that's it
+          setRecipes(recipes);
+        }
+        populateCardContainer()
+      }, [userid])
 
     function textAreaChangeHandler({target: {value}}) {
         setDescriptionChanged(description !== value)
@@ -175,6 +194,8 @@ function Profile() {
                 {editable && descriptionChanged && 
                 <input className="SaveDescriptionChange" type="button" value="SAVE" onClick={submitDescriptionChange}/>}
             </div>
+
+            <CardContainer recipes={recipes}/>
         </div>
   )
 }
