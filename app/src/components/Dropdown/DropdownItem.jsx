@@ -1,8 +1,8 @@
 import './Dropdown.scss'
 
-function DropdownItem({children}) {
+function DropdownItem({children,className}) {
     return (
-        <div className="DropdownItem">
+        <div className={"DropdownItem " + className}>
             {children}
         </div>
     )

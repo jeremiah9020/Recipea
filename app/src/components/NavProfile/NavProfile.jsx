@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 function NavProfile({refresh}) {
     const { setAuthenticated } = useAuth();
+    const [username,setUsername] = useState("")
     const [profilePicture,setProfilePicture] = useState(<DefaultProfilePicture className="Default"/>)
     const [showAlerts,setShowAlerts] = useState(false)
     const [showProfile,setShowProfile] = useState(false)
@@ -46,6 +47,7 @@ function NavProfile({refresh}) {
             })
 
             const profile = await response.json()
+            setUsername(profile.username)
             if (profile.profilepicture) setProfilePicture(<img src={'http://localhost:3001/static/' + profile.profilepicture} alt="Profile"/>)
         } 
         getUserProfileData()
@@ -61,7 +63,7 @@ function NavProfile({refresh}) {
                 {profilePicture}
             </div>
             
-            <div>
+            <div className="Nav">
                 {showAlerts && 
                 <DropdownMenu position="67px 35px">
                     <DropDownItem>Nothing here...</DropDownItem>
@@ -69,6 +71,7 @@ function NavProfile({refresh}) {
 
                 {showProfile && 
                 <DropdownMenu position="7px 35px">
+                    <DropDownItem className="Username">Chef @{username}</DropDownItem>
                     <DropdownLink Name="Profile" To="/profile"/>
                     <DropdownButton Name="Logout" Click={logout}/>
                 </DropdownMenu>}
