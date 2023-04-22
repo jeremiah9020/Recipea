@@ -1,7 +1,32 @@
+@import '../../styles/_mixins.scss';
+@import '../../styles/_variables.scss';
+
 .Card 
 {
+    position: relative;
     background-color: white; // otherwise on grow, adjacent cards will show through transparent background
     border-radius: 20px; // to match rounded edge of other elements when not transparent
+
+
+    .Deletable {
+        z-index: 99;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+
+        padding: 10px;
+        border-radius: 10px;
+        font-weight: 500;
+
+        background-color: $red-1;
+        color: white;
+
+        transition: 0.25s all;
+        &:hover {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+    }
 
     .Center {
         width: 100%;
