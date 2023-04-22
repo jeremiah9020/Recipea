@@ -94,6 +94,11 @@ router.delete('/', authMiddleware, async (req, res, next) => {
 
     const recipe = await Recipe.findByPk(recipeid)
 
+    if (recipe.userid !== req.user.id) {
+        res.status(401).send("Unauthorized")
+        return
+    }
+
     if (recipe) {
         const image = recipe.image
 
