@@ -1,6 +1,6 @@
 import {React, useState, useEffect} from 'react'
 import ExtendedCard from '../ExtendedCard/ExtendedCard';
-import Rating from '@mui/material/Rating';
+import StarRating from '../StarRating/StarRating';
 import { useNavigate } from 'react-router-dom';
 import './Card.scss';
 
@@ -44,28 +44,9 @@ function Card(props) {
 
     }, [props.recipe.image, props.recipe?.ingredients, props.recipe?.tags]);
 
-    useEffect(() => {
-        async function setDefaultRating() {
-            const url = `http://localhost:3001/api/ratings/${props.recipe.id}`;
-
-            const result = await fetch(url, {
-                method: 'GET',
-                credentials: 'include'
-            })
-
-            const rating = await result.json();
-
-            if (rating)
-            {
-                setValue(rating.score);
-            }
-        }
-        setDefaultRating();
-    }, [props.recipe.id])
-
     function clickCard()
     {
-        props.setExtendedCard(<ExtendedCard setExtendedCard={props.setExtendedCard} user={props.user} recipe={props.recipe} imageURL={imageURL} ingredients={ingredients} tags={tags} setStarValue={setValue} starValue={value}/>)
+        props.setExtendedCard(<ExtendedCard setExtendedCard={props.setExtendedCard} user={props.user} recipe={props.recipe} imageURL={imageURL} ingredients={ingredients} tags={tags} />)
         props.setModalShow(true);
     }
 
@@ -101,36 +82,6 @@ function Card(props) {
         props.setToastContent(`${props.recipe.title} uploaded to null`);
     }
 
-    function handleStarChange(value)
-    {
-        if (!value) value = 0;
-
-        async function handleStarValue()
-        {
-            // fetch request to update rating
-            const url = `http://localhost:3001/api/ratings`;
-            const body = {score: value, recipeid: props.recipe.id};
-
-            await fetch(url, {
-                method: 'POST',
-                cache: 'no-cache',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                referrerPolicy: 'no-referrer',
-                body: JSON.stringify(body)
-            });
-        }
-        handleStarValue()
-    }
-
-    function handleStarClick(event)
-    {
-        // prevent modal
-        event.stopPropagation();
-    }
-
     function handleProfileClick(event)
     {
         // prevent modal trigger
@@ -158,16 +109,7 @@ function Card(props) {
                     </div>
                     <div className="RightContainer">
                         <div className="StarContainer">
-                            <Rating
-                                name="simple-controlled"
-                                value={value}
-                                onChange={(event, newValue) => {
-                                setValue(newValue);
-                                handleStarChange(newValue);
-                                }}
-
-                                onClick={handleStarClick}
-                            />
+                            <StarRating recipeid={props?.recipe?.id}/>
                         </div>
                         <div className="TimeContainer">
                             <svg width="30" height="30" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
