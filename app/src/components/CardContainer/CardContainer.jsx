@@ -4,9 +4,13 @@ import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
 import './CardContainer.scss';
 
+import useRefresh from '../../hooks/refreshHook'
+
+
 // takes in a list of recipes insided of props.recipes
 // each recipe should be in json format
 function CardContainer(props) {
+    const [refresh,forceRefresh] = useRefresh()
     const [cards, setCards] = useState([]);
     const [extendedCard, setExtendedCard] = useState();
     const [toastValue, setToastValue] = useState();
@@ -21,9 +25,6 @@ function CardContainer(props) {
 
     // create cards based on props.recipes
     useEffect(() => {
-        console.log(props.recipes)
-
-
         async function createCards() {
             const cards = []
             for (const recipe of props.recipes)
@@ -33,12 +34,12 @@ function CardContainer(props) {
                     credentials: 'include'
                     })
                 const user = await response.json()
-                cards.push(<Card forceRefresh={props.forceRefresh} setToastContent={setToastContent} recipe={recipe} user={user} setExtendedCard={setExtendedCard} setModalShow={setModalShow}/>)
+                cards.push(<Card refresh={refresh} forceRefresh={props.forceRefresh} setToastContent={setToastContent} recipe={recipe} user={user} setExtendedCard={setExtendedCard} setModalShow={setModalShow}/>)
             }
             setCards(cards)
         }
         createCards();
-    }, [props.recipes])
+    }, [props.recipes,refresh])
 
     useEffect(()=> {
         window.addEventListener('mousewheel', scrollHandler, {passive:false})
@@ -57,8 +58,6 @@ function CardContainer(props) {
         const height = card.clientHeight
 
         const screenheight = window.innerHeight
-
-        console.log(screenheight)
 
         let currentVal = 0
         if (current !== "") {
@@ -79,6 +78,11 @@ function CardContainer(props) {
         e.preventDefault()
     }
 
+    function handleClickOutsideModal() {
+        forceRefresh()
+        setModalShow(false)
+    }
+
   return (
     <div className={modalShow? 'CardContainer NoScroll' : 'CardContainer'}>
         <ToastContainer className='p-3 position-fixed' position='bottom-start'>
@@ -91,7 +95,7 @@ function CardContainer(props) {
         </div>
 
         {modalShow && 
-        <div className="ModalContainer" onClick={()=>{setModalShow(false)}} >
+        <div className="ModalContainer" onClick={handleClickOutsideModal} >
             {extendedCard}
         </div>}
     </div>

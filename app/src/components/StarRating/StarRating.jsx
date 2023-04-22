@@ -2,7 +2,6 @@ import {React, useState, useEffect} from 'react'
 import Rating from '@mui/material/Rating';
 
 function StarRating(props) {
-
     const [value, setValue] = useState(0);
 
     useEffect(() => {
@@ -22,7 +21,7 @@ function StarRating(props) {
             }
         }
         setDefaultRating();
-    }, [props.recipeid])
+    }, [props.recipeid,props.refresh])
 
     function handleStarChange(value)
     {
@@ -63,7 +62,6 @@ function StarRating(props) {
                     setValue(newValue);
                     handleStarChange(newValue);
                 }}
-
                 onClick={handleStarClick}
             />
         </div>

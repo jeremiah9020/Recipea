@@ -148,7 +148,7 @@ function Card(props) {
                     </div>
                     <div className="RightContainer">
                         <div className="StarContainer">
-                            <StarRating recipeid={props?.recipe?.id}/>
+                            <StarRating refresh={props.refresh} recipeid={props?.recipe?.id}/>
                         </div>
                         <div className="TimeContainer">
                             <svg width="30" height="30" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">

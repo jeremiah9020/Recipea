@@ -11,6 +11,7 @@ import CardContainer from '../../components/CardContainer/CardContainer';
 
 function Profile() {
     const navigate = useNavigate();
+    const [refreshCards,forceRefreshCards] = useRefresh();
     const [refresh,forceRefresh] = useRefresh();
     const [searchParams,setSearchParams] = useSearchParams();
     const [recipes, setRecipes] = useState(null)
@@ -85,7 +86,7 @@ function Profile() {
           setRecipes(recipes);
         }
         populateCardContainer()
-      }, [userid])
+      }, [userid,refreshCards])
 
     function textAreaChangeHandler({target: {value}}) {
         setDescriptionChanged(description !== value)
@@ -195,7 +196,7 @@ function Profile() {
                 <input className="SaveDescriptionChange" type="button" value="SAVE" onClick={submitDescriptionChange}/>}
             </div>
 
-            <CardContainer recipes={recipes}/>
+            <CardContainer forceRefresh={forceRefreshCards} recipes={recipes}/>
         </div>
   )
 }
