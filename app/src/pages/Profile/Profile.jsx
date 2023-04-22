@@ -181,7 +181,7 @@ function Profile() {
                     </div>
                 </div>
             </div>
-            <div class="DescriptionContainer">
+            <div className="DescriptionContainer">
                 <textarea 
                     defaultValue={description} 
                     class="DescriptionArea" 
