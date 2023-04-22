@@ -29,12 +29,15 @@
         height: 550px;
     
         border-radius: 20px;
-        border: 1px solid black;
         background-color: transparent;
     
-        box-shadow: 0px 0px 10px black;
+        box-shadow: 0px 0px 3px rgba(0,0,0,0.75);
         overflow: hidden;
         object-fit: fill;
+
+        &:hover {
+            cursor: pointer;
+        }
     
     }
     
