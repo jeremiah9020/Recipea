@@ -60,11 +60,11 @@ function ExtendedCard(props) {
             })
 
             // create successful alert
-            props.setToastContent(`Added ${props.recipe.title} to your cookbook`);
+            setToastContent(`Added ${props.recipe.title} to your cookbook`);
         }
         else
         {
-            props.setToastContent(`Failed to add ${props.recipe.title} to your cookbook. You must be signed in`);
+            setToastContent(`Failed to add ${props.recipe.title} to your cookbook. You must be signed in`);
         }
     }
 
