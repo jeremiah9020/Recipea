@@ -4,7 +4,7 @@ import { AuthProvider } from "./context/authContext"
 import Home from "./pages/Home/Home";
 import Login from "./pages/Authenticate/Login/Login";
 import Register from "./pages/Authenticate/Register/Register";
-import NoPage from "./pages/NoPage/NoPage";
+import Search from "./pages/Search/Search";
 import CreateRecipe from "./pages/CreateRecipe/CreateRecipe";
 import ResetPassword from './pages/Authenticate/ResetPassword/ResetPassword';
 import ForgotPassword from './pages/Authenticate/ForgotPassword/ForgotPassword';
@@ -25,7 +25,7 @@ function App() {
           <Route path="create-recipe" element={<CreateRecipe />} />
           <Route path="profile" element={<Profile />} />
           <Route path="cookbook" element={<Cookbook/>} />
-          <Route path="*" element={<NoPage />} />
+          <Route path="search" element={<Search />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
