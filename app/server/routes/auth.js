@@ -5,6 +5,7 @@ const nodemailer = require('nodemailer');
 const handlebars = require('handlebars')
 const User = require('../models/User')
 const UserProfile = require('../models/UserProfile');
+const Cookbook = require('../models/Cookbook');
 const path = require('path');
 
 const AuthMiddleware = require("../middleware/auth");
@@ -89,6 +90,7 @@ router.post('/register', (req, res, _) => {
     try {
       const user = await User.create({ email: email, username: username, password: hashedPassword, salt: salt })
       const profile = await UserProfile.create({ userid: user.id, username: username});
+      const cookbook = await Cookbook.create({userid: user.id, cookbookname: 'default', recipes:null})
       const [access_token,] = setTokens(user, res)
       res.status(200).json(access_token)
     } catch (e) {
