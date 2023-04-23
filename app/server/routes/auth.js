@@ -109,7 +109,7 @@ router.post('/forgotpassword', async (req, res, _) => {
         id: user.id,
       },
       "RESET-TOKEN",
-      { expiresIn: "10s" }
+      { expiresIn: "30m" }
     )
 
     const action_url = `http://localhost:3000/password-reset?token=${reset_token}`
