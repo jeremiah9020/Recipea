@@ -68,13 +68,17 @@ function Search() {
         setSearchField(e.target.value);
         let nextId = 0;
         let tempRecipes = [];
-        let broke = false;
+        let broke = false;  
         for (let recipe of recipes)
         {
+            const recipeIngredients = recipe['ingredients'].split(":");
             var found = false;
+            console.log(e.target.value);
             for(var i = 0; i < tempRecipes.length; i++) {
+                console.log(e.target.value);
                 if (e.target.value === 'userid')
                 {
+                    console.log("Here1");
                     for (let profile of profiles)
                     {
                         if (profile[e.target.value] === recipe[e.target.value])
@@ -89,6 +93,16 @@ function Search() {
                     if (broke)
                         break;
                 }
+                else if (e.target.value === 'ingredients' || e.target.value === 'tags')
+                {
+                    console.log("Here");
+                    for(var i = 0; i < recipeIngredients.length; i++) {
+                        if (!(tempRecipes[i].Name === recipeIngredients[i])) {
+                            tempRecipes = [...tempRecipes, { Id: nextId++, Name: recipeIngredients[i] }];
+                        }
+                    }
+                    console.log(tempRecipes)
+                }
                 else
                 {
                     if (tempRecipes[i].Name === recipe[e.target.value]) {
@@ -101,13 +115,22 @@ function Search() {
             {
                 if (e.target.value === 'userid')
                 {
-                    for (let profile of profiles)
+                    outer:for (let profile of profiles)
                     {
+                        for(var i = 0; i < tempRecipes.length; i++) {
+                            if (tempRecipes[i].Name === profile.username)
+                                continue outer;
+                        }
+
                         if (profile[e.target.value] === recipe[e.target.value])
                         {
                             tempRecipes = [...tempRecipes, { Id: nextId++, Name: profile.username }];
                         }
                     }
+                }
+                else if (e.target.value === 'ingredients' || e.target.value === 'tags')
+                {
+
                 }
                 else
                 {
