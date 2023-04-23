@@ -208,6 +208,10 @@ function Cookbook() {
                 cookbookname: document.getElementById("removeCB").value,
             })
         })
+        if(selected === document.getElementById("removeCB").value)
+        {
+            setCards([])
+        }
         //Refetch the data....
         document.getElementById("books").innerHTML = ""
         document.getElementById("booksRemove").innerHTML = ""
