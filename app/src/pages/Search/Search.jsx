@@ -28,23 +28,13 @@ const Filters = [
     },
 ];
 
-const options = ['Option 1', 'Option 2'];
-// var searchField = '';
-// var filteredList = [];
-
 function Search() {
     const [refresh, forceRefresh] = useRefresh()
     const [searchField, setSearchField] = useState('');
-    
-    const [value, setValue] = useState();
     const [input, setInput] = useState('');
-
-    // const searchField = '';
-    // setSearchField(prevSearchField => ([...prevMovies, ...result]));
-
     const [recipes, setRecipes] = useState([])
 
-    const fetchUserData = () => {
+    const fetchRecipeData = () => {
         fetch("http://localhost:3001/api/recipes")
         .then(response => {
             return response.json()
@@ -54,87 +44,135 @@ function Search() {
         })
     }
 
-    useEffect(() => {
-        fetchUserData()
-    }, [])
+    const [profiles, setProfiles] = useState([])
 
-    function handleClick() { 
-    
-        console.log(searchField);
-        console.log(input) 
-        console.log(filteredList);
-        console.log(renderList);
-        
-    } 
+    const fetchProfileData = () => {
+        fetch("http://localhost:3001/api/profiles")
+        .then(response => {
+            return response.json()
+        })
+        .then(data => {
+            setProfiles(data)
+        })
+    }
+
+    useEffect(() => {
+        fetchRecipeData();
+        fetchProfileData();
+    }, [refresh])
 
     const [filteredList, setFilteredList] = useState([]);
     const [renderList, setRenderList] = useState([]);
-    //const [tempRecipes, setTempRecipes] = useState([]);
 
     function handleSearchFieldChange(e) {
         setSearchField(e.target.value);
         let nextId = 0;
         let tempRecipes = [];
+        let broke = false;
         for (let recipe of recipes)
         {
             var found = false;
             for(var i = 0; i < tempRecipes.length; i++) {
-                if (tempRecipes[i].Name == recipe[e.target.value]) {
-                    found = true;
-                    break;
+                if (e.target.value === 'userid')
+                {
+                    for (let profile of profiles)
+                    {
+                        if (profile[e.target.value] === recipe[e.target.value])
+                        {
+                            if (tempRecipes[i].Name === profile.username) {
+                                found = true;
+                                broke = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (broke)
+                        break;
+                }
+                else
+                {
+                    if (tempRecipes[i].Name === recipe[e.target.value]) {
+                        found = true;
+                        break;
+                    }
                 }
             }
-            if (found == false)
+            if (found === false)
             {
-                tempRecipes = [...tempRecipes, { Id: nextId++, Name: recipe[e.target.value] }];
+                if (e.target.value === 'userid')
+                {
+                    for (let profile of profiles)
+                    {
+                        if (profile[e.target.value] === recipe[e.target.value])
+                        {
+                            tempRecipes = [...tempRecipes, { Id: nextId++, Name: profile.username }];
+                        }
+                    }
+                }
+                else
+                {
+                    tempRecipes = [...tempRecipes, { Id: nextId++, Name: recipe[e.target.value] }];
+                }
             }
-            // if (!tempRecipes.some( tempRecipes => tempRecipes['Name'] !== recipe[e.target.value] ))
-            // {
-                
-            // }
-            // if (tempRecipes.filter(function(e) { return e.Name === recipe[e.target.value]; }).length > 0)
-            // {
-
-            // }
-            // else
-            // {
-            //     tempRecipes = [...tempRecipes, { Id: nextId++, Name: recipe[e.target.value] }];
-            // }
-            // if (!tempRecipes.some(e => e.Name === recipe[e.target.value]))
-            // {
-            //     tempRecipes = [...tempRecipes, { id: nextId++, name: recipe[e.target.value] }];
-            // }
-            // if (!tempRecipes.name.includes(recipe[e.target.value]))
-            // {
-            //     tempRecipes = [...tempRecipes, { id: nextId++, name: recipe[e.target.value] }];
-            // }
         }
-        //filteredList = tempRecipes;
         setFilteredList(tempRecipes);
     }
 
     function handleButtonClick() {
         let tempRecipes = [];
+        let broke = false;
         for (let recipe of recipes)
         {
-            // console.log(tempRecipes);
-            // console.log(tempRecipes);
-            // console.log(recipe[searchField]);
             var found = false;
             for(var i = 0; i < tempRecipes.length; i++) {
+                if (searchField === 'userid')
+                {
+                    for (let profile of profiles)
+                    {
+                        if (profile[searchField] === recipe[searchField])
+                        {
+                            if (tempRecipes[i][input] === recipe[searchField]) {
+                                found = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (broke)
+                        break;
+                }
+                else
+                {
+                    if (tempRecipes[i][input] === recipe[searchField]) {
+                        found = true;
+                        break;
+                    }
+                }
                 
-                if (tempRecipes[i][input] == recipe[searchField]) {
+                if (tempRecipes[i][input] === recipe[searchField]) {
                     found = true;
                     break;
                 }
             }
-            console.log(recipe[searchField]);
-            console.log(input.Name);
-            if (found == false && recipe[searchField] == input.Name)
+            if (searchField === 'userid')
             {
-                tempRecipes = [...tempRecipes, recipe];
+                for (let profile of profiles)
+                    {
+                        if (profile.username === input.Name)
+                        {
+                            if (found === false && recipe[searchField] === profile[searchField])
+                            {
+                                tempRecipes = [...tempRecipes, recipe];
+                            }
+                        }
+                    }
             }
-            console.log(tempRecipes);
+            else
+            {
+                if (found === false && recipe[searchField] === input.Name)
+                {
+                    tempRecipes = [...tempRecipes, recipe];
+                }
+            }
         }
         
         setRenderList(tempRecipes)
@@ -169,7 +207,7 @@ function Search() {
                 isOptionEqualToValue={(option, value) =>
                     option[searchField] === value[searchField]
                 }
-                noOptionsText = "No available emails"
+                noOptionsText = "Nothing available to search for..."
                 renderOption={(props, filteredList) => (
                     <Box component="li" {...props} key={filteredList.Id}>
                         {filteredList.Name}
@@ -178,24 +216,16 @@ function Search() {
                 renderInput={(params) => (
                     <TextField {...params} label="Search For" helperText={`Please select your ${searchField}`} onChange={({ target }) => setInput(target.value[searchField])}/>
                 )}
-                  
-                // onChange={handleChange}
             />
             <Button
                 variant="outlined" 
                 size="medium"
                 onClick={() => {
-                    alert('clicked');
                     handleButtonClick();
                 }}
             >
                 Search
             </Button>
-            <div onClick={handleClick}>
-            
-                Hello World 
-            
-            </div> 
         </div>
         
         <CardContainer forceRefresh={forceRefresh} recipes={renderList} />
