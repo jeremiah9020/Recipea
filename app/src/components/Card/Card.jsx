@@ -2,6 +2,7 @@ import {React, useState, useEffect} from 'react'
 import ExtendedCard from '../ExtendedCard/ExtendedCard';
 import StarRating from '../StarRating/StarRating';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/authContext';
 import './Card.scss';
 
 function Card(props) {
@@ -10,6 +11,8 @@ function Card(props) {
     const [tags, setTags] = useState([]);
     const [imageURL, setImageURL] = useState();
     const [deletable, setDeletable] = useState(false);
+    const { isAuthenticated, isLoading } = useAuth();
+    const [current_userid, setCurrentUserId] = useState(null);
 
     useEffect(() => {
         async function getUserProfileData() {
@@ -25,6 +28,18 @@ function Card(props) {
         } 
         getUserProfileData()
     })
+
+    useEffect(() => {
+        async function getUserProfileData() {
+            const response = await fetch(`http://localhost:3001/api/profiles/authenticated`, {
+                method: 'GET',
+                credentials: 'include'
+            })
+            const user_data = await response.json()
+            setCurrentUserId(user_data?.userid)
+        }   
+        getUserProfileData()
+    },[])
 
     useEffect(() => {
         setIngredients(() => {
@@ -65,14 +80,34 @@ function Card(props) {
         props.setModalShow(true);
     }
 
-    function CookbookClicked(event)
+    async function CookbookClicked(event)
     {
         event.stopPropagation();
-        
-        // add recipe to user's default cookbook
 
-        // create successful alert
-        props.setToastContent(`Added ${props.recipe.title} to your cookbook`);
+        if (isAuthenticated)
+        {
+            // add recipe to user's default cookbook
+            console.log(props.user);
+            console.log(props.recipe);
+            const url = 'http://localhost:3001/api/cookbook'
+            await fetch(url, {
+                method: 'PATCH',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    userid: current_userid,
+                    cookbookname: 'default',
+                    recipes: props.recipe.id
+                })
+            })
+
+            // create successful alert
+            props.setToastContent(`Added ${props.recipe.title} to your cookbook`);
+        }
+        else
+        {
+            props.setToastContent(`Failed to add ${props.recipe.title} to your cookbook. You must be signed in`);
+        }
     }
 
     function ShareClicked(event)
