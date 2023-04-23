@@ -15,6 +15,7 @@ function Card(props) {
     const [current_userid, setCurrentUserId] = useState(null);
 
     useEffect(() => {
+        setDeletable(false)
         async function getUserProfileData() {
             const response = await fetch(`http://localhost:3001/api/profiles/authenticated`, {
                 method: 'GET',
@@ -27,7 +28,7 @@ function Card(props) {
             }
         } 
         getUserProfileData()
-    })
+    },[props.recipe.userid])
 
     useEffect(() => {
         async function getUserProfileData() {
