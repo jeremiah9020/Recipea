@@ -102,7 +102,7 @@ function Card(props) {
         // prevent modal trigger
         event.stopPropagation();
 
-        navigate('/profile');
+        navigate(`/profile?username=${props.user.username}`);
     }
 
     async function handleDeleteRecipe(event) {

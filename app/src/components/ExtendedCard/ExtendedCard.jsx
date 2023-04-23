@@ -22,7 +22,7 @@ function ExtendedCard(props) {
 
     function handleProfileClick(event)
     {
-        navigate('/profile');
+        navigate(`/profile?username=${props.user.username}`);
     }
 
     function CookbookClicked(event)
