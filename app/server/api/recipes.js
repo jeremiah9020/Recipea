@@ -3,6 +3,7 @@ const router = express.Router()
 const authMiddleware = require('../middleware/auth')
 const Recipe = require('../models/Recipe')
 const Comment = require('../models/Comment')
+const Cookbook = require('../models/Cookbook');
 const Rating = require('../models/Rating')
 const Tag = require('../models/Tag')
 const fs = require('fs')
@@ -82,6 +83,10 @@ router.post('/', authMiddleware, upload.single('image'), async (req, res, next) 
                 })
             }            
         }
+
+        // add this recipe to the default cookbook
+        const cookbook = await Cookbook.findOne({where: {userid: req.user.id, cookbookname: 'default' }})
+        cookbook.update({recipes: recipe.id + ':' + cookbook.recipes})
 
         res.status(200).json(recipe);
     } catch (error) {
