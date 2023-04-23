@@ -65,14 +65,11 @@ function Cookbook() {
         let t = []
         for(var r = 0; r < recipes.length; r++)
         {
-            if(recipes[r].userid === profiles)
-            {
                 t.push(recipes[r])
                 let list = document.getElementById("recipestochoose")
                 let x = document.createElement('option')
                 x.innerText = recipes[r].title
                 list.appendChild(x)
-            }
         }
         setRecipes(t)        
     },[profiles])
@@ -83,38 +80,83 @@ function Cookbook() {
     }
 
     //Populate the cards to be used
-    function populateCards() {
+    function populateCards() {        
         let values = ""
         cards1 = []
         valueofbook = -1
-        for (var i = 0; i < books.length; i++){
-            if(books[i].cookbookname === document.getElementById('namesofCB').value)
-            {
-                values = books[i].recipes
-                valueofbook = i
-                break
-            }
-        }        
-        if(valueofbook === -1)
+        if(!((document.getElementById('namesofCB').value)))
         {
-            document.getElementById("namesofCB").value = ""
-            setCards([])
-            return
-        }
-        setselected(document.getElementById('namesofCB').value)
-        if(values)
-        {
-            values = values.split(":")
-            for(var re = 0; re < recipes.length; re++)
+            if(selected !== "N/A" && selected !== "")
             {
-                if(values.includes((recipes[re].id).toString()))
+                for (var i = 0; i < books.length; i++){
+                    if(books[i].cookbookname === selected)
+                    {
+                        values = books[i].recipes
+                        valueofbook = i
+                        break
+                    }
+                }
+                if(valueofbook === -1)
                 {
-                    cards1.push(recipes[re])
+                    return
+                }
+                if(!values)
+                {
+                    setCards([])
+                    return 
+                }
+                    values = values.split(":")
+                    for(var re = 0; re < recipes.length; re++)
+                    {
+                        if(values.includes((recipes[re].id).toString()))
+                        {
+                            cards1.push(recipes[re])
+                        }
+                    }
+                    // console.log(cards);
+                setCards(cards1)
+            }
+            else
+            {
+                setCards([])
+                return
+            }
+        }
+        else
+        {
+            
+            for (var i = 0; i < books.length; i++){
+                if(books[i].cookbookname === document.getElementById('namesofCB').value)
+                {
+                    values = books[i].recipes
+                    valueofbook = i
+                    break
                 }
             }
-            // console.log(cards);
+
+                if(valueofbook === -1)
+                {
+                    return
+                }
+                setselected(document.getElementById('namesofCB').value)
+                if(!values)
+                {
+                    setCards([])
+                    return 
+                }
+                values = values.split(":")
+                for(var re = 0; re < recipes.length; re++)
+                {
+                    if(values.includes((recipes[re].id).toString()))
+                    {
+                        cards1.push(recipes[re])
+                    }
+                }
+                // console.log(cards);
+            setCards(cards1)
+
         }
-        setCards(cards1)
+
     }
 
     ///Make sure that this cookbook is unique
@@ -189,7 +231,6 @@ function Cookbook() {
             if(recipes[t].title === document.getElementById("recipestochoose").value)
             {
                 id = recipes[t].id
-
                 break
             }
         }
