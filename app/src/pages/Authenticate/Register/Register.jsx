@@ -19,6 +19,8 @@ function Register() {
         setShowPass(!showPass)
     }
 
+
+
     const submit = async (e) => {
         e.preventDefault()
 
@@ -26,30 +28,41 @@ function Register() {
         var formDataObj = {};
         formData.forEach((value, key) => formDataObj[key] = value);
 
-        const response = await fetch('http://localhost:3001/auth/register', {
-            method: 'POST',
-            credentials: 'include',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formDataObj)
-        })
+        //validate email
+        if (/\S+@\S+\.\S+/.test(formDataObj.email)) {
+            const response = await fetch('http://localhost:3001/auth/register', {
+                method: 'POST',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formDataObj)
+            })
+    
+            if (response.ok) {
+                setAuthenticated(true)
+                navigate('/')
+            } else {
+                const err = await response.json()
+                const type = err?.msg?.fields[0]
+                
+                if (type === 'email') {
+                    document.getElementById("UsernameTaken").classList.remove("Animation")
+                    document.getElementById("EmailTaken").classList.add("Animation")
+                } else if (type === 'username') {
+                    document.getElementById("EmailTaken").classList.remove("Animation")
+                    document.getElementById("UsernameTaken").classList.add("Animation")
+                }
+                document.getElementById("GoogleDisabled").classList.remove("Animation")
+                document.getElementById("OutlookDisabled").classList.remove("Animation")
+                document.getElementById("InvalidEmail").classList.remove("Animation")
 
-        if (response.ok) {
-            setAuthenticated(true)
-            navigate('/')
+            }  
         } else {
-            const err = await response.json()
-            const type = err?.msg?.fields[0]
-            
-            if (type === 'email') {
-                document.getElementById("UsernameTaken").classList.remove("Animation")
-                document.getElementById("EmailTaken").classList.add("Animation")
-            } else if (type === 'username') {
-                document.getElementById("EmailTaken").classList.remove("Animation")
-                document.getElementById("UsernameTaken").classList.add("Animation")
-            }
+            document.getElementById("InvalidEmail").classList.add("Animation")
             document.getElementById("GoogleDisabled").classList.remove("Animation")
             document.getElementById("OutlookDisabled").classList.remove("Animation")
-        }
+            document.getElementById("UsernameTaken").classList.remove("Animation")
+            document.getElementById("EmailTaken").classList.remove("Animation")
+        }   
     }
 
     const registerWithGoogle = () => {
@@ -57,6 +70,8 @@ function Register() {
         document.getElementById("OutlookDisabled").classList.remove("Animation")
         document.getElementById("UsernameTaken").classList.remove("Animation")
         document.getElementById("EmailTaken").classList.remove("Animation")
+        document.getElementById("InvalidEmail").classList.remove("Animation")
+
 
     }
 
@@ -65,6 +80,7 @@ function Register() {
         document.getElementById("OutlookDisabled").classList.add("Animation")
         document.getElementById("UsernameTaken").classList.remove("Animation")
         document.getElementById("EmailTaken").classList.remove("Animation")
+        document.getElementById("InvalidEmail").classList.remove("Animation")
     }
 
     return (
@@ -74,6 +90,9 @@ function Register() {
             </div>
             <div className="FormContainer">
                 <form onSubmit={submit} id="loginform">
+                    <div className="ErrorBox" id="InvalidEmail">
+                        Email is invalid
+                    </div>
                     <div className="ErrorBox" id="UsernameTaken">
                         Username already used
                     </div>
