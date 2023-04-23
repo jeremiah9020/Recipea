@@ -65,14 +65,11 @@ function Cookbook() {
         let t = []
         for(var r = 0; r < recipes.length; r++)
         {
-            if(recipes[r].userid === profiles)
-            {
                 t.push(recipes[r])
                 let list = document.getElementById("recipestochoose")
                 let x = document.createElement('option')
                 x.innerText = recipes[r].title
                 list.appendChild(x)
-            }
         }
         setRecipes(t)        
     },[profiles])
@@ -98,9 +95,16 @@ function Cookbook() {
                         valueofbook = i
                         break
                     }
-                }        
-                if(values)
+                }
+                if(valueofbook === -1)
                 {
+                    return
+                }
+                if(!values)
+                {
+                    setCards([])
+                    return 
+                }
                     values = values.split(":")
                     for(var re = 0; re < recipes.length; re++)
                     {
@@ -110,7 +114,6 @@ function Cookbook() {
                         }
                     }
                     // console.log(cards);
-                }
                 setCards(cards1)
             }
             else
@@ -121,7 +124,6 @@ function Cookbook() {
         }
         else
         {
-            setselected(document.getElementById('namesofCB').value)
             
             for (var i = 0; i < books.length; i++){
                 if(books[i].cookbookname === document.getElementById('namesofCB').value)
@@ -130,9 +132,18 @@ function Cookbook() {
                     valueofbook = i
                     break
                 }
-            }        
-            if(values)
-            {
+            }
+
+                if(valueofbook === -1)
+                {
+                    return
+                }
+                setselected(document.getElementById('namesofCB').value)
+                if(!values)
+                {
+                    setCards([])
+                    return 
+                }
                 values = values.split(":")
                 for(var re = 0; re < recipes.length; re++)
                 {
@@ -142,7 +153,6 @@ function Cookbook() {
                     }
                 }
                 // console.log(cards);
-            }
             setCards(cards1)
 
         }
