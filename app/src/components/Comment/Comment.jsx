@@ -1,8 +1,10 @@
 import {React, useState, useEffect} from 'react'
+import { useIsAuthenticated } from '../../context/authContext';
 
 // needs a recipe as a prop
 function Comment(props) {
     const [comments, setComments] = useState([])
+    const authenticated = useIsAuthenticated()
 
     // populate comments on load
     useEffect(() => {
@@ -20,32 +22,36 @@ function Comment(props) {
     }, [props.recipe.id])
 
     async function sendComment() {
-        const textarea = document.getElementById('CommentBox');
+        if (authenticated) {
+            const textarea = document.getElementById('CommentBox');
 
-        if (textarea.value.trim())
-        {
-            // not null, undefined, or whitespacea
-            // post to database
-            const url = `http://localhost:3001/api/comments`;
-            const body = {comment: textarea.value, recipeid: props.recipe.id}
-
-            const result = await fetch(url, {
-                method: 'POST',
-                cache: 'no-cache',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                referrerPolicy: 'no-referrer',
-                body: JSON.stringify(body)
-            });
-            const comment = await result.json();
-
-            // add comment
-            setComments(prev => [comment, ...prev])
-
-            // reset textarea
-            textarea.value = '';
+            if (textarea.value.trim())
+            {
+                // not null, undefined, or whitespacea
+                // post to database
+                const url = `http://localhost:3001/api/comments`;
+                const body = {comment: textarea.value, recipeid: props.recipe.id}
+    
+                const result = await fetch(url, {
+                    method: 'POST',
+                    cache: 'no-cache',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    referrerPolicy: 'no-referrer',
+                    body: JSON.stringify(body)
+                });
+                const comment = await result.json();
+    
+                // add comment
+                setComments(prev => [comment, ...prev])
+    
+                // reset textarea
+                textarea.value = '';
+            }
+        } else {
+            props.setToast("Sign in to leave comments!")
         }
     }
 

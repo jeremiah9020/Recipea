@@ -164,7 +164,7 @@ function ExtendedCard(props) {
                         </ol>
                     </div>
                 </div>
-                <Comment recipe={props.recipe} />
+                <Comment setToast={(str) => {setToastValue(str); setShow(true)}} recipe={props.recipe} />
             </div>
     </div>
   )

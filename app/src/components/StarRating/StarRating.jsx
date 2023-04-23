@@ -1,8 +1,10 @@
 import {React, useState, useEffect} from 'react'
 import Rating from '@mui/material/Rating';
+import { useIsAuthenticated } from '../../context/authContext';
 
 function StarRating(props) {
     const [value, setValue] = useState(0);
+    const authenticated = useIsAuthenticated()
 
     useEffect(() => {
         async function setDefaultRating() {
@@ -58,6 +60,7 @@ function StarRating(props) {
             <Rating
                 name="simple-controlled"
                 value={value}
+                readOnly={!authenticated}
                 onChange={(event, newValue) => {
                     setValue(newValue);
                     handleStarChange(newValue);

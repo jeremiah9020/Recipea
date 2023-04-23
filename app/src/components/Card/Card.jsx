@@ -153,7 +153,7 @@ function Card(props) {
 
   return (
     <div className='Card Hoverable' onClick={clickCard}>
-        {deletable && <div className="Deletable" onClick={handleDeleteRecipe}>
+        {deletable && isAuthenticated && <div className="Deletable" onClick={handleDeleteRecipe}>
             DELETE
         </div>}
         <div className="Center">
