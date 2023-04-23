@@ -70,6 +70,8 @@ function ExtendedCard(props) {
 
     function ShareClicked(event)
     {
+        navigator.clipboard.writeText(`http://localhost:3000/?recipeid=${props.recipe.id}`);
+
         // initiate share
         setToastContent(`Shared ${props.recipe.title} with null`);
     }

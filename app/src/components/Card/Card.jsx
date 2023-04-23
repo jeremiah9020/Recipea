@@ -114,6 +114,8 @@ function Card(props) {
     {
         event.stopPropagation();
 
+        navigator.clipboard.writeText(`http://localhost:3000/?recipeid=${props.recipe.id}`);
+
         // generate url for recipe
 
         // initiate share
