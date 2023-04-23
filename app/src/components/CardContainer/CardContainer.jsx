@@ -3,8 +3,11 @@ import Card from '../../components/Card/Card'
 import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
 import './CardContainer.scss';
+import ExtendedCard from '../ExtendedCard/ExtendedCard';
+
 
 import useRefresh from '../../hooks/refreshHook'
+import { useSearchParams } from 'react-router-dom';
 
 
 // takes in a list of recipes insided of props.recipes
@@ -16,6 +19,8 @@ function CardContainer(props) {
     const [toastValue, setToastValue] = useState();
     const [show, setShow] = useState(false); // for toast
     const [modalShow, setModalShow] = useState(false); // for modal
+    const [searchParams,setSearchParams] = useSearchParams();
+
 
     function setToastContent(content)
     {
@@ -26,6 +31,7 @@ function CardContainer(props) {
     // create cards based on props.recipes
     useEffect(() => {
         async function createCards() {
+            let found = false
             const cards = []
             for (const recipe of props.recipes)
             {
@@ -35,8 +41,40 @@ function CardContainer(props) {
                     })
                 const user = await response.json()
                 cards.push(<Card refresh={refresh} forceRefresh={props.forceRefresh} setToastContent={setToastContent} recipe={recipe} user={user} setExtendedCard={setExtendedCard} setModalShow={setModalShow}/>)
+            
+                if (parseInt(recipe.id) === parseInt(props.opencard)) {
+                    const ingredient_string = recipe.ingredients;
+                    let ingredient_arr = []
+                    if (ingredient_string)
+                    {
+                        let arr = ingredient_string.split(':');
+
+                        // only display the first 7 ingredients in the card view
+                        if (arr.length > 7)
+                        {
+                            arr = arr.slice(0, 7);
+                            arr.push('...');
+                        }
+                        
+                        ingredient_arr = arr
+                    }
+
+                    const tag_string = recipe.tags;
+                    let tags = []
+                    if (tag_string)
+                    {
+                        tags = tag_string.split(':');
+                    }
+        
+                    setExtendedCard(<ExtendedCard setExtendedCard={setExtendedCard} user={user} recipe={recipe} imageURL={'http://localhost:3001/static/' + recipe.image} ingredients={ingredient_arr} tags={tags} />)
+                    setModalShow(true);
+                    searchParams.delete('recipeid')
+                    setSearchParams(searchParams)
+                }
             }
             setCards(cards)
+            //
+            //const cardid = props.opencard
         }
         createCards();
     }, [props.recipes,refresh])

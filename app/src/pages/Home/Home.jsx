@@ -4,11 +4,13 @@ import Header from '../../components/Header/Header'
 import CardContainer from '../../components/CardContainer/CardContainer';
 import './Home.scss';
 import useRefresh from '../../hooks/refreshHook'
+import { useSearchParams } from 'react-router-dom';
 
 
 function Home() {
   const [refresh,forceRefresh] = useRefresh()
   const [recipes, setRecipes] = useState([]);
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     async function populateCardContainer() {
@@ -33,7 +35,7 @@ function Home() {
         <meta name="description" content="Recipea Web Application" />
       </Helmet>
       <Header/>
-      <CardContainer forceRefresh={forceRefresh} recipes={recipes} />
+      <CardContainer opencard={searchParams.get('recipeid')} forceRefresh={forceRefresh} recipes={recipes} />
     </div>
   )
 }
