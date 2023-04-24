@@ -69,72 +69,83 @@ function Search() {
         let nextId = 0;
         let tempRecipes = [];
         let broke = false;  
-        for (let recipe of recipes)
+        if (e.target.value === 'ingredients' || e.target.value === 'tags')
         {
-            const recipeIngredients = recipe['ingredients'].split(":");
-            var found = false;
-            console.log(e.target.value);
-            for(var i = 0; i < tempRecipes.length; i++) {
-                console.log(e.target.value);
-                if (e.target.value === 'userid')
+            for (let recipe of recipes)
+            {
+                const recipeIngredients = recipe['ingredients'].split(":");
+                const recipeTags = recipe['tags'].split(":");
+
+                if (e.target.value === 'ingredients')
                 {
-                    console.log("Here1");
-                    for (let profile of profiles)
-                    {
-                        if (profile[e.target.value] === recipe[e.target.value])
-                        {
-                            if (tempRecipes[i].Name === profile.username) {
-                                found = true;
-                                broke = true;
-                                break;
-                            }
-                        }
-                    }
-                    if (broke)
-                        break;
-                }
-                else if (e.target.value === 'ingredients' || e.target.value === 'tags')
-                {
-                    console.log("Here");
+                    
                     for(var i = 0; i < recipeIngredients.length; i++) {
-                        if (!(tempRecipes[i].Name === recipeIngredients[i])) {
+                        if (!tempRecipes.some(e => e.Name.toUpperCase() == recipeIngredients[i].toUpperCase())) {
                             tempRecipes = [...tempRecipes, { Id: nextId++, Name: recipeIngredients[i] }];
                         }
                     }
-                    console.log(tempRecipes)
                 }
-                else
+                if (e.target.value === 'tags')
                 {
-                    if (tempRecipes[i].Name === recipe[e.target.value]) {
-                        found = true;
-                        break;
-                    }
+                    for(var i = 0; i < recipeIngredients.length; i++) {
+                        if (!tempRecipes.some(e => e.Name.toUpperCase() === recipeTags[i].toUpperCase())) {
+                            tempRecipes = [...tempRecipes, { Id: nextId++, Name: recipeTags[i] }];
+                        }
+                    } 
                 }
             }
-            if (found === false)
+        }
+        else
+        {
+            for (let recipe of recipes)
             {
-                if (e.target.value === 'userid')
-                {
-                    outer:for (let profile of profiles)
+                var found = false;
+                for(var i = 0; i < tempRecipes.length; i++) {
+                    if (e.target.value === 'userid')
                     {
-                        for(var i = 0; i < tempRecipes.length; i++) {
-                            if (tempRecipes[i].Name === profile.username)
-                                continue outer;
-                        }
-
-                        if (profile[e.target.value] === recipe[e.target.value])
+                        for (let profile of profiles)
                         {
-                            tempRecipes = [...tempRecipes, { Id: nextId++, Name: profile.username }];
+                            if (profile[e.target.value] === recipe[e.target.value])
+                            {
+                                if (tempRecipes[i].Name === profile.username) {
+                                    found = true;
+                                    broke = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (broke)
+                            break;
+                    }
+                    else
+                    {
+                        if (tempRecipes[i].Name === recipe[e.target.value]) {
+                            found = true;
+                            break;
                         }
                     }
                 }
-                else if (e.target.value === 'ingredients' || e.target.value === 'tags')
+                if (found === false)
                 {
+                    if (e.target.value === 'userid')
+                    {
+                        outer:for (let profile of profiles)
+                        {
+                            for(var i = 0; i < tempRecipes.length; i++) {
+                                if (tempRecipes[i].Name === profile.username)
+                                    continue outer;
+                            }
 
-                }
-                else
-                {
-                    tempRecipes = [...tempRecipes, { Id: nextId++, Name: recipe[e.target.value] }];
+                            if (profile[e.target.value] === recipe[e.target.value])
+                            {
+                                tempRecipes = [...tempRecipes, { Id: nextId++, Name: profile.username }];
+                            }
+                        }
+                    }
+                    else
+                    {
+                        tempRecipes = [...tempRecipes, { Id: nextId++, Name: recipe[e.target.value] }];
+                    }
                 }
             }
         }
@@ -144,56 +155,90 @@ function Search() {
     function handleButtonClick() {
         let tempRecipes = [];
         let broke = false;
-        for (let recipe of recipes)
+        if (searchField === 'ingredients' || searchField === 'tags')
         {
-            var found = false;
-            for(var i = 0; i < tempRecipes.length; i++) {
-                if (searchField === 'userid')
-                {
-                    for (let profile of profiles)
-                    {
-                        if (profile[searchField] === recipe[searchField])
-                        {
-                            if (tempRecipes[i][input] === recipe[searchField]) {
-                                found = true;
-                                break;
-                            }
-                        }
-                    }
-                    if (broke)
-                        break;
-                }
-                else
-                {
-                    if (tempRecipes[i][input] === recipe[searchField]) {
-                        found = true;
-                        break;
-                    }
-                }
-                
-                if (tempRecipes[i][input] === recipe[searchField]) {
-                    found = true;
-                    break;
-                }
-            }
-            if (searchField === 'userid')
+            for (let recipe of recipes)
             {
-                for (let profile of profiles)
-                    {
-                        if (profile.username === input.Name)
-                        {
-                            if (found === false && recipe[searchField] === profile[searchField])
+                const recipeIngredients = recipe['ingredients'].split(":");
+                const recipeTags = recipe['tags'].split(":");
+
+                if (searchField === 'ingredients')
+                {
+                    for(var i = 0; i < recipeIngredients.length; i++) {
+                        if (recipeIngredients.some(e => e.toUpperCase() == input.Name.toUpperCase())) {
+                            if (!tempRecipes.some(e => e.id == recipe.id))
                             {
                                 tempRecipes = [...tempRecipes, recipe];
                             }
                         }
                     }
-            }
-            else
-            {
-                if (found === false && recipe[searchField] === input.Name)
+                }
+                if (searchField === 'tags')
                 {
-                    tempRecipes = [...tempRecipes, recipe];
+                    for(var i = 0; i < recipeTags.length; i++) {
+                        if (recipeTags.some(e => e.toUpperCase() == input.Name.toUpperCase())) {
+                            if (!tempRecipes.some(e => e.id == recipe.id))
+                            {
+                                tempRecipes = [...tempRecipes, recipe];
+                            }
+                        }
+                    } 
+                }
+            }
+        }
+        else
+        {
+            for (let recipe of recipes)
+            {
+                var found = false;
+                for(var i = 0; i < tempRecipes.length; i++) {
+                    if (searchField === 'userid')
+                    {
+                        for (let profile of profiles)
+                        {
+                            if (profile[searchField] === recipe[searchField])
+                            {
+                                if (tempRecipes[i][input] === recipe[searchField]) {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (broke)
+                            break;
+                    }
+                    else
+                    {
+                        if (tempRecipes[i][input] === recipe[searchField]) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    
+                    if (tempRecipes[i][input] === recipe[searchField]) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (searchField === 'userid')
+                {
+                    for (let profile of profiles)
+                        {
+                            if (profile.username === input.Name)
+                            {
+                                if (found === false && recipe[searchField] === profile[searchField])
+                                {
+                                    tempRecipes = [...tempRecipes, recipe];
+                                }
+                            }
+                        }
+                }
+                else
+                {
+                    if (found === false && recipe[searchField] === input.Name)
+                    {
+                        tempRecipes = [...tempRecipes, recipe];
+                    }
                 }
             }
         }
