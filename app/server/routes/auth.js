@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'help.recipea@gmail.com',
-    pass: 'ulykpgjuzqbguvwv'
+    pass: 'password'
   }
 });
 const publicPath = path.resolve(process.cwd(), 'server/public');
